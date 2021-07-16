@@ -4,55 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To Do List</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" href="css/images/all.min.css">
+    <title>To-Do</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-
 <body>
     <header>
-        <nav>
-            <div id="bars">
-                <a href="#">
-                    <img src="css/images/bars.png">
-                </a>
+        <div>
+            <div class="bars">
+                <input type="checkbox" id="click">
+                <label for="click" class="menu-btn">
+                    <i class="fas fa-bars"></i>
+                </label>
+                 <ul>
+                    <li><a href="#">All</a></li>
+                    <li><a href="#">School</a></li>
+                    <li><a href="#">Housework</a></li>
+                    <li><a href="#">Misc</a></li>
+                    <li><a href="#">IMPORTANT</a></li>
+                 </ul>
             </div>
-            <div id="search-bar">
-                <input type="text" placeholder="Search..">
+            <div class="search-bar">
+                <input type="text" placeholder="Search" name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
             </div>
-            <div id="logo">
-                <img src="css/images/bear_360.jpg">
-            </div>
-            <div>
-            </div>
-
-        </nav>
-        <div id="user">
-            <div class="user-icon">
+        </div>
+        <div id="logo">
+            <a href="">
+                <img src="css/images/bear_360.png">
+            </a>
+        </div>
+        <div id="user-icon">
+            <a href="#">
                 <img src="css/images/user_name_icon.png">
-            </div>
+            </a>
         </div>
     </header>
-
-    <div class="links">
-        <p>Today</p>
-        <p>Work</p>
-        <p>Family</p>
-        <p>Housework</p>
-        <p>School</p>
-        <p>Important</p>
-    </div>
-
-
-        <div class="links">
-            <p>Today</p>
-            <p>Work</p>
-            <p>Family</p>
-            <p>Housework</p>
-            <p>School</p>
-            <p>Important</p>
-        </div>
-
-
+    
 </body>
 </html>
