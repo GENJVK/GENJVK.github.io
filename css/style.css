@@ -167,11 +167,33 @@ header :nth-child(1) {
     margin-right: 0.5rem;
 }
 
-.add-area textarea {
-    padding: 5px 0 45px 0;
+#create-area {
+    position: relative;
+}
+
+#create-area button {
+    position: absolute;
+    display: flex;
+    bottom: 10px;
+    justify-content: space-between;
+}
+
+#create-area textarea {
+    position: relative;
+    padding: 10px 0 0 0;
     width: 80%;
     border: 1px solid #c7c7c7;
     border-radius: 10px;
     background-color: #e6e6e6;
+    resize: none;
+}
+
+.schedule.work textarea {
+    position: relative;
+    padding: 10px 0 0 0;
+    width: 80%;
+    border: 1px solid #c7c7c7;
+    border-radius: 10px;
+    background-color: #4bc28c;
     resize: none;
 }
