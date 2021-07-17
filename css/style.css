@@ -62,6 +62,23 @@ header {
     width: 100%;
 }
 
+header :nth-child(1) {
+    display: flex;
+}
+
+.bars,
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.bars .fa-bars {
+    font-size: 1.8rem;
+    margin-left: 2rem;
+    color: #c7c7c7;
+    cursor: pointer;
+}
+
 
 /* side nav */
 
@@ -158,8 +175,20 @@ header {
     margin-right: 0.5rem;
 }
 
-.add-area textarea {
-    padding: 5px 0 45px 0;
+#create-area {
+    position: relative;
+}
+
+#create-area button {
+    position: absolute;
+    display: flex;
+    bottom: 10px;
+    justify-content: space-between;
+}
+
+#create-area textarea {
+    position: relative;
+    padding: 10px 0 0 0;
     width: 80%;
     border: 1px solid #c7c7c7;
     border-radius: 10px;
@@ -167,16 +196,12 @@ header {
     resize: none;
 }
 
-
-/* media */
-
-@media screen and (max-width:780px) {
-    .search-bar {
-        display: none;
-    }
-    .fas.fa-bars:hover {
-        position: relative;
-        right: 0;
-        transition: right, 4s
-    }
+.schedule.work textarea {
+    position: relative;
+    padding: 10px 0 0 0;
+    width: 80%;
+    border: 1px solid #c7c7c7;
+    border-radius: 10px;
+    background-color: #4bc28c;
+    resize: none;
 }
