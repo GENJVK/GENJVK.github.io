@@ -88,6 +88,7 @@ header :nth-child(1) {
     top: 60px;
     left: 0;
     width: 200px;
+    padding: 0 0 100px 0;
     background-color: #FFF;
 }
 
@@ -109,6 +110,10 @@ header :nth-child(1) {
 .bars ul li a:hover {
     opacity: 1;
     background-color: #e6e6e6;
+}
+
+.bars .lower-menu { 
+    margin-top: 40vh;
 }
 
 /*  end side nav */
@@ -196,4 +201,37 @@ header :nth-child(1) {
     border-radius: 10px;
     background-color: #4bc28c;
     resize: none;
+}
+
+/* mobile */
+
+@media screen and (max-width: 780px) {
+    .search-bar input, .search-bar button {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    main {
+        margin-left: auto;
+    }
+
+    .bars ul {
+        width: 4rem;
+        z-index: 1;
+    }
+
+    .bars ul li a {
+        margin-left: 1rem;
+    }
+
+    .bars ul li span {
+        display: none;
+    }
+}
+
+@media screen and (max-height: 500px) {
+    .bars .lower-menu {
+        margin-top: 10vh;
+    }
 }
