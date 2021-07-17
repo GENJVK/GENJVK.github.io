@@ -59,21 +59,7 @@ header {
     width: 100%;
 }
 
-header :nth-child(1) {
-    display: flex;
-}
 
-.bars, .search-bar {
-    display: flex;
-    align-items: center;
-}
-
-.bars .fa-bars {
-    font-size: 1.8rem;
-    margin-left: 2rem;
-    color: #c7c7c7;
-    cursor: pointer;
-}
 
 /* side nav */
 
@@ -111,6 +97,7 @@ header :nth-child(1) {
     background-color: #e6e6e6;
 }
 
+
 /*  end side nav */
 
 .search-bar input {
@@ -129,7 +116,8 @@ header :nth-child(1) {
     cursor: pointer;
 }
 
-.search-bar button:hover, .fas.fa-bars:hover {
+.search-bar button:hover,
+.fas.fa-bars:hover {
     color: #777;
     transition-duration: 0.2s;
 }
