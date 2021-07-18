@@ -93,6 +93,7 @@ header :nth-child(1) {
     top: 60px;
     left: 0;
     width: 200px;
+    padding: 0 0 100px 0;
     background-color: #FFF;
     z-index: 1000;
 }
@@ -121,7 +122,11 @@ ul {
     background-color: #e6e6e6;
 }
 
+<<<<<<< HEAD=======.bars .lower-menu {
+    margin-top: 40vh;
+}
 
+>>>>>>>bc231c9fcddb9413376a80be7fbed78b4f097e1d
 /*  end side nav */
 
 .search-bar input {
@@ -212,17 +217,33 @@ ul {
 }
 
 
-/* mobile screen */
+/* mobile */
 
-@media screen and (max-width:780px) {
-    .search-bar {
+@media screen and (max-width: 780px) {
+    .search-bar input,
+    .search-bar button {
         display: none;
     }
-    .bars ul {
-        margin-left: -100%;
+}
+
+@media screen and (max-width: 580px) {
+    main {
+        margin-left: auto;
     }
-    #click:checked~ul {
-        left: -100%;
-        transition: 0.8s;
+    .bars ul {
+        width: 4rem;
+        z-index: 1;
+    }
+    .bars ul li a {
+        margin-left: 1rem;
+    }
+    .bars ul li span {
+        display: none;
+    }
+}
+
+@media screen and (max-height: 500px) {
+    .bars .lower-menu {
+        margin-top: 10vh;
     }
 }
