@@ -21,7 +21,7 @@ body {
 
 main {
     height: 100vh;
-    margin: 0 0 0 200px;
+    margin: 0 0 0 auto;
     background-color: #FFF;
     overflow: scroll;
 }
@@ -94,11 +94,16 @@ header :nth-child(1) {
     left: 0;
     width: 200px;
     background-color: #FFF;
+    z-index: 1000;
 }
 
 #click:checked~ul {
     left: -100%;
     transition: 0.8s;
+}
+
+ul {
+    ackground-color: #777;
 }
 
 .bars ul li img {
@@ -204,4 +209,20 @@ header :nth-child(1) {
     border-radius: 10px;
     background-color: #4bc28c;
     resize: none;
+}
+
+
+/* mobile screen */
+
+@media screen and (max-width:780px) {
+    .search-bar {
+        display: none;
+    }
+    .bars ul {
+        margin-left: -100%;
+    }
+    #click:checked~ul {
+        left: -100%;
+        transition: 0.8s;
+    }
 }
