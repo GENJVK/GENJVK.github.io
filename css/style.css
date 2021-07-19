@@ -17,6 +17,7 @@ html {
 
 body {
     background-color: #f2f2f2;
+    overflow-x: scroll;
 }
 
 main {
@@ -31,6 +32,10 @@ a {
     color: #333;
 }
 
+a:hover {
+    opacity: 0.8;
+}
+
 ::placeholder {
     color: #777;
 }
@@ -39,109 +44,110 @@ ul {
     list-style: none;
 }
 
-a:hover, button:hover {
-    opacity: 0.8;
-}
-
 input, textarea {
     outline: none;
 }
 
-/* header */
+i, .user img {
+    cursor: pointer;
+}
 
+.fas:hover, .fa:hover {
+    color: #777;
+    transition: 0.2s;
+}
+
+/* header */
 header {
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     height: 60px;
     background-color: #f2f2f2;
-    width: 100%;
 }
 
-header :nth-child(1) {
+.fa-bars, .search-bar {
     display: flex;
 }
 
-.bars, .search-bar {
-    display: flex;
-    align-items: center;
-}
-
-.bars .fa-bars {
-    font-size: 1.8rem;
+/* menu */
+.fa-bars {
+    font-size: 2rem;
     margin-left: 2rem;
     color: #c7c7c7;
-    cursor: pointer;
 }
-
-/* side nav */
-
-.bars input[type="checkbox"] {
+/* side menu */
+.menu input[type="checkbox"] {
     display: none;
 }
     
-.bars ul {
+.menu ul {
     position: fixed;
-    height: 100vh;
-    left: -100%;
-    top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 95%;
     left: 0;
+    top: 60px;
     width: 200px;
-    padding: 0 0 100px 0;
+    border-right: 2px solid #f2f2f2;
     background-color: #FFF;
 }
 
-#click:checked ~ ul {
+#menu-click:checked ~ ul {
     left: -100%;
     transition: 0.8s;
 }
 
-.bars ul li img {
-    height: 30px;
+.fa-bootstrap {
+    font-size: 40px;
 }
 
-.bars ul li a {
+.menu ul img {
+    height: 35px;
+    width: 35px;
+}
+
+.menu ul li {
+    display: flex;
+    padding: 0.5rem 0;
+    margin-left: 0.5rem;
+}
+
+.menu ul .bin {
+    margin-bottom: 1rem;
+}
+
+.menu ul li span {
     font-size: 1.2rem;
-    font-weight: bold;
-    margin-left: 4.5rem;
+    margin-left: 0.5rem;
 }
 
-.bars ul li a:hover {
-    opacity: 1;
-    background-color: #e6e6e6;
+/* search-bar */
+.search-bar {
+    margin-left: 1rem;
 }
-
-.bars .lower-menu { 
-    margin-top: 40vh;
-}
-
-/*  end side nav */
 
 .search-bar input {
-    margin-left: 1rem;
     padding: 0.5rem;
     border: 1px solid #c7c7c7;
     border-radius: 10px;
 }
 
 .search-bar button {
-    font-size: 1.5rem;
-    padding: 0.3rem;
+    margin-left: 0.5rem;
     border: 0;
+}
+
+.fa-search {
+    font-size: 1.5rem;
     background-color: #f2f2f2;
     color: #c7c7c7;
-    cursor: pointer;
 }
 
-.search-bar button:hover, .fas.fa-bars:hover {
-    color: #777;
-    transition-duration: 0.2s;
-}
-
+/* logo */
 #logo img {
     position: absolute;
-    display: flex;
     height: 3rem;
     top: 0%;
     right: 0%;
@@ -150,16 +156,23 @@ header :nth-child(1) {
     margin: auto;
 }
 
-#user-icon img {
-    height: 3.3rem;
+/* user */
+.user {
+    display: flex;
+    margin-left: auto;
     margin-right: 2rem;
 }
 
-/* main */
+.user-icon {
+    display: flex;
+    margin-left: 1rem;
+    height: 3.3rem;
+}
 
+/* main */
 .container {
     position: relative;
-    padding: 1rem 0 5rem 5rem;
+    padding: 1rem 5rem 5rem 5rem;
 }
 
 .date {
@@ -172,18 +185,16 @@ header :nth-child(1) {
     margin-right: 0.5rem;
 }
 
-#create-area {
+/* add task */
+#add-task {
     position: relative;
 }
 
-#create-area button {
-    position: absolute;
-    display: flex;
+#add-task button {
     bottom: 10px;
-    justify-content: space-between;
 }
 
-#create-area textarea {
+#add-task textarea {
     position: relative;
     padding: 10px 0 0 0;
     width: 80%;
@@ -193,45 +204,79 @@ header :nth-child(1) {
     resize: none;
 }
 
-.schedule.work textarea {
-    position: relative;
-    padding: 10px 0 0 0;
+/* task */
+.task {
+    margin-top: 1rem;
+    padding: 1rem 0 0 0;
+    height: 50px;
     width: 80%;
     border: 1px solid #c7c7c7;
     border-radius: 10px;
-    background-color: #4bc28c;
-    resize: none;
+}
+
+.task.school {
+    background-color: #ff7f7f;
 }
 
 /* mobile */
-
 @media screen and (max-width: 780px) {
-    .search-bar input, .search-bar button {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 580px) {
-    main {
-        margin-left: auto;
+    .fa-bars {
+        margin-left: 0.5rem;
     }
 
-    .bars ul {
-        width: 4rem;
-        z-index: 1;
-    }
-
-    .bars ul li a {
+    .search-bar {
         margin-left: 1rem;
     }
 
-    .bars ul li span {
-        display: none;
+    .user {
+        margin-right: 0.5rem;
     }
 }
 
-@media screen and (max-height: 500px) {
-    .bars .lower-menu {
-        margin-top: 10vh;
+@media screen and (max-width: 620px) {
+    main {
+        margin-left: 50px;
+    }
+
+    body {
+        background-color: #FFF;
+    }
+
+    .menu ul {
+        width: 60px;
+    }
+
+    .menu ul li span {
+        display: none;
+    }
+
+    .menu ul li {
+        margin-left: 0;
+        justify-content: center;
+    }
+    
+    .search-bar {
+        margin-left: 0.5rem;
+    }
+
+    .search-bar input {
+        width: 30%;
+    }
+
+    .search-bar button {
+        margin-left: 0.2rem;
     }
 }
+
+@media screen and (max-height: 900px) {
+    .menu ul {
+        overflow: scroll;
+    }
+}
+
+
+
+
+
+
+

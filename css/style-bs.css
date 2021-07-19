@@ -1,0 +1,65 @@
+@font-face {
+	font-family: 'San Francisco';
+	src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
+}
+
+html {
+    font-family: 'San Francisco', 'Noto Sans TC', sans-serif;
+    font-size: 16px;
+}
+
+
+header {
+    position: relative;
+}
+
+.container-fluid {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+}
+
+.fa-bars {
+    margin-left: 1.5rem;
+    font-size: 2rem;
+    color: #c7c7c7;
+}
+
+.fa-bootstrap {
+    font-size: 40px;
+}
+
+.dropdown-menu li img {
+    height: 35px;
+    width: 35px;
+}
+
+#logo img {
+    position: absolute;
+    height: 3rem;
+    top: 0%;
+    right: 0%;
+    bottom: 0%;
+    left: 0%;
+    margin: auto;
+}
+
+.user-icon {
+    margin-right: 1.5rem;
+}
+
+.user-icon img {
+    height: 3.3rem;
+}
+
+@media screen and (max-width: 780px) {
+    .fa-bars {
+        margin-left: 0.5rem;
+    }
+
+    .user-icon {
+        margin-right: 0.5rem;
+    }
+}
