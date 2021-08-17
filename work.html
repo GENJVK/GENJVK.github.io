@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do</title>
+    <title>JVK To-Do Work</title>
+    <link rel="icon" href="images/bear_360.png">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,52 +14,64 @@
 </head>
 <body>
     <header>
-        <div>
-            <div class="bars">
-                <input type="checkbox" id="click">
-                <label for="click" class="menu-btn">
-                    <i class="fas fa-bars"></i>
-                </label>
+        <div class="menu">
+            <label>
+                <i class="fas fa-bars"></i>
+                <input type="checkbox" id="menu-click">
                 <ul>
-                    <li>
-                        <a href="#"><span>All</span></a>
-                    </li>
-                    <li>
-                        <a href="#"><img src="css/images/學校_Logo.png"><span>School</span></a>
-                    </li>
-                    <li>
-                        <a href="work.html"><img src="css/images/工作_Logo.png"><span>Work</span></a>
-                    </li>
-                    <li>
-                        <a href="#"><img src="css/images/生活_Logo.png"><span>Misc</span></a>
-                    </li>
-                    <li>
-                        <a href="#"><img src="css/images/緊急事項_Logo.png"><span>Important</span></a>
-                    </li>
-                    <li class="lower-menu">
-                        <a href="#"><img src='./css/images/日曆_Logo.png'><span>Calendar</span></a>
-                    </li>
-                    <li>
-                        <a href="#"><img src='./css/images/已完成_Logo.png'><span>Complished</span></a>
-                    </li>
-                    <li>
-                        <a href="#"><img src='./css/images/垃圾桶_Logo.png'><span>Bin</span></a>
-                    </li>
+                    <div>
+                        <li>
+                            <a href="all-bs.html"><i class="fab fa-bootstrap"></i><span>All(Bootstrap)</span></a>
+                        </li>
+                        <li>
+                            <a href="school.html"><img src="images/學校_Logo.png"><span>School</span></a>
+                        </li>
+                        <li>
+                            <a href="work.html"><img src="images/工作_Logo.png"><span>Work</span></a>
+                        </li>
+                        <li>
+                            <a href="activity.html"><img src="images/生活_Logo.png"><span>Activity</span></a>
+                        </li>
+                        <li>
+                            <a href="important.html"><img src="images/緊急事項_Logo.png"><span>Important</span></a>
+                        </li>
+                    </div>
+                    <div>
+                        <li>
+                            <a href="calendar.html"><img src='images/日曆_Logo.png'><span>Calendar</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src='images/已完成_Logo.png'><span>Accomplished</span></a>
+                        </li>
+                        <li class="bin">
+                            <a href="#"><img src='images/垃圾桶_Logo.png'><span>Bin</span></a>
+                        </li>
+                    </div>
                 </ul>
-            </div>
-            <div class="search-bar">
-                <input type="text" placeholder="Search" name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </div>
+            </label>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search" name="search">
+            <button type="submit">
+                <a href="JVK404.html">
+                    <i class="fa fa-search"></i>
+                </a>
+            </button>
         </div>
         <div id="logo">
             <a href="index.html">
-                <img src="css/images/bear_360.png">
+                <img src="images/bear_360.png">
             </a>
         </div>
-        <div id="user-icon">
-            <a href="#">
-                <img src="css/images/user_name_icon.png">
+        <div class="user">
+            <a href="https://github.com/GENJVK/GENJVK.github.io">
+                <img class="user-icon" src="images/user_Victor_icon.png">
+            </a>
+            <a href="Kenson-Final_Project/index.html">
+                <img class="user-icon" src="images/user_Kenson_icon.png">
+            </a>
+            <a href="Jospeh-Final_Project/index.html">
+                <img class="user-icon" src="images/user_Joseph_icon.png">
             </a>
         </div>
     </header>
@@ -67,21 +80,16 @@
         <div class="container">
             <div class="date">
                 <h1>Today</h1>
-                <span>Friday Jul 16</span>
+                <input type="date">
             </div>
-            <div id="create-area">
-                <textarea placeholder="what you want to do" rows="5"></textarea>
-                <button>Date</button>
-                <button>Save</button>
-            </div>
-            <div class="schedule work">
-                <textarea rows="5">Jul 17                    
-13:00 MTR Exit C3 (Langham Place)</textarea>
-                <button>Date</button>
-                <input type="checkbox">
-            </div>
-
+            <form action="" method="get" id="add-task">
+                <textarea placeholder="what you want to do" rows="5">
+                </textarea>
+                <input type="text" placeholder="Assigned To">
+                <input type="date"><span>Due Date</span>
+                <button>Add</button>
+            </form>
         </div>
-    
+    </main>
 </body>
 </html>

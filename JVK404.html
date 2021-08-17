@@ -1,11 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    .container404 {
+        position: relative;
+        background-image: url("https://cdn.vox-cdn.com/thumbor/bEmZtB893JCsirMcXD4hMZVLaRs=/0x0:2224x2035/1200x675/filters:focal(935x840:1289x1194)/cdn.vox-cdn.com/uploads/chorus_image/image/66589371/hs-2014-27-a-print.0.0.1486275780.0.jpg");
+        background-size: cover;
+        height: 100vh;
+    }
+
+    .container404 img {
+        height: 500px;
+        width: 500px;
+        position: absolute;
+        animation-name: floating;
+        animation-duration: 6s;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes floating {
+        0% {
+            top: 0%;
+            left: 0%;
+        }
+        25% {
+            top: 0%;
+            left: 62%;
+        }
+        50%{
+            top: 0%;
+            left: 0%;
+        }
+        75%{
+            top: 35%;
+            left: 0%;
+        }
+        100% {
+            top: 0%;
+            left: 0%;
+        }
+    }
+
+    .container404 h1 {
+        font-size: 6rem;
+        color: white;
+    }
+</style>    
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JVK To-Do</title>
-    <link rel="icon" href="images/bear_360.png">
+    <title>JVK 404</title>
+    <link rel="icon" href="images/bear_404.png">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,13 +93,6 @@
                         </li>
                     </div>
                 </ul>
-<<<<<<< HEAD
-            </div>
-            <div class="search-bar">
-                <input type="text" src="fas fa-bars" placeholder="Search" name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </div>
-=======
             </label>
         </div>
         <div class="search-bar">
@@ -64,7 +102,6 @@
                     <i class="fa fa-search"></i>
                 </a>
             </button>
->>>>>>> 00a842faf7fb4c3458ccfe677416fe5bfaa6d7ec
         </div>
         <div id="logo">
             <a href="index.html">
@@ -83,21 +120,11 @@
             </a>
         </div>
     </header>
-    
-    <main>
-        <div class="container">
-            <div class="date">
-                <h1>Today</h1>
-                <input type="date">
-            </div>
-            <form action="" method="get" id="add-task">
-                <textarea placeholder="what you want to do" rows="5">
-                </textarea>
-                <input type="text" placeholder="Assigned To">
-                <input type="date"><span>Due Date</span>
-                <button>Add</button>
-            </form>
-        </div>
-    </main>
+
+    <div class="container404">
+        <img src="images/bear_404.png">
+        <h1>404</h1>
+        <h1>page not found</h1>
+    </div>   
 </body>
 </html>
