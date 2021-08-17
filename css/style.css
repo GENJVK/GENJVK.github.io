@@ -4,8 +4,8 @@
 }
 
 @font-face {
-	font-family: 'San Francisco';
-	src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
+    font-family: 'San Francisco';
+    src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
 }
 
 html {
@@ -43,20 +43,25 @@ ul {
     list-style: none;
 }
 
-input, textarea {
+input,
+textarea {
     outline: none;
 }
 
-i, .user img {
+i,
+.user img {
     cursor: pointer;
 }
 
-.fas:hover, .fa:hover {
+.fas:hover,
+.fa:hover {
     color: #777;
     transition: 0.2s;
 }
 
+
 /* header */
+
 header {
     position: relative;
     display: flex;
@@ -65,21 +70,27 @@ header {
     background-color: #f2f2f2;
 }
 
-.fa-bars, .search-bar {
+.fa-bars,
+.search-bar {
     display: flex;
 }
 
+
 /* menu */
+
 .fa-bars {
     font-size: 2rem;
     margin-left: 2rem;
     color: #c7c7c7;
 }
+
+
 /* side menu */
+
 .menu input[type="checkbox"] {
     display: none;
 }
-    
+
 .menu ul {
     position: fixed;
     display: flex;
@@ -93,7 +104,7 @@ header {
     background-color: #FFF;
 }
 
-#menu-click:checked ~ ul {
+#menu-click:checked~ul {
     left: -100%;
     transition: 0.8s;
 }
@@ -117,24 +128,17 @@ header {
     margin-bottom: 1rem;
 }
 
-<<<<<<< HEAD
-.bars .lower-menu {
-    margin-top: 40vh;
-}
-
-
-/*  end side nav */
-=======
 .menu ul li span {
     font-size: 1.2rem;
     margin-left: 0.5rem;
 }
 
+
 /* search-bar */
+
 .search-bar {
     margin-left: 1rem;
 }
->>>>>>> 00a842faf7fb4c3458ccfe677416fe5bfaa6d7ec
 
 .search-bar input {
     padding: 0.5rem;
@@ -153,7 +157,9 @@ header {
     color: #c7c7c7;
 }
 
+
 /* logo */
+
 #logo img {
     position: absolute;
     height: 3rem;
@@ -164,7 +170,9 @@ header {
     margin: auto;
 }
 
+
 /* user */
+
 .user {
     display: flex;
     margin-left: auto;
@@ -177,7 +185,9 @@ header {
     height: 3.3rem;
 }
 
+
 /* main */
+
 .container {
     position: relative;
     padding: 1rem 5rem 5rem 5rem;
@@ -193,7 +203,9 @@ header {
     margin-right: 0.5rem;
 }
 
+
 /* add task */
+
 #add-task {
     position: relative;
 }
@@ -202,17 +214,42 @@ header {
     bottom: 10px;
 }
 
-#add-task textarea {
+#add-task {
     position: relative;
     padding: 10px 0 0 0;
-    width: 80%;
+    width: 100%;
     border: 1px solid #c7c7c7;
     border-radius: 10px;
     background-color: #e6e6e6;
     resize: none;
 }
 
+#add-task .textarea {
+    border-color: #e6e6e6;
+    width: 100%;
+    background-color: #e6e6e6;
+}
+
+#add-task .assigned {
+    margin: 5px;
+    height: 20px;
+    border-radius: 5px;
+    border-width: 1px;
+    width: 80px;
+}
+
+#add-task .data {
+    margin: 5px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: #c7c7c7;
+    height: 20px;
+    width: 130px;
+}
+
+
 /* task */
+
 .task {
     margin-top: 1rem;
     padding: 1rem 0 0 0;
@@ -226,16 +263,16 @@ header {
     background-color: #ff7f7f;
 }
 
+
 /* mobile */
+
 @media screen and (max-width: 780px) {
     .fa-bars {
         margin-left: 0.5rem;
     }
-
     .search-bar {
         margin-left: 1rem;
     }
-
     .user {
         margin-right: 0.5rem;
     }
@@ -245,32 +282,25 @@ header {
     main {
         margin-left: 50px;
     }
-
     body {
         background-color: #FFF;
     }
-
     .menu ul {
         width: 60px;
     }
-
     .menu ul li span {
         display: none;
     }
-
     .menu ul li {
         margin-left: 0;
         justify-content: center;
     }
-    
     .search-bar {
         margin-left: 0.5rem;
     }
-
     .search-bar input {
         width: 30%;
     }
-
     .search-bar button {
         margin-left: 0.2rem;
     }
@@ -281,10 +311,3 @@ header {
         overflow: scroll;
     }
 }
-
-
-
-
-
-
-
