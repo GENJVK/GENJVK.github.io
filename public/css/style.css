@@ -226,7 +226,6 @@ header {
     bottom: 10px;
 }
 
-<<<<<<< HEAD:public/css/style.css
 #add-task .assigned {
     margin: 5px;
     height: 20px;
@@ -246,41 +245,7 @@ header {
 
 #add-task img {
     width: 30px;
-=======
-#add-task {
-    position: relative;
-    padding: 10px 0 0 0;
-    width: 100%;
-    border: 1px solid #c7c7c7;
-    border-radius: 10px;
-    background-color: #e6e6e6;
-    resize: none;
->>>>>>> c23fe4b2bf9cb7fffaf40e18a39dd3af653f6742:css/style.css
 }
-
-#add-task .textarea {
-    border-color: #e6e6e6;
-    width: 100%;
-    background-color: #e6e6e6;
-}
-
-#add-task .assigned {
-    margin: 5px;
-    height: 20px;
-    border-radius: 5px;
-    border-width: 1px;
-    width: 80px;
-}
-
-#add-task .data {
-    margin: 5px;
-    border-radius: 5px;
-    border-width: 1px;
-    border-color: #c7c7c7;
-    height: 20px;
-    width: 130px;
-}
-
 
 /* task */
 
