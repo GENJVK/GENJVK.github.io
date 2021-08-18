@@ -1,13 +1,13 @@
-Hi 
+STEPS:
+# install related packages
+1. npm install 
 
-This is the work distribution of my team
+# start server
+2.1 npm start
 
-Joseph - HTML, CSS, JS, Design
-
-Kenson - HTML, CSS, BootStrap
-
-Victor - HTML, CSS, Bootstrap
+# visit localhost webpage
+3. http://localhost:8080
 
 
-Wireframe
-https://www.figma.com/file/WqW9qpJMlsc56TXX5Euhm4/Final?node-id=5%3A3 
+# suggested tools to use
+1. insomnia / postman (for testing API)
