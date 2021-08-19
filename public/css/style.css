@@ -189,7 +189,7 @@ header {
 
 .container {
     position: relative;
-    padding: 1rem 5rem 5rem 5rem;
+    padding: 1rem 2rem 5rem 2rem;
 }
 
 .date {
@@ -215,14 +215,56 @@ header {
 }
 
 #add-task input {
-    width: 100%;
+    padding: 5px;
+    width: 95%;
     background-color: #e6e6e6;
     border: none;
     resize: none;
 }
 
 #add-task button {
-    bottom: 10px;
+    margin: 5px;
+    border: none;
+    box-shadow: 0px 0px 2px 0px #333;
+    border-radius: 4px;
+    bottom: 27px;
+    width: 80px;
+    height: 20px;
+    background-color: #FFF;
+}
+
+#add-task .assigned {
+    width: 80px;
+    height: 10px;
+    background-color: #FFF;
+    box-shadow: 0px 0px 2px 0px #333;
+    margin: 5px;
+    border-radius: 5px;
+    border-width: 1px;
+}
+
+#add-task .data {
+    margin: 5px;
+    border-radius: 5px;
+    border-width: 1px;
+    box-shadow: 0px 0px 2px 0px #333;
+    border-color: #FFF;
+    background-color: #FFF;
+    height: 10px;
+    width: 110px;
+}
+
+#add-task .textarea-icon {
+    padding: 2px;
+    width: auto;
+    height: 20px;
+}
+
+#add-task .textarea-icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 2px;
 }
 
 #add-task img {
@@ -250,7 +292,11 @@ header {
     justify-content: space-between;
 }
 
-/* mobile */
+/*date*/
+
+input[type=date]::-webkit-calendar-picker-indicator {
+    margin-left: 0px;
+}
 
 @media screen and (max-width: 780px) {
     .fa-bars {
