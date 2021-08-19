@@ -58,10 +58,14 @@ button {
 
 .fas:hover,
 .fa:hover {
-    color: #777;
+    color: #aaa;
     transition: 0.2s;
 }
 
+.fas:active,
+.fa:active {
+    color: #777;
+}
 
 /* header */
 
@@ -104,9 +108,14 @@ header {
   
 #sideMenu a {
     padding: 8px 8px 8px 32px;
-    font-size: 25px;
+    font-size: 12px;
     display: block;
     transition: 0.3s;
+}
+
+#sideMenu img {
+    height: 30px;
+    width: 30px; 
 }
 
 /* search-bar */
