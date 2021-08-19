@@ -261,10 +261,18 @@ header {
     height: 20px;
 }
 
+#add-task .textfunction {
+    display: flex;
+    justify-content: space-between;
+}
+
 #add-task .textarea-icon-button {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    padding: 2px;
+}
+
+#add-task .textarea-button-content {
     padding: 2px;
 }
 
