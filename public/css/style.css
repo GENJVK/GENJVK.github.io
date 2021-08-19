@@ -133,7 +133,6 @@ header {
     margin-left: 0.5rem;
 }
 
-
 /* search-bar */
 
 .search-bar {
@@ -226,42 +225,30 @@ header {
     bottom: 10px;
 }
 
-#add-task .assigned {
-    margin: 5px;
-    height: 20px;
-    border-radius: 5px;
-    border-width: 1px;
-    width: 80px;
-}
-
-#add-task .data {
-    margin: 5px;
-    border-radius: 5px;
-    border-width: 1px;
-    border-color: #c7c7c7;
-    height: 20px;
-    width: 130px;
-}
-
 #add-task img {
-    width: 30px;
+    width: 25px;
+}
+
+#input-data-area {
+    display: flex;
+    justify-content: space-between;
 }
 
 /* task */
-
-.task {
-    margin-top: 1rem;
-    padding: 1rem 0 0 0;
-    height: 50px;
-    width: 80%;
-    border: 1px solid #c7c7c7;
+#display-data-area {
+    margin-top: 20px;
+    border: 1px solid #000;
     border-radius: 10px;
 }
 
-.task.school {
-    background-color: #ff7f7f;
+.list-group {
+    margin: 10px auto;
 }
 
+.list-group .list-group-item {
+    display: flex;
+    justify-content: space-between;
+}
 
 /* mobile */
 

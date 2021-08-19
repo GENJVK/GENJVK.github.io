@@ -26,6 +26,7 @@
                         <li>
                             <a href="all-bs.html"><i class="fab fa-bootstrap"></i><span>All(Bootstrap)</span></a>
                         </li>
+                        <button type="button" id="show-button">schedule</button>
                         <li>
                             <a href="school.html"><img src="images/學校_Logo.png"><span>School</span></a>
                         </li>
@@ -44,7 +45,7 @@
                             <a href="calendar.html"><img src='images/日曆_Logo.png'><span>Calendar</span></a>
                         </li>
                         <li>
-                            <a href="#"><img src='images/已完成_Logo.png'><span>Accomplished</span></a>
+                            <a href="#"><img src='images/已完成_Logo.png'><span>Completed</span></a>
                         </li>
                         <li class="bin">
                             <a href="#"><img src='images/垃圾桶_Logo.png'><span>Bin</span></a>
@@ -89,16 +90,24 @@
                 </script>
             </div>
             <form id="add-task" action="http://localhost:8080/" method="POST">
-                <input id="input_main" placeholder="what you want to do">
-                <button id="show-button">schedule</button>
-                <input class="assigned" type="text" placeholder="Assigned To">
-                <input class="data" type="date">
-                <img id="school_r" src="./images/文字框_學校_Logo.png" alt="">
-                <img id="life_r" src="./images/文字框_生活_Logo.png" alt="">
-                <img id="urgent_r" src="./images/文字框_緊急事項_Logo.png" alt="">
-                <img id="job_r" src="./images/文字框_工作_Logo.png" alt="">
-                <button>Add Task</button>
+                <div id='body_main' class="body_main">
+                    <input id="input_main" type="text" name="name" placeholder="what you want to do">
+                    <img id="school_r" src="./images/文字框_學校_Logo.png" alt="">
+                    <img id="life_r" src="./images/文字框_生活_Logo.png" alt="">
+                    <img id="urgent_r" src="./images/文字框_緊急事項_Logo.png" alt="">
+                    <img id="job_r" src="./images/文字框_工作_Logo.png" alt="">
+                    <button type="submit">Add Task</button>
+                    
+                </div>
+                <div id="input-data-area">
+                    <input type='date' name='duedate' placeholder="Due Date">
+                    <input type='text' name='status' placeholder="Status">
+                    <input type='text' name='assignedto' placeholder="Assigned To">
+                    <input type='hidden' name='id' placeholder="id" id="rNum">
+                </div>
             </form>
+            <div id="display-data-area"></div>
+            <div id="fetch-area" class="list-group"></div>
         </div>
     </main>
     <script type="text/javascript" src="js/script.js"></script>
