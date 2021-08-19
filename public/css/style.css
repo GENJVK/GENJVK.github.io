@@ -84,53 +84,34 @@ header {
     color: #c7c7c7;
 }
 
-
 /* side menu */
 
-.menu input[type="checkbox"] {
-    display: none;
-}
-
-.menu ul {
+#sidenav {
+    height: 100%;
+    width: 0;
     position: fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 95%;
-    left: 0;
+    z-index: 1;
     top: 60px;
-    width: 200px;
-    border-right: 2px solid #f2f2f2;
+    left: 0;
     background-color: #FFF;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
 }
-
-#menu-click:checked~ul {
-    left: -100%;
-    transition: 0.8s;
+  
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    font-size: 25px;
+    display: block;
+    transition: 0.3s;
 }
-
-.fa-bootstrap {
-    font-size: 40px;
-}
-
-.menu ul img {
-    height: 35px;
-    width: 35px;
-}
-
-.menu ul li {
-    display: flex;
-    padding: 0.5rem 0;
-    margin-left: 0.5rem;
-}
-
-.menu ul .bin {
-    margin-bottom: 1rem;
-}
-
-.menu ul li span {
-    font-size: 1.2rem;
-    margin-left: 0.5rem;
+  
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
 }
 
 /* search-bar */
@@ -181,13 +162,13 @@ header {
 .user-icon {
     display: flex;
     margin-left: 1rem;
-    height: 3rem;
+    height: 2rem;
 }
 
 
 /* main */
 
-.container {
+#container {
     position: relative;
     padding: 1rem 2rem 5rem 2rem;
 }
@@ -243,7 +224,7 @@ header {
     border-width: 1px;
 }
 
-#add-task .data {
+#add-task .due-date {
     margin: 5px;
     border-radius: 5px;
     border-width: 1px;
@@ -260,10 +241,18 @@ header {
     height: 20px;
 }
 
+#add-task .textfunction {
+    display: flex;
+    justify-content: space-between;
+}
+
 #add-task .textarea-icon-button {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    padding: 2px;
+}
+
+#add-task .textarea-button-content {
     padding: 2px;
 }
 
@@ -317,13 +306,13 @@ input[type=date]::-webkit-calendar-picker-indicator {
     body {
         background-color: #FFF;
     }
-    .menu ul {
+    #menu ul {
         width: 60px;
     }
-    .menu ul li span {
+    #menu ul li span {
         display: none;
     }
-    .menu ul li {
+    #menu ul li {
         margin-left: 0;
         justify-content: center;
     }
@@ -339,7 +328,20 @@ input[type=date]::-webkit-calendar-picker-indicator {
 }
 
 @media screen and (max-height: 900px) {
-    .menu ul {
+    #menu ul {
         overflow: scroll;
     }
 }
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }

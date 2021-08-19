@@ -1,3 +1,14 @@
+// side-menu
+function nav() {
+    document.getElementById('sidenav').style.width = "200px";
+    document.getElementById("container").style.marginLeft = "200px";
+}
+  
+  function closeNav() {
+    document.getElementById('sidenav').style.width = "0";
+    document.getElementById("container").style.marginLeft = "0";
+}
+
 const showButton = document.querySelector('#show-button')
 async function showData() {
 
@@ -100,7 +111,7 @@ async function showData() {
             <button class="button delete" id="${dataArr[i].id}">DELETE</button>
             <input class="form-check-input" type="checkbox" value="">
         </a>
-</div>`
+        </div>`
     }
     const updateButtons = document.querySelectorAll('.button.update')
     for (let updateButton of updateButtons) {
