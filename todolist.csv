@@ -1,1 +1,7 @@
-id,name,description,assignedto,duedate,status
+id,name,description,duedate,type,isDelete
+1,Fa jer,Singing contest,29/5/2021,學校,true
+2,Fa jer,Adv. shooting,29/5/2021,學校,true
+3,Fa jer,MV shooting,29/5/2021,生活,false
+4,Fa jer,Photo shooting,29/5/2021,緊急,false
+5,Fa jer,MV Shooting,29/5/2021,工作,false
+6,Fa jer,TV Show,29/5/2021,工作,true
