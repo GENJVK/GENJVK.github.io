@@ -69,7 +69,12 @@ export class Service {
     for (let i = 0; i < lines.length; i++) {
       if (lines[i] == undefined || lines[i].trim() == "") continue;
       let words = lines[i].split(",");
-      if (words[0] == id) continue;
+      if (words[0] == id) {
+        const newLine = lines[i].split(",")
+        newLine[5] = "true"
+        result = result + newLine.join(',') + "\n";
+        continue
+      };
       result = result + lines[i] + "\n";
     }
     await fs.promises.writeFile(filePath, result);
