@@ -1,7 +1,16 @@
 // side-menu
+let isOpen = false;
+
 function menuToggle() {
-    document.getElementById('sideMenu').style.width = "200px";
-    document.getElementById("container").style.marginLeft = "200px";
+    if (isOpen === false) {
+        document.getElementById('sideMenu').style.width = "200px";
+        document.getElementById("container").style.marginLeft = "200px";
+        isOpen = true;
+    } else {
+        document.getElementById('sideMenu').style.width = "0";
+        document.getElementById("container").style.marginLeft = "0";
+        isOpen = false;
+    }
 }
 
 document.getElementById('menu-button').addEventListener('click', menuToggle);
