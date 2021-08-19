@@ -215,6 +215,15 @@ header {
     background-color: #e6e6e6;
 }
 
+#add-task #input_main {
+    display: flex;
+    resize: none;
+    border: none;
+    width: 95%;
+    padding: 5px 5px 5px 5px;
+    background-color: #e6e6e6;
+}
+
 #add-task input {
     padding: 5px;
     width: 95%;
@@ -264,6 +273,7 @@ header {
 #add-task .textfunction {
     display: flex;
     justify-content: space-between;
+    padding: 2px;
 }
 
 #add-task .textarea-icon-button {
