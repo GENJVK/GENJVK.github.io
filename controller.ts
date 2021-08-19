@@ -46,6 +46,7 @@ export class Controller {
     try {
       const type = req.query.type as string;
       const checkDelete = req.query.checkDelete as string;
+      const search = req.query.search as string;
       if (
         checkDelete  &&
         checkDelete !== "false" &&
@@ -56,7 +57,8 @@ export class Controller {
       }
       const returnedTodoList = await this.service.readTodoList(
         type,
-        checkDelete
+        checkDelete,
+        search
       );
       res.status(200).json(returnedTodoList);
     } catch (e) {
