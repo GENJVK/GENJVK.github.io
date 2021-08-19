@@ -256,12 +256,16 @@ header {
 }
 
 #add-task .textarea-icon {
-    width: 20px;
-    height: auto;
+    padding: 2px;
+    width: auto;
+    height: 20px;
 }
 
-#add-task .textarea-icon-icon {
+#add-task .textarea-icon-button {
     display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 2px;
 }
 
 
