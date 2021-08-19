@@ -1,13 +1,10 @@
 // side-menu
-function nav() {
-    document.getElementById('sidenav').style.width = "200px";
+function menuToggle() {
+    document.getElementById('sideMenu').style.width = "200px";
     document.getElementById("container").style.marginLeft = "200px";
 }
-  
-  function closeNav() {
-    document.getElementById('sidenav').style.width = "0";
-    document.getElementById("container").style.marginLeft = "0";
-}
+
+document.getElementById('menu-button').addEventListener('click', menuToggle);
 
 const showButton = document.querySelector('#show-button')
 async function showData() {
@@ -231,20 +228,20 @@ window.onload = function(){
     }
 }
 
-const fetchTodolist = document.querySelector('#showTodolist');
-fetchTodolist.addEventListener('click', async (e) => {
-    e.preventDefault();
-    const data = await fetch('http://localhost:8080/todolist')
-    const jsonResponse = await data.json()
-    let displayArea = document.querySelector('#fetch-area')
-    let displayhtml = "" 
-    displayArea.innerHTML = displayhtml;
-    // document.querySelector('.button.delete').addEventListener('click', async(e) => {
-    //     e.preventDefault()
-    //     const delResponse = await fetch(`http://localhost:8080/todolist/${i.id}`, {method: 'DELETE'})
-    //     if((await delResponse.json()).result == 'deleted') {}
-    // })
-})
+// const fetchTodolist = document.querySelector('#showTodolist');
+// fetchTodolist.addEventListener('click', async (e) => {
+//     e.preventDefault();
+//     const data = await fetch('http://localhost:8080/todolist')
+//     const jsonResponse = await data.json()
+//     let displayArea = document.querySelector('#fetch-area')
+//     let displayhtml = "" 
+//     displayArea.innerHTML = displayhtml;
+//     // document.querySelector('.button.delete').addEventListener('click', async(e) => {
+//     //     e.preventDefault()
+//     //     const delResponse = await fetch(`http://localhost:8080/todolist/${i.id}`, {method: 'DELETE'})
+//     //     if((await delResponse.json()).result == 'deleted') {}
+//     // })
+// })
 
 // 在加data的form裏面，加eventListener，改用javascript fetch做 add data.
 document.querySelector('#add-task').addEventListener('submit', async (event) => {

@@ -49,7 +49,8 @@ textarea {
 }
 
 i,
-.user img {
+.user img,
+button {
     cursor: pointer;
 }
 
@@ -86,7 +87,7 @@ header {
 
 /* side menu */
 
-#sidenav {
+#sideMenu {
     height: 100%;
     width: 0;
     position: fixed;
@@ -99,19 +100,11 @@ header {
     padding-top: 60px;
 }
   
-.sidenav a {
+#sideMenu a {
     padding: 8px 8px 8px 32px;
     font-size: 25px;
     display: block;
     transition: 0.3s;
-}
-  
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
 }
 
 /* search-bar */
@@ -195,6 +188,15 @@ header {
     background-color: #e6e6e6;
 }
 
+#add-task #input_main {
+    display: flex;
+    resize: none;
+    border: none;
+    width: 95%;
+    padding: 5px 5px 5px 5px;
+    background-color: #e6e6e6;
+}
+
 #add-task input {
     padding: 5px;
     width: 95%;
@@ -244,11 +246,16 @@ header {
 #add-task .textfunction {
     display: flex;
     justify-content: space-between;
+    padding: 2px;
 }
 
 #add-task .textarea-icon-button {
     display: flex;
     align-items: center;
+    padding: 2px;
+}
+
+#add-task .textarea-button-content {
     padding: 2px;
 }
 
@@ -332,16 +339,3 @@ input[type=date]::-webkit-calendar-picker-indicator {
         overflow: scroll;
     }
 }
-
-.sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-  }
