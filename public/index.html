@@ -104,10 +104,7 @@
         <div class="container">
             <div class="date">
                 <h1>Today</h1>
-                <script language="Javascript">
-                    var now = new Date();
-                    document.write(`${now.getMonth() + 1} / ${now.getDate()}`);
-                </script>
+                <div id="datetime"></div>
             </div>
             <form id="add-task" action="http://localhost:8080/" method="POST">
                 <textarea id="input_main" placeholder="What you want to do ?" rows="5"></textarea>
