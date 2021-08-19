@@ -16,64 +16,19 @@
 </head>
 
 <body>
-    <header>
-        <div class="menu">
-            <label>
-          <i class="fas fa-bars"></i>
-          <input type="checkbox" id="menu-click" />
-          <ul>
-            <div>
-              <li>
-                <a href="all-bs.html"
-                  ><i class="fab fa-bootstrap"></i
-                  ><span>All(Bootstrap)</span></a
-                >
-              </li>
-              <li>
-                <a href="school.html"
-                  ><img style="" src="images/學校_Logo.png" /><span
-                    >School</span
-                  ></a
-                >
-              </li>
-              <li>
-                <a href="work.html"
-                  ><img src="images/工作_Logo.png" /><span>Work</span></a
-                >
-              </li>
-              <li>
-                <a href="activity.html"
-                  ><img src="images/生活_Logo.png" /><span>Activity</span></a
-                >
-              </li>
-              <li>
-                <a href="important.html"
-                  ><img src="./images/star_icon.png" /><span>Important</span></a
-                >
-              </li>
-            </div>
-            <div>
-              <li>
-                <a href="calendar.html"
-                  ><img src="images/日曆_Logo.png" /><span>Calendar</span></a
-                >
-              </li>
-              <li>
-                <a href="#"
-                  ><img src="images/已完成_Logo.png" /><span
-                    >Accomplished</span
-                  ></a
-                >
-              </li>
-              <li class="bin">
-                <a href="#"
-                  ><img src="images/垃圾桶_Logo.png" /><span>Bin</span></a
-                >
-              </li>
-            </div>
-          </ul>
-        </label>
+    <header id="header">
+        <div id="menu-button"><i class="fas fa-bars"></i></div>
+        <div id="sideMenu">
+            <a href="all.html"><span>All</span></a>
+            <a href="school.html"><img src="images/學校_Logo.png" /><span>School</span></a>
+            <a href="work.html" zz><img src="images/工作_Logo.png" /><span>Work</span></a>
+            <a href="activity.html"><img src="images/生活_Logo.png" /><span>Activity</span></a>
+            <a href="important.html"><img src="./images/star_icon.png" /><span>Important</span></a>
+            <a href="calendar.html"><img src="images/日曆_Logo.png" /><span>Calendar</span></a>
+            <a href="#"><img src="images/已完成_Logo.png" /><span>Accomplished</span></a>
+            <a href="#"><img src="images/垃圾桶_Logo.png" /><span>Bin</span></a>
         </div>
+        
         <div class="search-bar">
             <input type="text" placeholder="Search" name="search" />
             <button type="submit">
@@ -101,30 +56,29 @@
     </header>
 
     <main>
-        <div class="container">
+        <div id="container">
             <div class="date">
                 <h1>Today</h1>
-                <script language="Javascript">
-                    var now = new Date();
-                    document.write(`${now.getMonth() + 1} / ${now.getDate()}`);
-                </script>
+                <div id="datetime"></div>
             </div>
             <form id="add-task" action="http://localhost:8080/" method="POST">
                 <textarea id="input_main" placeholder="What you want to do ?" rows="5"></textarea>
                 <div class="textfunction">
                     <div class="textarea-button-content">
                         <button id="show-button">Schedule</button>
-                        <input class="assigned" type="text" placeholder="Assigned To" />
-                        <input class="data" type="date" />
+                        <input class="assigned" type="text" name="assignedto" placeholder="Assigned To" />
+                        <input class="due-date" type="date" name="duedate" placeholder="Due Date" />
                     </div>
                     <div class="textarea-icon-button">
                         <img class="textarea-icon" id="school_r" src="./images/文字框_學校_Logo.png" alt="" />
                         <img class="textarea-icon" id="life_r" src="./images/文字框_生活_Logo.png" alt="" />
                         <img class="textarea-icon" id="job_r" src="./images/文字框_工作_Logo.png" alt="" />
-                        <button>Add Task</button>
+                        <button type="submit">Add Task</button>
                     </div>
                 </div>
             </form>
+            <div id="display-data-area"></div>
+            <div id="fetch-area" class="list-group"></div>
         </div>
     </main>
     <script type="text/javascript" src="js/script.js"></script>

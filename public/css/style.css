@@ -1,12 +1,14 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-@font-face {
+
+/* @font-face {
     font-family: 'San Francisco';
     src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
-}
+} */
 
 html {
     font-family: 'San Francisco', 'Noto Sans TC', sans-serif;
@@ -49,16 +51,21 @@ textarea {
 }
 
 i,
-.user img {
+.user img,
+button {
     cursor: pointer;
 }
 
 .fas:hover,
 .fa:hover {
-    color: #777;
+    color: #aaa;
     transition: 0.2s;
 }
 
+.fas:active,
+.fa:active {
+    color: #777;
+}
 
 /* header */
 
@@ -84,55 +91,32 @@ header {
     color: #c7c7c7;
 }
 
-
 /* side menu */
 
-.menu input[type="checkbox"] {
-    display: none;
-}
-
-.menu ul {
+#sideMenu {
+    height: 100%;
+    width: 0;
     position: fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 95%;
-    left: 0;
+    z-index: 1;
     top: 60px;
-    width: 200px;
-    border-right: 2px solid #f2f2f2;
+    left: 0;
     background-color: #FFF;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+  
+#sideMenu a {
+    padding: 8px 8px 8px 32px;
+    font-size: 12px;
+    display: block;
+    transition: 0.3s;
 }
 
-#menu-click:checked~ul {
-    left: -100%;
-    transition: 0.8s;
+#sideMenu img {
+    height: 30px;
+    width: 30px; 
 }
-
-.fa-bootstrap {
-    font-size: 40px;
-}
-
-.menu ul img {
-    height: 35px;
-    width: 35px;
-}
-
-.menu ul li {
-    display: flex;
-    padding: 0.5rem 0;
-    margin-left: 0.5rem;
-}
-
-.menu ul .bin {
-    margin-bottom: 1rem;
-}
-
-.menu ul li span {
-    font-size: 1.2rem;
-    margin-left: 0.5rem;
-}
-
 
 /* search-bar */
 
@@ -182,13 +166,13 @@ header {
 .user-icon {
     display: flex;
     margin-left: 1rem;
-    height: 3rem;
+    height: 2rem;
 }
 
 
 /* main */
 
-.container {
+#container {
     position: relative;
     padding: 1rem 2rem 5rem 2rem;
 }
@@ -253,7 +237,7 @@ header {
     border-width: 1px;
 }
 
-#add-task .data {
+#add-task .due-date {
     margin: 5px;
     border-radius: 5px;
     border-width: 1px;
@@ -286,24 +270,36 @@ header {
     padding: 2px;
 }
 
+#add-task .textarea-button-content {
+    padding: 2px;
+}
+
+#add-task img {
+    width: 25px;
+}
+
+#input-data-area {
+    display: flex;
+    justify-content: space-between;
+}
 
 /* task */
-
-.task {
-    margin-top: 1rem;
-    padding: 1rem 0 0 0;
-    height: 50px;
-    width: 80%;
-    border: 1px solid #c7c7c7;
+#display-data-area {
+    margin-top: 20px;
+    border: 1px solid #000;
     border-radius: 10px;
 }
 
-.task.school {
-    background-color: #ff7f7f;
+.list-group {
+    margin: 10px auto;
 }
 
+.list-group .list-group-item {
+    display: flex;
+    justify-content: space-between;
+}
 
-/*deta*/
+/*date*/
 
 input[type=date]::-webkit-calendar-picker-indicator {
     margin-left: 0px;
@@ -328,13 +324,13 @@ input[type=date]::-webkit-calendar-picker-indicator {
     body {
         background-color: #FFF;
     }
-    .menu ul {
+    #menu ul {
         width: 60px;
     }
-    .menu ul li span {
+    #menu ul li span {
         display: none;
     }
-    .menu ul li {
+    #menu ul li {
         margin-left: 0;
         justify-content: center;
     }
@@ -350,7 +346,7 @@ input[type=date]::-webkit-calendar-picker-indicator {
 }
 
 @media screen and (max-height: 900px) {
-    .menu ul {
+    #menu ul {
         overflow: scroll;
     }
 }

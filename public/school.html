@@ -1,101 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JVK To-Do School</title>
+    <title>JVK To-Do</title>
     <link rel="icon" href="images/bear_360.png">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
 </head>
+
 <body>
     <header>
         <div class="menu">
             <label>
-                <i class="fas fa-bars"></i>
-                <input type="checkbox" id="menu-click">
-                <ul>
-                    <div>
-                        <li>
-                            <a href="all-bs.html"><i class="fab fa-bootstrap"></i><span>All(Bootstrap)</span></a>
-                        </li>
-                        <li>
-                            <a href="school.html"><img src="images/學校_Logo.png"><span>School</span></a>
-                        </li>
-                        <li>
-                            <a href="work.html"><img src="images/工作_Logo.png"><span>Work</span></a>
-                        </li>
-                        <li>
-                            <a href="activity.html"><img src="images/生活_Logo.png"><span>Activity</span></a>
-                        </li>
-                        <li>
-                            <a href="important.html"><img src="images/緊急事項_Logo.png"><span>Important</span></a>
-                        </li>
-                    </div>
-                    <div>
-                        <li>
-                            <a href="calendar.html"><img src='images/日曆_Logo.png'><span>Calendar</span></a>
-                        </li>
-                        <li>
-                            <a href="#"><img src='images/已完成_Logo.png'><span>Accomplished</span></a>
-                        </li>
-                        <li class="bin">
-                            <a href="#"><img src='images/垃圾桶_Logo.png'><span>Bin</span></a>
-                        </li>
-                    </div>
-                </ul>
-            </label>
+          <i class="fas fa-bars"></i>
+          <ul>
+            <div>
+              <li>
+                <a href="all.html"><span>All</span></a>
+              </li>
+              <li>
+                <a href="school.html"><img src="images/學校_Logo.png" /><span>School</span></a>
+              </li>
+              <li>
+                <a href="work.html"><img src="images/工作_Logo.png" /><span>Work</span></a>
+              </li>
+              <li>
+                <a href="activity.html"><img src="images/生活_Logo.png" /><span>Activity</span></a>
+              </li>
+              <li>
+                <a href="important.html"><img src="./images/star_icon.png" /><span>Important</span></a>
+              </li>
+            </div>
+            <div>
+              <li>
+                <a href="calendar.html"><img src="images/日曆_Logo.png" /><span>Calendar</span></a>
+              </li>
+              <li>
+                <a href="#"><img src="images/已完成_Logo.png" /><span>Accomplished</span></a
+                >
+              </li>
+              <li class="bin">
+                <a href="#"><img src="images/垃圾桶_Logo.png" /><span>Bin</span></a>
+              </li>
+            </div>
+          </ul>
+        </label>
         </div>
         <div class="search-bar">
-            <input type="text" placeholder="Search" name="search">
+            <input type="text" placeholder="Search" name="search" />
             <button type="submit">
-                <a href="JVK404.html">
-                    <i class="fa fa-search"></i>
-                </a>
-            </button>
+          <a href="JVK404.html">
+            <i class="fa fa-search"></i>
+          </a>
+        </button>
         </div>
         <div id="logo">
             <a href="index.html">
-                <img src="images/bear_360.png">
+                <img src="images/bear_360.png" />
             </a>
         </div>
         <div class="user">
             <a href="https://github.com/GENJVK/GENJVK.github.io">
-                <img class="user-icon" src="images/user_Victor_icon.png">
+                <img class="user-icon" src="images/user_Victor_icon.png" />
             </a>
             <a href="Kenson-Final_Project/index.html">
-                <img class="user-icon" src="images/user_Kenson_icon.png">
+                <img class="user-icon" src="images/user_Kenson_icon.png" />
             </a>
             <a href="Jospeh-Final_Project/index.html">
-                <img class="user-icon" src="images/user_Joseph_icon.png">
+                <img class="user-icon" src="images/user_Joseph_icon.png" />
             </a>
         </div>
     </header>
-    
+
     <main>
         <div class="container">
             <div class="date">
                 <h1>Today</h1>
-                <input type="date">
+                <script language="Javascript">
+                    var now = new Date();
+                    document.write(`${now.getMonth() + 1} / ${now.getDate()}`);
+                </script>
             </div>
-            <form action="" method="get" id="add-task">
-                <textarea placeholder="what you want to do" rows="5">
-                </textarea>
-                <input type="text" placeholder="Assigned To">
-                <input type="date"><span>Due Date</span>
-                <button>Add</button>
-            </form>
-            <div class="task school">
-                <div class="content">
-                    <span>09:00</span>
-                    <span>FEWD Online Class</span>
+            <form id="add-task" action="http://localhost:8080/" method="POST">
+                <input id="input_main" placeholder="What you want to do ?" />
+                <div class="textfunction">
+                    <div class="textarea-button-content">
+                        <button id="show-button">Schedule</button>
+                        <input class="assigned" type='text' name='assignedto' placeholder="Assigned To" />
+                        <input class="due-date" type='date' name='duedate' placeholder="Due Date"/>
+                    </div>
+                    <div class="textarea-icon-button">
+                        <img class="textarea-icon" id="school_r" src="./images/文字框_學校_Logo.png" alt="" />
+                        <img class="textarea-icon" id="life_r" src="./images/文字框_生活_Logo.png" alt="" />
+                        <img class="textarea-icon" id="job_r" src="./images/文字框_工作_Logo.png" alt="" />
+                        <button type="submit">Add Task</button>
+                    </div>
                 </div>
-            </div>
+            </form>
+            <div id="display-data-area"></div>
+            <div id="fetch-area" class="list-group"></div>
         </div>
     </main>
+    <script type="text/javascript" src="js/script.js"></script>
 </body>
+
 </html>
