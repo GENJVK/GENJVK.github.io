@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { Service } from "./service";
 
 export class Controller {
-  constructor(private service: Service) {}
+  constructor(private service: Service) { }
 
   getSomething = async (req: Request, res: Response) => {
     try {
@@ -48,11 +48,11 @@ export class Controller {
       const checkDelete = req.query.checkDelete as string;
       const search = req.query.search as string;
       if (
-        checkDelete  &&
+        checkDelete &&
         checkDelete !== "false" &&
         checkDelete !== "true"
       ) {
-        res.status(400).json({message:'incorrect input of checkDelete.[ should be "true" or "false" or "" ]'});
+        res.status(400).json({ message: 'incorrect input of checkDelete.[ should be "true" or "false" or "" ]' });
         return;
       }
       const returnedTodoList = await this.service.readTodoList(
@@ -79,10 +79,17 @@ export class Controller {
         return acc > 1 * parseInt(cur["id"]) ? acc : 1 * parseInt(cur["id"]);
       }, 1);
 
-      if (!req.body.name) {
+      if (!req.body.task) {
         res.status(401).json({
           result: false,
           msg: "Missing Data",
+        });
+        return;
+      }
+      if (req.body.status !== 'true' && req.body.status !== 'false') {
+        res.status(401).json({
+          result: false,
+          msg: "status input should be 'true' or 'false'",
         });
         return;
       }
@@ -114,10 +121,12 @@ export class Controller {
         .json(
           await this.service.updateTodoList(
             req.params.id,
-            req.body.name,
-            req.body.description,
+            req.body.task,
+            req.body.assignedto,
             req.body.duedate,
-            req.body.type
+            req.body.type,
+            req.body.isDelete,
+            req.body.status
           )
         );
     } catch (e) {

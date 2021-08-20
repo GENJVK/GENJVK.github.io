@@ -2,7 +2,7 @@ import fs from "fs";
 import { AddTodoListForm, TodoListItem } from "./util/model";
 
 export class Service {
-  constructor() {}
+  constructor() { }
 
   async readTodoList(
     type: string = "",
@@ -39,8 +39,8 @@ export class Service {
       result = result.filter((item) => item.isDelete === "false");
     }
 
-    if(search){
-      result = result.filter((item) => item.name.includes(search));
+    if (search) {
+      result = result.filter((item) => item.task.includes(search));
     }
 
     return result;
@@ -53,14 +53,16 @@ export class Service {
       "\n" +
       post.id +
       "," +
-      post.name +
+      post.task +
       "," +
-      post.description +
+      post.assignedto +
       "," +
       post.duedate +
       "," +
       post.type +
-      ",false";
+      ",false" +
+      ',' +
+      post.status
 
     await fs.appendFile(filePath, reformedInput, (e) => console.log(e));
 
@@ -93,10 +95,12 @@ export class Service {
   // [done]
   async updateTodoList(
     id: string,
-    name?: string,
-    description?: string,
-    duedate?: string,
-    type?: string
+    task: string,
+    assignedto: string,
+    duedate: string,
+    type: string,
+    isDelete: string,
+    status: string
   ) {
     const filePath = __dirname + "/TodoList.csv";
     const data = await fs.promises.readFile(filePath, "utf-8");
@@ -108,10 +112,12 @@ export class Service {
       let words = lines[i].split(",");
       console.log(`words[0]: ${words[0]}, id: ${id}, ${words[0] == id}`);
       if (words[0] == id) {
-        words[1] = "" + name;
-        words[2] = "" + description;
+        words[1] = "" + task;
+        words[2] = "" + assignedto;
         words[3] = "" + duedate;
         words[4] = "" + type;
+        words[5] = "" + isDelete;
+        words[6] = "" + status;
         result = result + words.join(",") + "\n";
       } else {
         result = result + lines[i] + "\n";
