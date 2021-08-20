@@ -61,21 +61,21 @@
                 <h1>Today</h1>
                 <div id="datetime"></div>
             </div>
-            <form id="add-task" action="http://localhost:8080/" method="POST">
-                <textarea id="input_main" placeholder="What you want to do ?" rows="5"></textarea>
-                <div class="textfunction">
-                    <div class="textarea-button-content">
-                        <button id="show-button">Schedule</button>
-                        <input class="assigned" type="text" name="assignedto" placeholder="Assigned To" />
-                        <input class="due-date" type="date" name="duedate" placeholder="Due Date" />
+            <form id='add-task' action="http://localhost:8080/" method="POST">
+                    <textarea id="input_main" placeholder="What you want to do ?" rows="5"></textarea>
+                    <div class="textfunction">
+                        <div class="textarea-button-content">
+                            <button id="show-button">Schedule</button>
+                            <input class="assigned" type="text" name="assignedto" placeholder="Assigned To" />
+                            <input class="due-date" type="date" name="duedate" placeholder="Due Date"/>
+                        </div>
+                        <div class="textarea-icon-button">
+                            <img class="textarea-icon" id="school_r" src="./images/文字框_學校_Logo.png" alt="" />
+                            <img class="textarea-icon" id="life_r" src="./images/文字框_生活_Logo.png" alt="" />
+                            <img class="textarea-icon" id="job_r" src="./images/文字框_工作_Logo.png" alt="" />
+                            <button type="submit">Add Task</button>
+                        </div>
                     </div>
-                    <div class="textarea-icon-button">
-                        <img class="textarea-icon" id="school_r" src="./images/文字框_學校_Logo.png" alt="" />
-                        <img class="textarea-icon" id="life_r" src="./images/文字框_生活_Logo.png" alt="" />
-                        <img class="textarea-icon" id="job_r" src="./images/文字框_工作_Logo.png" alt="" />
-                        <button type="submit">Add Task</button>
-                    </div>
-                </div>
             </form>
             <div id="display-data-area"></div>
             <div id="fetch-area" class="list-group"></div>
