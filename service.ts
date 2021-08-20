@@ -4,7 +4,11 @@ import { AddTodoListForm, TodoListItem } from "./util/model";
 export class Service {
   constructor() {}
 
-  async readTodoList(type: string = "", checkDelete: string = "") {
+  async readTodoList(
+    type: string = "",
+    checkDelete: string = "",
+    search: string = ""
+  ) {
     const filePath = __dirname + "/TodoList.csv";
     const data = await fs.promises.readFile(filePath, "utf-8");
     const lines = data.split("\n");
@@ -33,6 +37,10 @@ export class Service {
 
     if (checkDelete === "false") {
       result = result.filter((item) => item.isDelete === "false");
+    }
+
+    if(search){
+      result = result.filter((item) => item.name.includes(search));
     }
 
     return result;
@@ -70,11 +78,11 @@ export class Service {
       if (lines[i] == undefined || lines[i].trim() == "") continue;
       let words = lines[i].split(",");
       if (words[0] == id) {
-        const newLine = lines[i].split(",")
-        newLine[5] = "true"
-        result = result + newLine.join(',') + "\n";
-        continue
-      };
+        const newLine = lines[i].split(",");
+        newLine[5] = "true";
+        result = result + newLine.join(",") + "\n";
+        continue;
+      }
       result = result + lines[i] + "\n";
     }
     await fs.promises.writeFile(filePath, result);
