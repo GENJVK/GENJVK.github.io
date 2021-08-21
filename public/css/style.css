@@ -95,15 +95,36 @@ header {
 /* side menu */
 
 #sideMenu {
-    height: 90%;
-    width: 0;
+    /* height: 90%; */
+    /* width: 0; */
     position: fixed;
     z-index: 1;
     top: 60px;
     left: 0;
-    overflow-x: hidden;
+    background-color: #FFF;
+    overflow-x: clip;
     transition: 0.5s;
-    border: 1px;
+    /* border: 1px; */
+    display: flex;
+    flex-direction: column;
+}
+
+#sidemenu .sidemenu-function {}
+
+#sideMenu .sidemenu-top img,
+#sideMenu .sidemenu-bottom img {
+    padding-left: 30px;
+}
+
+#sideMenu a {
+    padding: 5px 0;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    transition: 0.5s;
+}
+
+#sideMenu .sidemenu-function {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -112,13 +133,19 @@ header {
 #sideMenu .sidemenu-top {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
 #sideMenu .sidemenu-bottom {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+}
+
+.sidemenu-home {
+    display: flex;
     justify-content: center;
+    padding-bottom: 30px;
 }
 
 #sideMenu:after {
@@ -140,15 +167,6 @@ header {
     /* IE6-9 */
 }
 
-#sideMenu a {
-    padding: 5px 0;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    transition: 0.5s;
-    padding-left: 30px;
-}
-
 #sideMenu span {
     padding: 5px 0;
     font-size: 12px;
@@ -159,15 +177,10 @@ header {
     padding-left: 30px;
 }
 
-#sideMenu a.All {
-    display: flex;
-    justify-content: center;
-}
-
 #sideMenu img {
     display: block;
     height: 30px;
-    width: 30px;
+    width: auto;
 }
 
 
