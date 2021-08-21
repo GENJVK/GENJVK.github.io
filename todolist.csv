@@ -1,10 +1,5 @@
-id,name,description,duedate,type,isDelete
-1,Fa jer,Singing contest,29/5/2021,學校,false
-2,Fa jer,Adv. shooting,29/5/2021,學校,true
-3,Fa jer,MV shooting,29/5/2021,生活,false
-4,Fa jer,Photo shooting,29/5/2021,緊急,false
-5,Fa jer,MV Shooting,29/5/2021,工作,false
-6,Fa jer,TV Show,29/5/2021,工作,true
-
-7,hi dfajs,string,string,string,false
-8,dasgfda hi dfajs,string,string,string,false
+id,task,assignedto,duedate,type,isDelete,status
+1,Fa Jer,ben,29/5/2021,學校,true,true
+2,Fa Jer,ben,29/5/2021,學校,false,true
+3,Fa Jer,ben,29/5/2021,學校,false,true
+4,Fa Jer,ben,29/5/2021,學校,false,true
