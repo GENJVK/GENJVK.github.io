@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JVK To-Do</title>
     <link rel="icon" href="images/bear_360.png" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/calendar.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet" />
@@ -59,33 +60,34 @@
         </div>
     </header>
 
-    <main>
-        <div id="container">
-            <div class="date">
-                <h1>Today</h1>
-                <div id="datetime"></div>
-            </div>
-            <form id="add-task" action="http://localhost:8080/" method="POST">
-                <textarea id="input_main" placeholder="What you want to do ?" rows="5"></textarea>
-                <div class="textfunction">
-                    <div class="textarea-button-content">
-                        <button id="show-button">Schedule</button>
-                        <input class="assigned" type="text" name="assignedto" placeholder="Assigned To" />
-                        <input class="due-date" type="date" name="duedate" placeholder="Due Date" />
-                    </div>
-                    <div class="textarea-icon-button">
-                        <img class="textarea-icon" id="school_r" src="./images/文字框_學校_Logo.png" alt="" />
-                        <img class="textarea-icon" id="life_r" src="./images/文字框_生活_Logo.png" alt="" />
-                        <img class="textarea-icon" id="job_r" src="./images/文字框_工作_Logo.png" alt="" />
-                        <button type="submit">Add Task</button>
-                    </div>
-                </div>
-            </form>
-            <div id="display-data-area"></div>
-            <div id="fetch-area" class="list-group"></div>
+    <div id="calendar">
+        <div class="itemList">
+            <div class="item"></div>
         </div>
-    </main>
-    <script type="text/javascript" src="js/script.js"></script>
+        <form id="itemForm">
+            <label for="title">
+          <p>Title</p>
+          <input type="text" id="title" name="title" />
+        </label>
+
+            <label for="assignedTo">
+          <p>AssignedTo</p>
+          <input type="text" id="assignedTo" name="assignedTo" />
+        </label>
+
+            <label for="status">
+          <p>Status</p>
+          <input type="text" id="status" name="status" />
+        </label>
+
+            <label for="detail">
+          <p>Details</p>
+          <textarea id="details" name="Details" cols="30" rows="10"></textarea>
+        </label>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.js"></script>
+    <script type="text/javascript" src="./js/calendar.js"></script>
 </body>
 
 </html>

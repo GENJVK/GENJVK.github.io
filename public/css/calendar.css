@@ -14,11 +14,11 @@ html {
     font-family: 'San Francisco', 'Noto Sans TC', sans-serif;
     font-size: 16px;
     color: #333;
-    overflow: hidden;
+    overflow: scroll;
 }
 
 body {
-    overflow-x: scroll;
+    overflow: scroll;
 }
 
 main {
@@ -44,11 +44,6 @@ ul {
     list-style: none;
 }
 
-input,
-textarea {
-    outline: none;
-}
-
 i,
 .user img,
 button {
@@ -70,16 +65,19 @@ button {
 /* header */
 
 header {
-    position: relative;
+    position: fixed;
     display: flex;
     align-items: center;
     height: 60px;
     background-color: #f2f2f2;
+    width: 100%;
+    opacity: 1;
 }
 
 .fa-bars,
 .search-bar {
     display: flex;
+    opacity: 1;
 }
 
 
@@ -95,8 +93,6 @@ header {
 /* side menu */
 
 #sideMenu {
-    /* height: 90%; */
-    /* width: 0; */
     position: fixed;
     z-index: 1;
     top: 60px;
@@ -104,7 +100,6 @@ header {
     background-color: #FFF;
     overflow-x: clip;
     transition: 0.5s;
-    /* border: 1px; */
     display: flex;
     flex-direction: column;
 }
@@ -234,144 +229,30 @@ header {
 }
 
 
-/* main */
+/* calender */
 
-#container {
-    position: relative;
-    padding: 1rem 2rem 5rem 2rem;
+.item {
+    border: 1px solid #333;
 }
 
-.date {
+#itemForm {
     display: flex;
-    align-items: baseline;
-    margin-bottom: 0.5rem;
-}
-
-.date h1 {
-    margin-right: 0.5rem;
-}
-
-
-/* add task */
-
-#add-task {
-    position: relative;
-    padding: 10px 0 0 0;
-    width: 100%;
-    border: 1px solid #c7c7c7;
-    border-radius: 10px;
-    background-color: #e6e6e6;
-}
-
-#add-task #input_main {
-    display: flex;
-    resize: none;
-    border: none;
-    width: 95%;
-    padding: 5px 5px 5px 5px;
-    background-color: #e6e6e6;
-}
-
-#add-task input {
-    padding: 5px;
-    width: 95%;
-    background-color: #e6e6e6;
-    border: none;
-    resize: none;
-}
-
-#add-task button {
-    margin: 5px;
-    border: none;
-    box-shadow: 0px 0px 2px 0px #333;
-    border-radius: 4px;
-    bottom: 27px;
-    width: 80px;
-    height: 20px;
-    background-color: #FFF;
-}
-
-#add-task .assigned {
-    width: 80px;
-    height: 10px;
-    background-color: #FFF;
-    box-shadow: 0px 0px 2px 0px #333;
-    margin: 5px;
+    flex-direction: column;
+    border: 1px solid #333;
+    padding: 10px;
     border-radius: 5px;
-    border-width: 1px;
-}
-
-#add-task .due-date {
-    margin: 5px;
-    border-radius: 5px;
-    border: 1px solid #FFF;
-    box-shadow: 0px 0px 2px 0px #333;
-    background-color: #FFF;
-    height: 10px;
-    width: 110px;
-}
-
-#add-task .textarea-icon {
-    padding: 2px;
-    width: auto;
-    height: 20px;
-}
-
-#add-task .textfunction {
-    display: flex;
-    justify-content: space-between;
-    padding: 2px;
-}
-
-#add-task .textarea-icon-button {
-    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #c7c7c7;
+    z-index: 1;
+    justify-content: center;
     align-items: center;
-    padding: 2px;
 }
 
-#add-task .textarea-button-content {
-    padding: 2px;
-}
-
-#add-task .textarea-button-content {
-    padding: 2px;
-}
-
-#add-task img {
-    width: 25px;
-}
-
-#input-data-area {
-    display: flex;
-    justify-content: space-between;
-}
-
-
-/* task */
-
-#display-data-area {
-    margin-top: 20px;
-    border: 1px solid #000;
-    border-radius: 10px;
-}
-
-.list-group {
-    margin: 10px auto;
-}
-
-.list-group .list-group-item {
-    display: flex;
-    justify-content: space-between;
-}
-
-
-/*date*/
-
-input[type=date]::-webkit-calendar-picker-indicator {
-    margin-left: 0px;
-}
-
-@media screen and (max-width: 780px) {
+#it @media screen and (max-width: 780px) {
     .fa-bars {
         margin-left: 0.5rem;
     }
