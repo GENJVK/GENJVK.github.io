@@ -83,7 +83,6 @@ header {
     position: fixed;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     top: 60px;
     width: 200px;
     height: 90%;
@@ -99,6 +98,10 @@ header {
 #sideMenu .sidemenu-top img,
 #sideMenu .sidemenu-bottom img {
     padding-left: 30px;
+}
+
+#sideMenu .sidemenu-bottom {
+    margin-top: 50%;
 }
 
 #sideMenu a {
