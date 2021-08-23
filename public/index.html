@@ -63,19 +63,21 @@
                 <div id="currentdate"></div>
             </div>
             <form id="task-form" action="http://localhost:8080/" method="POST">
-                    <textarea id="task-input" class="task" name="task" rows="5"></textarea>
-                    <div class="task-form-elements">
-                        <div class="left">
-                            <input class="assigned-to" type="text" name="assignedto" placeholder="Assigned to" />
-                            <input class="due-date" type="date" name="duedate" placeholder="Due date"/>
-                        </div>
-                        <div class="right">
-                            <img class="task-form-icon" id="school_r" src="./images/文字框_學校_Logo.png" alt="" />
-                            <img class="task-form-icon" id="life_r" src="./images/文字框_生活_Logo.png" alt="" />
-                            <img class="task-form-icon" id="job_r" src="./images/文字框_工作_Logo.png" alt="" />
-                            <button type="submit">Add Task</button>
-                        </div>
+                <textarea id="task-input" class="task" name="task" placeholder="Task Description" rows="5"></textarea>
+                <div class="task-form-elements">
+                    <div class="left">
+                        <input class="assigned-to" type="text" name="assignedto" placeholder="Assigned to" />
+                        <input class="due-date" type="date" name="duedate" placeholder="Due date"/>
+                        <input class="type" type="text" name="type" placeholder="Type" />
+                        <input class="status" type="text" name="status" placeholder="Status" />
                     </div>
+                    <div class="right">
+                        <img class="task-form-icon" id="school_r" src="./images/文字框_學校_Logo.png" alt="" />
+                        <img class="task-form-icon" id="life_r" src="./images/文字框_生活_Logo.png" alt="" />
+                        <img class="task-form-icon" id="job_r" src="./images/文字框_工作_Logo.png" alt="" />
+                        <button type="submit">Add Task</button>
+                    </div>
+                </div>
             </form>
             <div id="schedule"></div>
         </div>

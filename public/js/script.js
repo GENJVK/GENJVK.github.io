@@ -157,9 +157,10 @@ window.onload = function(){
 // schedule
 // 設定一個名為scheduleData的function
 async function scheduleData() {
+    const schedule = document.querySelector('#schedule')
 
-    // 選擇html內 id 是schedule的 element，放在schedule內
-    const displayDataArea = document.querySelector('#schedule')
+    schedule.innerHTML = `
+    `
 
     // 用 fetch 問 http://localhost:8080/todolist 拎 data，拎完，將 data 放入 variable "res"內。記得要await，因為拎data要時間，要等。
     // fetch食兩個 parameter, fetch(a,b) -> a 是網址，b 是設定（以object格式表達）, 若果用 'GET'的方法取資料，可以唔寫設定都得： fetch('http://localhost:8080/todolist')
@@ -179,7 +180,7 @@ async function scheduleData() {
         <div class='due-date'>${dataArr[i].duedate}</div>
         <div class='task'>${dataArr[i].task}</div>
         <div class='assigned-to'>Assigned to: ${dataArr[i].assignedto}</div>
-        <div class='type'></div>
+        <div class='type'>${dataArr[i].type}</div>
         <button class="button update" id="${dataArr[i].id}">EDIT</button>
         <button class="button delete" id="${dataArr[i].id}">DELETE</button>
         <input class='status' type='checkbox'>
@@ -203,23 +204,31 @@ async function scheduleData() {
         document.querySelector('#schedule').innerHTML = `
         <form id='update-form'>
         <input type='text' name='task' value="${selectedItem.task}">
+        <input type='text' name='assignedto' value="${selectedItem.assignedto}">
         <input type='text' name='duedate' value="${selectedItem.duedate}">
-        <button class='button'>UPDATE</button>
+        <input type='text' name='type' value="${selectedItem.type}">
+        <button class='button'>EDIT</button>
         </form>
         `
+
         document.querySelector('#update-form').addEventListener('submit', (event) => {
             event.preventDefault();
             updatedItem.task = event.target.task.value
+            updatedItem.assignedto = event.target.assignedto.value
             updatedItem.duedate = event.target.duedate.value
+            updatedItem.type = event.target.type.value
             performUpdate(updatedItem)
         })
     }
-    
+
     const performUpdate = async (data) => {
         let dataObj = {
             task: data.task,
-            duedate: data.duedate,
+            assignedto: data.assignedto,
+            duedate: form.duedate.value,
+            type: form.type.value
         }
+        
         const url = 'http://localhost:8080/todolist/' + data.id
         let res = await fetch(url, {
             method: "PUT",
@@ -266,7 +275,6 @@ async function scheduleData() {
 scheduleData();
 
 // add data
-
 // 在加data的form裏面，加eventListener，改用javascript fetch做 add data.
 document.querySelector('#task-form').addEventListener('submit', async (event) => {
 
@@ -278,25 +286,28 @@ document.querySelector('#task-form').addEventListener('submit', async (event) =>
 
     // 砌一個 object 用來放 data ，配合server要的data
     const dataObj = {
+        // id: form.id.value,
         task: form.task.value,
         assignedto: form.assignedto.value,
-        duedate: form.duedate.value
+        duedate: form.duedate.value,
+        type: form.type.value,
+        status: "false"
     }
 
     // 用fetch的 POST 來送資料去server。
     const res = await fetch('http://localhost:8080/todolist',
-        {
-            method: 'POST',
-            // POST，要加headers。如以json格式送出，Content-Type設定要配合返
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            // 送出的資料放在body內。但要以JSON.stringify()來將object轉為json格式
-            body: JSON.stringify(dataObj)
-        })
+    {
+        method: 'POST',
+        // POST，要加headers。如以json格式送出，Content-Type設定要配合返
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        // 送出的資料放在body內。但要以JSON.stringify()來將object轉為json格式
+        body: JSON.stringify(dataObj)
+    })
     
     // 如果資料成功送了去server，res.ok就會等如true
-    if (res.ok) {
+    if (res.status === "ok") {
         console.log(await res.json())
         scheduleData()
     }
