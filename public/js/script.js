@@ -205,10 +205,10 @@ async function scheduleData() {
         let updatedItem = {}
         document.querySelector('#schedule').innerHTML = `
         <form id='update-form'>
-        <input type='text' name='task' value="${selectedItem.task}">
-        <input type='text' name='assignedto' value="${selectedItem.assignedto}">
-        <input type='text' name='duedate' value="${selectedItem.duedate}">
-        <input type='text' name='type' value="${selectedItem.type}">
+        <input type='text' name='task' placeholder='task' value="${selectedItem.task}">
+        <input type='text' name='assignedto' placeholder='assignedto' value="${selectedItem.assignedto}">
+        <input type='date' name='duedate' placeholder='duedate' value="${selectedItem.duedate}">
+        <input type='text' name='type' placeholder='type' value="${selectedItem.type}">
         <button class='button'>EDIT</button>
         </form>
         `
@@ -220,6 +220,8 @@ async function scheduleData() {
             updatedItem.assignedto = event.target.assignedto.value
             updatedItem.duedate = event.target.duedate.value
             updatedItem.type = event.target.type.value
+            updatedItem.isDelete = "false",
+            updatedItem.status = "false"
             performUpdate(updatedItem)
         })
     }
@@ -230,7 +232,9 @@ async function scheduleData() {
             task: data.task,
             assignedto: data.assignedto,
             duedate: data.duedate,
-            type: data.type
+            type: data.type,
+            isDelete: "false",
+            status: "false"
         }
         
         const url = 'http://localhost:8080/todolist/' + data.id
@@ -246,7 +250,6 @@ async function scheduleData() {
 
     // delete
     const deleteItem = async(id) => {
-        console.log(id);
         const url = 'http://localhost:8080/todolist/' + id
         const setting = {
             method: 'DELETE'
@@ -256,6 +259,7 @@ async function scheduleData() {
         if (res.ok) {
             scheduleData()
         }
+        console.log(deleteItem);
     }
 
     //update and delete button
@@ -293,6 +297,7 @@ document.querySelector('#task-form').addEventListener('submit', async(event) => 
         assignedto: form.assignedto.value,
         duedate: form.duedate.value,
         type: form.type.value,
+        isDelete: "false",
         status: "false"
     }
 

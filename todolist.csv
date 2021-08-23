@@ -1,8 +1,4 @@
 id,task,assignedto,duedate,type,isDelete,status
-1,deleted,Victor,23/8/2021,School,true,undefined
-2,delete,Victor,23/8/2021,School,true,undefined
-3,delte,Victor,2021-08-23,School,true,undefined
-4,adsf,,,,true,false
-5,AFDSGHF,,,,true,false
-
-6,abc,,,,false,false
+2,bug: id start with 2,,,,false,false
+3,move deleted task to trash.html,Victor,2021-08-24,School,false,false
+4,deleted task,,,,true,false
