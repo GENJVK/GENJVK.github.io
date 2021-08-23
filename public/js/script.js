@@ -1,5 +1,6 @@
 // side-menu
 let isOpen = true;
+
 function menuToggle() {
     if (isOpen === false) {
         document.getElementById('sideMenu').style.marginLeft = "0";
@@ -14,6 +15,7 @@ function menuToggle() {
 document.getElementById('menu-button').addEventListener('click', menuToggle);
 
 // current time
+
 function startTime() {
     let today = new Date();
     let strDate = document.getElementById("currentdate");
@@ -88,68 +90,69 @@ function startTime() {
             strDate.innerHTML = " Sunday, " + strDate.innerHTML
             break;
     }
+
     function checkTime(i) {
         if (i < 10) { i = "0" + i }
         return i
     }
-    
+
 }
 startTime()
 
 // task-form icon
-window.onload = function(){
+window.onload = function() {
     let school_r = document.getElementById('school_r');
     let life_r = document.getElementById('life_r');
-    let job_r= document.getElementById('job_r');
-    let school_ronOff = true;//創造一個開關,布爾值，true為1，false為0
-    let life_ronOff = true;//創造一個開關,布爾值，true為1，false為0
-    let job_ronOff = true;//創造一個開關,布爾值，true為1，false為0
+    let job_r = document.getElementById('job_r');
+    let school_ronOff = true; //創造一個開關,布爾值，true為1，false為0
+    let life_ronOff = true; //創造一個開關,布爾值，true為1，false為0
+    let job_ronOff = true; //創造一個開關,布爾值，true為1，false為0
     let chAnge = document.getElementById('task-form');
     let chAngeInput = document.getElementById('task-input');
- 
-    school_r.onclick = function(){
-        if(school_ronOff){//如果是真
-            school_r.src = './images/學校_Logo.png' ;//圖片路徑切換為圖片2
-            life_r.src = './images/文字框_生活_Logo.png';//圖片路徑切換為圖片1
-            job_r.src = './images/文字框_工作_Logo.png';//圖片路徑切換為圖片1
-            school_ronOff = false;//並且開關設為假
-            life_ronOff = true;//並且開關設為真
-            job_ronOff = true;//並且開關設為真
-        }else{//如果是假
-            school_r.src = './images/文字框_學校_Logo.png';//圖片路徑切換為圖片1
+
+    school_r.onclick = function() {
+        if (school_ronOff) { //如果是真
+            school_r.src = './images/學校_Logo.png'; //圖片路徑切換為圖片2
+            life_r.src = './images/文字框_生活_Logo.png'; //圖片路徑切換為圖片1
+            job_r.src = './images/文字框_工作_Logo.png'; //圖片路徑切換為圖片1
+            school_ronOff = false; //並且開關設為假
+            life_ronOff = true; //並且開關設為真
+            job_ronOff = true; //並且開關設為真
+        } else { //如果是假
+            school_r.src = './images/文字框_學校_Logo.png'; //圖片路徑切換為圖片1
             chAngeInput.style['background-color'] = '#e6e6e6';
             chAnge.style['background-color'] = '#e6e6e6';
-            school_ronOff = true;//並且開關設為真
+            school_ronOff = true; //並且開關設為真
         }
     }
-    life_r.onclick = function(){
-        if(life_ronOff){//如果是真
-            life_r.src = './images/生活_Logo.png' ;//圖片路徑切換為圖片2
-            school_r.src = './images/文字框_學校_Logo.png' ;//圖片路徑切換為圖片2
-            job_r.src = './images/文字框_工作_Logo.png';//圖片路徑切換為圖片1
-            life_ronOff = false;//並且開關設為假
-            school_ronOff = true;//並且開關設為假
-            job_ronOff = true;//並且開關設為真
-        }else{//如果是假
-            life_r.src = './images/文字框_生活_Logo.png';//圖片路徑切換為圖片1
+    life_r.onclick = function() {
+        if (life_ronOff) { //如果是真
+            life_r.src = './images/生活_Logo.png'; //圖片路徑切換為圖片2
+            school_r.src = './images/文字框_學校_Logo.png'; //圖片路徑切換為圖片2
+            job_r.src = './images/文字框_工作_Logo.png'; //圖片路徑切換為圖片1
+            life_ronOff = false; //並且開關設為假
+            school_ronOff = true; //並且開關設為假
+            job_ronOff = true; //並且開關設為真
+        } else { //如果是假
+            life_r.src = './images/文字框_生活_Logo.png'; //圖片路徑切換為圖片1
             chAngeInput.style['background-color'] = '#e6e6e6';
             chAnge.style['background-color'] = '#e6e6e6';
-            life_ronOff = true;//並且開關設為真
+            life_ronOff = true; //並且開關設為真
         }
     }
-    job_r.onclick = function(){
-        if(job_ronOff){//如果是真
-            job_r.src = './images/工作_Logo.png' ;//圖片路徑切換為圖片2
-            life_r.src = './images/文字框_生活_Logo.png' ;//圖片路徑切換為圖片2
-            school_r.src = './images/文字框_學校_Logo.png' ;//圖片路徑切換為圖片2
-            job_ronOff = false;//並且開關設為假
-            life_ronOff = true;//並且開關設為假
-            school_ronOff = true;//並且開關設為假
-        }else{//如果是假
-            job_r.src = './images/文字框_工作_Logo.png';//圖片路徑切換為圖片1
+    job_r.onclick = function() {
+        if (job_ronOff) { //如果是真
+            job_r.src = './images/工作_Logo.png'; //圖片路徑切換為圖片2
+            life_r.src = './images/文字框_生活_Logo.png'; //圖片路徑切換為圖片2
+            school_r.src = './images/文字框_學校_Logo.png'; //圖片路徑切換為圖片2
+            job_ronOff = false; //並且開關設為假
+            life_ronOff = true; //並且開關設為假
+            school_ronOff = true; //並且開關設為假
+        } else { //如果是假
+            job_r.src = './images/文字框_工作_Logo.png'; //圖片路徑切換為圖片1
             chAngeInput.style['background-color'] = '#e6e6e6';
             chAnge.style['background-color'] = '#e6e6e6';
-            job_ronOff = true;//並且開關設為真
+            job_ronOff = true; //並且開關設為真
         }
     }
 }
@@ -164,10 +167,9 @@ async function scheduleData() {
 
     // 用 fetch 問 http://localhost:8080/todolist 拎 data，拎完，將 data 放入 variable "res"內。記得要await，因為拎data要時間，要等。
     // fetch食兩個 parameter, fetch(a,b) -> a 是網址，b 是設定（以object格式表達）, 若果用 'GET'的方法取資料，可以唔寫設定都得： fetch('http://localhost:8080/todolist')
-    const res = await fetch('http://localhost:8080/todolist',
-        {
-            method: 'GET'
-        })
+    const res = await fetch('http://localhost:8080/todolist', {
+        method: 'GET'
+    })
 
     // sever 處理要求後，會將相關資料以 json 格式 send返俾你(這個例子，回覆的內容放在 res 內)，你要將資料用 .json() 拆解 json，記得要加 await 
     const dataArr = await res.json()
@@ -188,18 +190,18 @@ async function scheduleData() {
         `
     }
 
-    const updateItem = async (id) => {
+    const updateItem = async(id) => {
 
         // 先獲取資料，資料本身以array of object方式儲存，然後將指定要更新的資料放入 selectedItem ，以object方式儲存
         let selectedItem = {}
         let res = await fetch('http://localhost:8080/todolist')
         let resArr = await res.json()
-        for (let resItem of resArr){
-            if (resItem.id === id){
-                selectedItem = {...resItem}
+        for (let resItem of resArr) {
+            if (resItem.id === id) {
+                selectedItem = {...resItem }
             }
         }
-    
+
         let updatedItem = {}
         document.querySelector('#schedule').innerHTML = `
         <form id='update-form'>
@@ -232,24 +234,24 @@ async function scheduleData() {
         const url = 'http://localhost:8080/todolist/' + data.id
         let res = await fetch(url, {
             method: "PUT",
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dataObj)
         })
-        if(res.ok){
+        if (res.ok) {
             document.querySelector('#schedule').innerHTML = `
             <div>ID: ${data.id} is updated</div>
             `
         }
     }
 
-    const deleteItem = async (id) => {
+    const deleteItem = async(id) => {
         const url = 'http://localhost:8080/todolist/' + id
         const setting = {
             method: 'DELETE'
         }
         const res = await fetch(url, setting)
-        // if(res.status === 200) is the same as if(res.ok)
-        if(res.ok){
+            // if(res.status === 200) is the same as if(res.ok)
+        if (res.ok) {
             document.querySelector('#schedule').innerHTML = `
             <div>ID: ${data.id} is deleted</div>
             `
@@ -276,7 +278,7 @@ scheduleData();
 
 // add data
 // 在加data的form裏面，加eventListener，改用javascript fetch做 add data.
-document.querySelector('#task-form').addEventListener('submit', async (event) => {
+document.querySelector('#task-form').addEventListener('submit', async(event) => {
 
     // 停止原先form submission的動作
     event.preventDefault();

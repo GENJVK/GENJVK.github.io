@@ -55,7 +55,9 @@ button {
     color: #777;
 }
 
+
 /* header */
+
 header {
     position: fixed;
     display: flex;
@@ -71,14 +73,18 @@ header {
     display: flex;
 }
 
+
 /* menu */
+
 .fa-bars {
     font-size: 2rem;
     margin-left: 2rem;
     color: #c7c7c7;
 }
 
+
 /* side menu */
+
 #sideMenu {
     position: fixed;
     display: flex;
@@ -121,7 +127,9 @@ header {
     padding-left: 30px;
 }
 
+
 /* search-bar */
+
 .search-bar {
     margin-left: 1rem;
 }
@@ -145,6 +153,7 @@ header {
 
 
 /* logo */
+
 #logo img {
     position: absolute;
     height: 3rem;
@@ -155,7 +164,9 @@ header {
     margin: auto;
 }
 
+
 /* user */
+
 .user {
     display: flex;
     margin-left: auto;
@@ -168,7 +179,9 @@ header {
     height: 2rem;
 }
 
+
 /* main */
+
 #container {
     position: relative;
     top: 60px;
@@ -186,7 +199,9 @@ header {
     margin-right: 0.5rem;
 }
 
+
 /* task form */
+
 #task-form {
     padding: 10px;
     border: 1px solid #c7c7c7;
@@ -217,7 +232,7 @@ header {
     height: 20px;
 }
 
-#task-form .due-date, 
+#task-form .due-date,
 #task-form .assigned-to {
     width: 110px;
 }
@@ -244,7 +259,9 @@ input[type=date]::-webkit-calendar-picker-indicator {
     box-shadow: 0px 0px 2px 0px #333;
 }
 
+
 /* schedule */
+
 #schedule {
     margin-top: 20px;
 }
@@ -265,9 +282,12 @@ input[type=date]::-webkit-calendar-picker-indicator {
     margin-right: 20px;
 }
 
+
 /* update form */
 
+
 /* responsive */
+
 @media screen and (max-width: 780px) {
     .fa-bars {
         margin-left: 0.5rem;
