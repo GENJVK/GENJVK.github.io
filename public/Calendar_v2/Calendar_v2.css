@@ -16,9 +16,6 @@ button {
     color: white;
 }
 
-
-/* header */
-
 #header {
     padding: 10px;
     color: #d36c6c;
@@ -47,18 +44,12 @@ button {
     padding: 10px;
 }
 
-
-/* calendar */
-
 #calendar {
     width: 100%;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
 }
-
-
-/* day */
 
 .day {
     width: 100px;

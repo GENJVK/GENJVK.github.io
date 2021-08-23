@@ -7,11 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JVK To-Do</title>
     <link rel="icon" href="images/bear_360.png" />
-    <link rel="stylesheet" type="text/css" href="css/calendar.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="./css/calendar.css" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
 </head>
@@ -20,16 +17,16 @@
     <header id="header">
         <div id="menu-button"><i class="fas fa-bars"></i></div>
         <div id="sideMenu">
+            <a class="sidemenu-home" href="index.html"><img src="./images/Home_Logo.png" /></a>
             <div class="sidemenu-top">
-                <a href="all.html"><span>All</span></a>
                 <a href="school.html"><img src="images/學校_Logo.png" /><span>School</span></a>
-                <a href="work.html" zz><img src="images/工作_Logo.png" /><span>Work</span></a>
-                <a href="activity.html"><img src="images/生活_Logo.png" /><span>Activity</span></a>
+                <a href="work.html"><img src="images/工作_Logo.png" /><span>Work</span></a>
+                <a href="life.html"><img src="images/生活_Logo.png" /><span>Life</span></a>
                 <a href="important.html"><img src="./images/star_icon.png" /><span>Important</span></a>
             </div>
             <div class="sidemenu-bottom">
                 <a href="calendar.html"><img src="images/日曆_Logo.png" /><span>Calendar</span></a>
-                <a href="#"><img src="images/已完成_Logo.png" /><span>Accomplished</span></a>
+                <a href="#"><img src="images/已完成_Logo.png" /><span>Completed</span></a>
                 <a href="#"><img src="images/垃圾桶_Logo.png" /><span>Bin</span></a>
             </div>
         </div>
@@ -60,33 +57,48 @@
         </div>
     </header>
 
-    <div id="calendar">
-        <div class="itemList">
-            <div class="item"></div>
+    <main>
+        <div id="container">
+            <div id="calendar-header">
+                <div id="monthDisplay"></div>
+                <div>
+                    <button id="backButton">Back</button>
+                    <button id="nextButton">Next</button>
+                </div>
+            </div>
+
+            <div id="weekdays">
+                <div>Sunday</div>
+                <div>Monday</div>
+                <div>Tuesday</div>
+                <div>Wednesday</div>
+                <div>Thursday</div>
+                <div>Friday</div>
+                <div>Saturday</div>
+            </div>
+
+            <div id="calendar"></div>
+            <div id="newEventModal">
+                <h2>New Event</h2>
+
+                <input id="eventTitleInput" placeholder="Event Title" />
+
+                <button id="saveButton">Save</button>
+                <button id="cancelButton">Cancel</button>
+            </div>
+
+            <div id="deleteEventModal">
+                <h2>Event</h2>
+
+                <p id="eventText"></p>
+
+                <button id="deleteButton">Delete</button>
+                <button id="closeButton">Close</button>
+            </div>
+
+            <div id="modalBackDrop"></div>
         </div>
-        <!-- <form id="itemForm">
-            <label for="title">
-          <p>Title</p>
-          <input type="text" id="title" name="title" />
-        </label>
-
-            <label for="assignedTo">
-          <p>AssignedTo</p>
-          <input type="text" id="assignedTo" name="assignedTo" />
-        </label>
-
-            <label for="status">
-          <p>Status</p>
-          <input type="text" id="status" name="status" />
-        </label>
-
-            <label for="detail">
-          <p>Details</p>
-          <textarea id="details" name="Details" cols="30" rows="10"></textarea>
-        </label>
-        </form> -->
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.js"></script>
+    </main>
     <script type="text/javascript" src="./js/calendar.js"></script>
 </body>
 
