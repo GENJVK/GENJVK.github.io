@@ -167,7 +167,7 @@ async function scheduleData() {
 
     // 用 fetch 問 http://localhost:8080/todolist 拎 data，拎完，將 data 放入 variable "res"內。記得要await，因為拎data要時間，要等。
     // fetch食兩個 parameter, fetch(a,b) -> a 是網址，b 是設定（以object格式表達）, 若果用 'GET'的方法取資料，可以唔寫設定都得： fetch('http://localhost:8080/todolist')
-    const res = await fetch('http://localhost:8080/todolist', {
+    const res = await fetch('http://localhost:8080/todolist?checkDelete=false', {
         method: 'GET'
     })
 
@@ -190,6 +190,7 @@ async function scheduleData() {
         `
     }
 
+    //update
     const updateItem = async(id) => {
 
         // 先獲取資料，資料本身以array of object方式儲存，然後將指定要更新的資料放入 selectedItem ，以object方式儲存
@@ -215,6 +216,7 @@ async function scheduleData() {
 
         document.querySelector('#update-form').addEventListener('submit', (event) => {
             event.preventDefault();
+            updatedItem.id = id
             updatedItem.task = event.target.task.value
             updatedItem.assignedto = event.target.assignedto.value
             updatedItem.duedate = event.target.duedate.value
@@ -225,10 +227,11 @@ async function scheduleData() {
 
     const performUpdate = async (data) => {
         let dataObj = {
+            id: data.id,
             task: data.task,
             assignedto: data.assignedto,
-            duedate: form.duedate.value,
-            type: form.type.value
+            duedate: data.duedate,
+            type: data.type
         }
         
         const url = 'http://localhost:8080/todolist/' + data.id
@@ -238,13 +241,13 @@ async function scheduleData() {
             body: JSON.stringify(dataObj)
         })
         if (res.ok) {
-            document.querySelector('#schedule').innerHTML = `
-            <div>ID: ${data.id} is updated</div>
-            `
+            scheduleData()
         }
     }
 
+    // delete
     const deleteItem = async(id) => {
+        console.log(id);
         const url = 'http://localhost:8080/todolist/' + id
         const setting = {
             method: 'DELETE'
@@ -252,13 +255,11 @@ async function scheduleData() {
         const res = await fetch(url, setting)
             // if(res.status === 200) is the same as if(res.ok)
         if (res.ok) {
-            document.querySelector('#schedule').innerHTML = `
-            <div>ID: ${data.id} is deleted</div>
-            `
-            showData()
+            scheduleData()
         }
     }
 
+    //update and delete button
     const updateButtons = document.querySelectorAll('.button.update')
     for (let updateButton of updateButtons) {
         updateButton.addEventListener('click', (event) => {
@@ -309,7 +310,7 @@ document.querySelector('#task-form').addEventListener('submit', async(event) => 
     })
     
     // 如果資料成功送了去server，res.ok就會等如true
-    if (res.status === "ok") {
+    if (res.ok) {
         console.log(await res.json())
         scheduleData()
     }

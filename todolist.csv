@@ -1,4 +1,8 @@
 id,task,assignedto,duedate,type,isDelete,status
-1,Final Project,Victor,23/8/2021,School,true,true
-2,JAVASCRIPT,Victor,23/8/2021,School,true,true
-3,Final Project Edit Delete,Victor,2021-08-23,,false,false
+1,deleted,Victor,23/8/2021,School,true,undefined
+2,delete,Victor,23/8/2021,School,true,undefined
+3,delte,Victor,2021-08-23,School,true,undefined
+4,adsf,,,,true,false
+5,AFDSGHF,,,,true,false
+
+6,abc,,,,false,false
