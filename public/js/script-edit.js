@@ -161,6 +161,7 @@ async function scheduleData() {
     // 選擇html內 id 是schedule的 element，放在schedule內
     const displayDataArea = document.querySelector('#schedule')
 
+    // 用 innerHTML 更改 schedule的內容
     // 用 fetch 問 http://localhost:8080/todolist 拎 data，拎完，將 data 放入 variable "res"內。記得要await，因為拎data要時間，要等。
     // fetch食兩個 parameter, fetch(a,b) -> a 是網址，b 是設定（以object格式表達）, 若果用 'GET'的方法取資料，可以唔寫設定都得： fetch('http://localhost:8080/todolist')
     const res = await fetch('http://localhost:8080/todolist',
@@ -180,90 +181,13 @@ async function scheduleData() {
         <div class='task'>${dataArr[i].task}</div>
         <div class='assigned-to'>Assigned to: ${dataArr[i].assignedto}</div>
         <div class='type'></div>
-        <button class="button update" id="${dataArr[i].id}">EDIT</button>
-        <button class="button delete" id="${dataArr[i].id}">DELETE</button>
         <input class='status' type='checkbox'>
         </div>
         `
     }
-
-    const updateItem = async (id) => {
-
-        // 先獲取資料，資料本身以array of object方式儲存，然後將指定要更新的資料放入 selectedItem ，以object方式儲存
-        let selectedItem = {}
-        let res = await fetch('http://localhost:8080/todolist')
-        let resArr = await res.json()
-        for (let resItem of resArr){
-            if (resItem.id === id){
-                selectedItem = {...resItem}
-            }
-        }
-    
-        let updatedItem = {}
-        document.querySelector('#schedule').innerHTML = `
-        <form id='update-form'>
-        <input type='text' name='task' value="${selectedItem.task}">
-        <input type='text' name='duedate' value="${selectedItem.duedate}">
-        <button class='button'>UPDATE</button>
-        </form>
-        `
-        document.querySelector('#update-form').addEventListener('submit', (event) => {
-            event.preventDefault();
-            updatedItem.task = event.target.task.value
-            updatedItem.duedate = event.target.duedate.value
-            performUpdate(updatedItem)
-        })
-    }
-    
-    const performUpdate = async (data) => {
-        let dataObj = {
-            task: data.task,
-            duedate: data.duedate,
-        }
-        const url = 'http://localhost:8080/todolist/' + data.id
-        let res = await fetch(url, {
-            method: "PUT",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(dataObj)
-        })
-        if(res.ok){
-            document.querySelector('#schedule').innerHTML = `
-            <div>ID: ${data.id} is updated</div>
-            `
-            showData()
-        }
-    }
-
-    const deleteItem = async (id) => {
-        const url = 'http://localhost:8080/todolist/' + id
-        const setting = {
-            method: 'DELETE'
-        }
-        const res = await fetch(url, setting)
-        // if(res.status === 200) is the same as if(res.ok)
-        if(res.ok){
-            document.querySelector('#schedule').innerHTML = `
-            <div>ID: ${data.id} is deleted</div>
-            `
-            showData()
-        }
-    }
-
-    const updateButtons = document.querySelectorAll('.button.update')
-    for (let updateButton of updateButtons) {
-        updateButton.addEventListener('click', (event) => {
-            event.preventDefault();
-            updateItem(updateButton.id)
-        })
-    }
-    const deleteButtons = document.querySelectorAll('.button.delete')
-    for (let deleteButton of deleteButtons) {
-        deleteButton.addEventListener('click', (event) => {
-            event.preventDefault();
-            deleteItem(deleteButton.id)
-        })
-    }
 }
+
+// 要先設定好function才，可以用。 addEventListener(a, b) -> a 是引發的行動，b是行動被引發後，要執行的function
 scheduleData();
 
 // add data
@@ -279,6 +203,7 @@ document.querySelector('#task-form').addEventListener('submit', async (event) =>
 
     // 砌一個 object 用來放 data ，配合server要的data
     const dataObj = {
+        id: Math.floor(Math.random()*10000),
         task: form.task.value,
         assignedto: form.assignedto.value,
         duedate: form.duedate.value
