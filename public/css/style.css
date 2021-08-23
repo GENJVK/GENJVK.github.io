@@ -1,30 +1,19 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
-
-/* @font-face {
-    font-family: 'San Francisco';
-    src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
-} */
-
 html {
-    font-family: 'San Francisco', 'Noto Sans TC', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
     color: #333;
     overflow: hidden;
 }
 
-body {
-    overflow-x: scroll;
-}
-
 main {
-    /* height: 100vh; */
+    height: 100vh;
     background-color: #FFF;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 a {
@@ -66,15 +55,15 @@ button {
     color: #777;
 }
 
-
 /* header */
-
 header {
-    position: relative;
+    position: fixed;
     display: flex;
     align-items: center;
     height: 60px;
+    width: 100%;
     background-color: #f2f2f2;
+    z-index: 1;
 }
 
 .fa-bars,
@@ -82,34 +71,29 @@ header {
     display: flex;
 }
 
-
 /* menu */
-
 .fa-bars {
     font-size: 2rem;
     margin-left: 2rem;
     color: #c7c7c7;
 }
 
-
 /* side menu */
-
 #sideMenu {
-    /* height: 90%; */
-    /* width: 0; */
     position: fixed;
-    z-index: 1;
-    top: 60px;
-    left: 0;
-    background-color: #FFF;
-    overflow-x: clip;
-    transition: 0.5s;
-    /* border: 1px; */
     display: flex;
     flex-direction: column;
+    top: 60px;
+    width: 200px;
+    height: 100%;
+    background-color: #f2f2f2;
+    transition: 0.1s;
 }
 
-#sidemenu .sidemenu-function {}
+#sideMenu img {
+    height: 30px;
+    width: 30px;
+}
 
 #sideMenu .sidemenu-top img,
 #sideMenu .sidemenu-bottom img {
@@ -117,29 +101,14 @@ header {
 }
 
 #sideMenu a {
+    font-size: 16px;
     padding: 5px 0;
-    font-size: 12px;
     display: flex;
     align-items: center;
-    transition: 0.5s;
-}
-
-#sideMenu .sidemenu-function {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-#sideMenu .sidemenu-top {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
 }
 
 #sideMenu .sidemenu-bottom {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    margin-top: 180px;
 }
 
 .sidemenu-home {
@@ -148,44 +117,11 @@ header {
     padding-bottom: 30px;
 }
 
-#sideMenu:after {
-    content: "";
-    display: block;
-    height: 100vh;
-    width: 8px;
-    position: absolute;
-    right: 0;
-    top: 0;
-    background: transparent;
-    background: -moz-linear-gradient(left, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%);
-    /* FF3.6-15 */
-    background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%);
-    /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%);
-    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000', GradientType=0);
-    /* IE6-9 */
-}
-
 #sideMenu span {
-    padding: 5px 0;
-    font-size: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.5s;
     padding-left: 30px;
 }
 
-#sideMenu img {
-    display: block;
-    height: 30px;
-    width: auto;
-}
-
-
 /* search-bar */
-
 .search-bar {
     margin-left: 1rem;
 }
@@ -209,7 +145,6 @@ header {
 
 
 /* logo */
-
 #logo img {
     position: absolute;
     height: 3rem;
@@ -220,9 +155,7 @@ header {
     margin: auto;
 }
 
-
 /* user */
-
 .user {
     display: flex;
     margin-left: auto;
@@ -235,145 +168,106 @@ header {
     height: 2rem;
 }
 
-
 /* main */
-
 #container {
     position: relative;
+    top: 60px;
+    margin-left: 200px;
     padding: 1rem 2rem 5rem 2rem;
 }
 
-.date {
+#date {
     display: flex;
     align-items: baseline;
     margin-bottom: 0.5rem;
 }
 
-.date h1 {
+#date h1 {
     margin-right: 0.5rem;
 }
 
-
-/* add task */
-
-#add-task {
-    position: relative;
-    padding: 10px 0 0 0;
-    width: 100%;
+/* task form */
+#task-form {
+    padding: 10px;
     border: 1px solid #c7c7c7;
     border-radius: 10px;
     background-color: #e6e6e6;
 }
 
-#add-task #input_main {
-    display: flex;
+#task-input {
+    font-size: 16px;
     resize: none;
     border: none;
     width: 95%;
-    padding: 5px 5px 5px 5px;
     background-color: #e6e6e6;
 }
 
-#add-task input {
-    padding: 5px;
-    width: 95%;
-    background-color: #e6e6e6;
-    border: none;
-    resize: none;
-}
-
-#add-task button {
-    margin: 5px;
-    border: none;
-    box-shadow: 0px 0px 2px 0px #333;
-    border-radius: 4px;
-    bottom: 27px;
-    width: 80px;
-    height: 20px;
-    background-color: #FFF;
-}
-
-#add-task .assigned {
-    width: 80px;
-    height: 10px;
-    background-color: #FFF;
-    box-shadow: 0px 0px 2px 0px #333;
-    margin: 5px;
-    border-radius: 5px;
-    border-width: 1px;
-}
-
-#add-task .due-date {
-    margin: 5px;
-    border-radius: 5px;
-    border-width: 1px;
-    box-shadow: 0px 0px 2px 0px #333;
-    border-color: #FFF;
-    background-color: #FFF;
-    height: 10px;
-    width: 110px;
-}
-
-#add-task .textarea-icon {
-    padding: 2px;
-    width: auto;
-    height: 20px;
-}
-
-#add-task .textfunction {
+.task-form-elements {
     display: flex;
     justify-content: space-between;
-    padding: 2px;
-}
-
-#add-task .textarea-icon-button {
-    display: flex;
     align-items: center;
-    padding: 2px;
+    padding-top: 10px;
 }
 
-#add-task .textarea-button-content {
-    padding: 2px;
+#task-form input {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px 0px #333;
+    margin-right: 5px;
 }
 
-#add-task .textarea-button-content {
-    padding: 2px;
+#task-form .due-date, 
+#task-form .assigned-to {
+    width: 110px;
+    height: 20px;
 }
-
-#add-task img {
-    width: 25px;
-}
-
-#input-data-area {
-    display: flex;
-    justify-content: space-between;
-}
-
-
-/* task */
-
-#display-data-area {
-    margin-top: 20px;
-    border: 1px solid #000;
-    border-radius: 10px;
-}
-
-.list-group {
-    margin: 10px auto;
-}
-
-.list-group .list-group-item {
-    display: flex;
-    justify-content: space-between;
-}
-
-
-/*date*/
 
 input[type=date]::-webkit-calendar-picker-indicator {
     margin-left: 0px;
 }
 
+#task-form .right {
+    display: flex;
+}
+
+.task-form-icon {
+    height: 20px;
+    margin-right: 5px;
+}
+
+#task-form button {
+    border: none;
+    border-radius: 5px;
+    width: 80px;
+    height: 20px;
+    background-color: #FFF;
+    box-shadow: 0px 0px 2px 0px #333;
+}
+
+/* schedule */
+#schedule {
+    margin-top: 20px;
+}
+
+#task {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    color: #FFF;
+    background-color: #ff9999;
+}
+
+#task .id {
+    margin-right: 20px;
+}
+
+/* update form */
+
+/* responsive */
 @media screen and (max-width: 780px) {
     .fa-bars {
         margin-left: 0.5rem;
@@ -393,15 +287,11 @@ input[type=date]::-webkit-calendar-picker-indicator {
     body {
         background-color: #FFF;
     }
-    #menu ul {
+    #sideMenu {
         width: 60px;
     }
-    #menu ul li span {
+    #sideMenu span {
         display: none;
-    }
-    #menu ul li {
-        margin-left: 0;
-        justify-content: center;
     }
     .search-bar {
         margin-left: 0.5rem;
@@ -415,7 +305,7 @@ input[type=date]::-webkit-calendar-picker-indicator {
 }
 
 @media screen and (max-height: 900px) {
-    #menu ul {
+    #sideMenu {
         overflow: scroll;
     }
 }
