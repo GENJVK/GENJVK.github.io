@@ -232,7 +232,6 @@ async function scheduleData() {
             document.querySelector('#schedule').innerHTML = `
             <div>ID: ${data.id} is updated</div>
             `
-            showData()
         }
     }
 
