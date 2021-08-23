@@ -76,6 +76,8 @@ export class Service {
     const data = await fs.promises.readFile(filePath, "utf-8");
     const lines = data.split("\n");
     let result: string = "";
+    console.log(lines)
+    console.log(id)
     for (let i = 0; i < lines.length; i++) {
       if (lines[i] == undefined || lines[i].trim() == "") continue;
       let words = lines[i].split(",");
