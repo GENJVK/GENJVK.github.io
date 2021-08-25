@@ -97,3 +97,28 @@ function startTime() {
 
 }
 startTime()
+
+// deleted-tasks 
+async function deletedData() {
+    const deletedTask = document.querySelector('#deleted-tasks')
+
+    deletedTask.innerHTML = ``
+
+    const res = await fetch('http://localhost:8080/todolist?checkDelete=true', {
+        method: 'GET'
+    })
+
+    const dataArr = await res.json()
+
+    for (let i = 0; i < dataArr.length; i++) {
+        deletedTask.innerHTML += `
+        <div id='task'>
+        <div class='due-date'>${dataArr[i].duedate}</div>
+        <div class='task'>${dataArr[i].task}</div>
+        <div class='assigned-to'>Assigned to: ${dataArr[i].assignedto}</div>
+        <div class='type'>${dataArr[i].type}</div>
+        </div>
+        `
+    }
+}
+deletedData();
