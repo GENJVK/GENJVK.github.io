@@ -223,14 +223,14 @@ async function scheduleData() {
         })
     }
 
-    const performUpdate = async (data) => {
+    const performUpdate = async(data) => {
         let dataObj = {
             task: data.task,
             assignedto: data.assignedto,
             duedate: form.duedate.value,
             type: form.type.value
         }
-        
+
         const url = 'http://localhost:8080/todolist/' + data.id
         let res = await fetch(url, {
             method: "PUT",
@@ -253,9 +253,9 @@ async function scheduleData() {
             // if(res.status === 200) is the same as if(res.ok)
         if (res.ok) {
             document.querySelector('#schedule').innerHTML = `
-            <div>ID: ${data.id} is deleted</div>
+            <div>fucking you man</div>
             `
-            showData()
+            scheduleData()
         }
     }
 
@@ -297,8 +297,7 @@ document.querySelector('#task-form').addEventListener('submit', async(event) => 
     }
 
     // 用fetch的 POST 來送資料去server。
-    const res = await fetch('http://localhost:8080/todolist',
-    {
+    const res = await fetch('http://localhost:8080/todolist', {
         method: 'POST',
         // POST，要加headers。如以json格式送出，Content-Type設定要配合返
         headers: {
@@ -307,9 +306,9 @@ document.querySelector('#task-form').addEventListener('submit', async(event) => 
         // 送出的資料放在body內。但要以JSON.stringify()來將object轉為json格式
         body: JSON.stringify(dataObj)
     })
-    
+
     // 如果資料成功送了去server，res.ok就會等如true
-    if (res.status === "ok") {
+    if (res.ok) {
         console.log(await res.json())
         scheduleData()
     }
