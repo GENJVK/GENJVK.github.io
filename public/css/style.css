@@ -55,6 +55,25 @@ button {
     color: #777;
 }
 
+::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+  width: 8px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  background-color: #AAA;
+}
+
 /* header */
 header {
     position: fixed;
@@ -85,11 +104,15 @@ header {
     flex-direction: column;
     top: 60px;
     width: 200px;
-    height: 100%;
+    height: calc(100% - 60px);
     background-color: #f2f2f2;
     transition: 0.5s;
     overflow-x: hidden;
 }
+
+/* ::-webkit-scrollbar {
+    display: none;
+} */
 
 #sideMenu img {
     height: 30px;
@@ -321,9 +344,6 @@ input[type=date]::-webkit-calendar-picker-indicator {
 }
 
 @media screen and (max-height: 600px) {
-    #sideMenu {
-        overflow-y: scroll;
-    }
     #sideMenu .sidemenu-bottom {
         margin-top: 10%;
     }

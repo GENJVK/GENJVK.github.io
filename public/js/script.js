@@ -177,7 +177,6 @@ async function scheduleData() {
     for (let i = 0; i < dataArr.length; i++) {
         schedule.innerHTML += `
         <div id='task'>
-        <div class='id'>${dataArr[i].id}</div>
         <div class='due-date'>${dataArr[i].duedate}</div>
         <div class='task'>${dataArr[i].task}</div>
         <div class='assigned-to'>Assigned to: ${dataArr[i].assignedto}</div>
@@ -198,7 +197,7 @@ async function scheduleData() {
         let resArr = await res.json()
         for (let resItem of resArr) {
             if (resItem.id === id) {
-                selectedItem = {...resItem }
+                selectedItem = {...resItem } // {...resItem } = new resItem 不會改變本身resItem
             }
         }
 

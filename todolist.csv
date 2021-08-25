@@ -1,4 +1,2 @@
 id,task,assignedto,duedate,type,isDelete,status
-2,bug: id start with 2,,,,false,false
-3,move deleted task to trash.html,Victor,2021-08-24,School,false,false
-4,deleted task,,,,true,false
+1,1,,,,true,false
