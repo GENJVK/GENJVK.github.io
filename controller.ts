@@ -77,7 +77,7 @@ export class Controller {
         console.log("acc: " + acc);
         console.log("cur: " + cur);
         return acc > 1 * parseInt(cur["id"]) ? acc : 1 * parseInt(cur["id"]);
-      }, 1);
+      }, 0);
 
       if (!req.body.task) {
         res.status(401).json({

@@ -62,25 +62,10 @@
                 <h1>Today</h1>
                 <div id="currentdate"></div>
             </div>
-            <form id="task-form" action="http://localhost:8080/" method="POST">
-                <textarea id="task-input" class="task" name="task" placeholder="Write your task here" rows="5"></textarea>
-                <div class="task-form-elements">
-                    <div class="left">
-                        <input class="assigned-to" type="text" name="assignedto" placeholder="Assigned to" />
-                        <input class="due-date" type="date" name="duedate" placeholder="Due date"/>
-                        <input class="type" type="text" name="type" placeholder="Type" />
-                    </div>
-                    <div class="right">
-                        <img class="task-form-icon" id="school_r" src="./images/文字框_學校_Logo.png" alt="" />
-                        <img class="task-form-icon" id="life_r" src="./images/文字框_生活_Logo.png" alt="" />
-                        <img class="task-form-icon" id="job_r" src="./images/文字框_工作_Logo.png" alt="" />
-                        <button type="submit">Add Task</button>
-                    </div>
-                </div>
-            </form>
-            <div id="schedule"></div>
+            <div id="deleted-tasks"></div>
         </div>
     </main>
-    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/trash.js"></script>
 </body>
+
 </html>

@@ -167,7 +167,7 @@ async function scheduleData() {
 
     // 用 fetch 問 http://localhost:8080/todolist 拎 data，拎完，將 data 放入 variable "res"內。記得要await，因為拎data要時間，要等。
     // fetch食兩個 parameter, fetch(a,b) -> a 是網址，b 是設定（以object格式表達）, 若果用 'GET'的方法取資料，可以唔寫設定都得： fetch('http://localhost:8080/todolist')
-    const res = await fetch('http://localhost:8080/todolist', {
+    const res = await fetch('http://localhost:8080/todolist?checkDelete=false', {
         method: 'GET'
     })
 
@@ -178,7 +178,6 @@ async function scheduleData() {
     for (let i = 0; i < dataArr.length; i++) {
         schedule.innerHTML += `
         <div id='task'>
-        <div class='id'>${dataArr[i].id}</div>
         <div class='due-date'>${dataArr[i].duedate}</div>
         <div class='task'>${dataArr[i].task}</div>
         <div class='assigned-to'>Assigned to: ${dataArr[i].assignedto}</div>
@@ -190,6 +189,7 @@ async function scheduleData() {
         `
     }
 
+    //update
     const updateItem = async(id) => {
 
         // 先獲取資料，資料本身以array of object方式儲存，然後將指定要更新的資料放入 selectedItem ，以object方式儲存
@@ -198,37 +198,43 @@ async function scheduleData() {
         let resArr = await res.json()
         for (let resItem of resArr) {
             if (resItem.id === id) {
-                selectedItem = {...resItem }
+                selectedItem = {...resItem } // {...resItem } = new resItem 不會改變本身resItem
             }
         }
 
         let updatedItem = {}
         document.querySelector('#schedule').innerHTML = `
         <form id='update-form'>
-        <input type='text' name='task' value="${selectedItem.task}">
-        <input type='text' name='assignedto' value="${selectedItem.assignedto}">
-        <input type='text' name='duedate' value="${selectedItem.duedate}">
-        <input type='text' name='type' value="${selectedItem.type}">
+        <input type='text' name='task' placeholder='task' value="${selectedItem.task}">
+        <input type='text' name='assignedto' placeholder='assignedto' value="${selectedItem.assignedto}">
+        <input type='date' name='duedate' placeholder='duedate' value="${selectedItem.duedate}">
+        <input type='text' name='type' placeholder='type' value="${selectedItem.type}">
         <button class='button'>EDIT</button>
         </form>
         `
 
         document.querySelector('#update-form').addEventListener('submit', (event) => {
             event.preventDefault();
+            updatedItem.id = id
             updatedItem.task = event.target.task.value
             updatedItem.assignedto = event.target.assignedto.value
             updatedItem.duedate = event.target.duedate.value
             updatedItem.type = event.target.type.value
+            updatedItem.isDelete = "false",
+                updatedItem.status = "false"
             performUpdate(updatedItem)
         })
     }
 
     const performUpdate = async(data) => {
         let dataObj = {
+            id: data.id,
             task: data.task,
             assignedto: data.assignedto,
-            duedate: form.duedate.value,
-            type: form.type.value
+            duedate: data.duedate,
+            type: data.type,
+            isDelete: "false",
+            status: "false"
         }
 
         const url = 'http://localhost:8080/todolist/' + data.id
@@ -238,12 +244,11 @@ async function scheduleData() {
             body: JSON.stringify(dataObj)
         })
         if (res.ok) {
-            document.querySelector('#schedule').innerHTML = `
-            <div>ID: ${data.id} is updated</div>
-            `
+            scheduleData()
         }
     }
 
+    // delete
     const deleteItem = async(id) => {
         const url = 'http://localhost:8080/todolist/' + id
         const setting = {
@@ -252,13 +257,12 @@ async function scheduleData() {
         const res = await fetch(url, setting)
             // if(res.status === 200) is the same as if(res.ok)
         if (res.ok) {
-            document.querySelector('#schedule').innerHTML = `
-            <div>fucking you man</div>
-            `
             scheduleData()
         }
+        console.log(deleteItem);
     }
 
+    //update and delete button
     const updateButtons = document.querySelectorAll('.button.update')
     for (let updateButton of updateButtons) {
         updateButton.addEventListener('click', (event) => {
@@ -293,6 +297,7 @@ document.querySelector('#task-form').addEventListener('submit', async(event) => 
         assignedto: form.assignedto.value,
         duedate: form.duedate.value,
         type: form.type.value,
+        isDelete: "false",
         status: "false"
     }
 

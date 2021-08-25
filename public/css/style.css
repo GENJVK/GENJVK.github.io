@@ -55,9 +55,24 @@ button {
     color: #777;
 }
 
+::-webkit-scrollbar-track
+{
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar
+{
+  width: 8px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  background-color: #AAA;
+}
 
 /* header */
-
 header {
     position: fixed;
     display: flex;
@@ -73,28 +88,29 @@ header {
     display: flex;
 }
 
-
 /* menu */
-
 .fa-bars {
     font-size: 2rem;
     margin-left: 2rem;
     color: #c7c7c7;
 }
 
-
 /* side menu */
-
 #sideMenu {
     position: fixed;
     display: flex;
     flex-direction: column;
     top: 60px;
     width: 200px;
+    height: calc(100% - 60px);
     background-color: #f2f2f2;
     transition: 0.5s;
-    overflow: hidden;
+    overflow-x: hidden;
 }
+
+/* ::-webkit-scrollbar {
+    display: none;
+} */
 
 #sideMenu img {
     height: 30px;
@@ -127,9 +143,7 @@ header {
     padding-left: 30px;
 }
 
-
 /* search-bar */
-
 .search-bar {
     margin-left: 1rem;
 }
@@ -153,7 +167,6 @@ header {
 
 
 /* logo */
-
 #logo img {
     position: absolute;
     height: 3rem;
@@ -164,9 +177,7 @@ header {
     margin: auto;
 }
 
-
 /* user */
-
 .user {
     display: flex;
     margin-left: auto;
@@ -179,9 +190,7 @@ header {
     height: 2rem;
 }
 
-
 /* main */
-
 #container {
     position: relative;
     top: 60px;
@@ -199,9 +208,7 @@ header {
     margin-right: 0.5rem;
 }
 
-
 /* task form */
-
 #task-form {
     padding: 10px;
     border: 1px solid #c7c7c7;
@@ -226,14 +233,11 @@ header {
 
 #task-form input {
     border: none;
+    padding-left: 0.5rem;
     border-radius: 5px;
     box-shadow: 0px 0px 2px 0px #333;
     margin-right: 5px;
     height: 20px;
-}
-
-#task-form .due-date,
-#task-form .assigned-to {
     width: 110px;
 }
 
@@ -259,9 +263,7 @@ input[type=date]::-webkit-calendar-picker-indicator {
     box-shadow: 0px 0px 2px 0px #333;
 }
 
-
 /* schedule */
-
 #schedule {
     margin-top: 20px;
 }
@@ -282,12 +284,27 @@ input[type=date]::-webkit-calendar-picker-indicator {
     margin-right: 20px;
 }
 
-
 /* update form */
+#update-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #c7c7c7;
+    border-radius: 10px;
+    background-color: #E6E6E6;
+}
 
+#update-form input {
+    border: none;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+    height: 20px;
+    width: 110px;
+}
 
 /* responsive */
-
 @media screen and (max-width: 780px) {
     .fa-bars {
         margin-left: 0.5rem;
@@ -324,8 +341,8 @@ input[type=date]::-webkit-calendar-picker-indicator {
     }
 }
 
-@media screen and (max-height: 480px) {
-    #sideMenu {
-        overflow: scroll;
+@media screen and (max-height: 600px) {
+    #sideMenu .sidemenu-bottom {
+        margin-top: 10%;
     }
 }
