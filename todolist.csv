@@ -5,3 +5,5 @@ id,task,assignedto,duedate,type,isDelete,status
 4,asd,ti,2021-08-18,asss,true,false
 5,addd,ti,2021-08-18,asss,true,false
 6,12121,2121,2021-08-04,2112,true,false
+
+7,school task,,,,false,false
