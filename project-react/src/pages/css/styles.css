@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: #333;
+    overflow: hidden;
+}
+
+main {
+    height: 100vh;
+    background-color: #FFF;
+    overflow-y: scroll;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+::placeholder {
+    color: #777;
+}
+
+ul {
+    list-style: none;
+}
+
+input,
+textarea {
+    outline: none;
+}
+
+i,
+.user img,
+button {
+    cursor: pointer;
+}
+
+.fas:hover,
+.fa:hover {
+    color: #aaa;
+    transition: 0.2s;
+}
+
+.fas:active,
+.fa:active {
+    color: #777;
+}
+
+::-webkit-scrollbar-track
+{
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar
+{
+  width: 8px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  background-color: #AAA;
+}
