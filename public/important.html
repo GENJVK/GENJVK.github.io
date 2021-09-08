@@ -19,8 +19,8 @@
             <a class="sidemenu-home" href="index.html"><img src="./images/Home_Logo.png" /></a>
             <div class="sidemenu-top">
                 <a href="school.html"><img src="images/學校_Logo.png" /><span>School</span></a>
-                <a href="work.html"><img src="images/工作_Logo.png" /><span>Work</span></a>
                 <a href="life.html"><img src="images/生活_Logo.png" /><span>Life</span></a>
+                <a href="work.html"><img src="images/工作_Logo.png" /><span>Work</span></a>
                 <a href="important.html"><img src="./images/star_icon.png" /><span>Important</span></a>
             </div>
             <div class="sidemenu-bottom">
@@ -63,12 +63,11 @@
                 <div id="currentdate"></div>
             </div>
             <form id="task-form" action="http://localhost:8080/" method="POST">
-                <textarea id="task-input" class="task" name="task" placeholder="Write your task here" rows="5"></textarea>
+                <textarea id="task-input" class="task" name="task" placeholder="Write your task here" rows="5" required></textarea>
                 <div class="task-form-elements">
                     <div class="left">
                         <input class="assigned-to" type="text" name="assignedto" placeholder="Assigned to" />
-                        <input class="due-date" type="date" name="duedate" placeholder="Due date"/>
-                        <input class="type" type="text" name="type" placeholder="Type" />
+                        <input class="due-date" type="date" name="duedate" placeholder="Due date" required/>
                     </div>
                     <div class="right">
                         <img class="task-form-icon" id="school_r" src="./images/文字框_學校_Logo.png" alt="" />
@@ -83,4 +82,5 @@
     </main>
     <script type="text/javascript" src="js/script.js"></script>
 </body>
+
 </html>

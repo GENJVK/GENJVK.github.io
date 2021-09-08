@@ -264,7 +264,10 @@ input[type=date]::-webkit-calendar-picker-indicator {
 }
 
 /* schedule */
-#schedule {
+#schedule, 
+#school-tasks, 
+#life-tasks, 
+#work-tasks {
     margin-top: 20px;
 }
 
