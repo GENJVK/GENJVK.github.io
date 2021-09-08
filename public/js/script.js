@@ -236,7 +236,7 @@ async function scheduleData() {
             updatedItem.duedate = event.target.duedate.value
             updatedItem.type = event.target.type.value
             updatedItem.isDelete = "false",
-                updatedItem.status = "false"
+            updatedItem.status = "false"
             performUpdate(updatedItem)
         })
     }
