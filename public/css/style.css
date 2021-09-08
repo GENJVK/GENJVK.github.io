@@ -289,22 +289,10 @@ input[type=date]::-webkit-calendar-picker-indicator {
 
 /* update form */
 #update-form {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    padding: 20px;
+    padding: 10px;
     border: 1px solid #c7c7c7;
     border-radius: 10px;
-    background-color: #E6E6E6;
-}
-
-#update-form input {
-    border: none;
-    padding-left: 0.5rem;
-    border-radius: 5px;
-    height: 20px;
-    width: 110px;
+    background-color: #e6e6e6;
 }
 
 /* responsive */

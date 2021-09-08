@@ -223,7 +223,7 @@ async function scheduleData() {
         <input type='text' name='task' placeholder='task' value="${selectedItem.task}">
         <input type='text' name='assignedto' placeholder='assignedto' value="${selectedItem.assignedto}">
         <input type='date' name='duedate' placeholder='duedate' value="${selectedItem.duedate}">
-        <input type='text' name='type' placeholder='type' value="${selectedItem.type}">
+        <input type='text' name='type' placeholder='type' value="${selectedItem.type}" hidden>
         <button class='button'>EDIT</button>
         </form>
         `
@@ -274,7 +274,6 @@ async function scheduleData() {
         if (res.ok) {
             scheduleData()
         }
-        console.log(deleteItem);
     }
 
     //update and delete button
@@ -315,7 +314,6 @@ document.querySelector('#task-form').addEventListener('submit', async(event) => 
         isDelete: "false",
         status: "false"
     }
-    localStorage.removeItem("taskType")
 
     // 用fetch的 POST 來送資料去server。
     const res = await fetch('http://localhost:8080/todolist', {

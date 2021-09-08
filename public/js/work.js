@@ -162,37 +162,20 @@ window.onload = function() {
     }
 }
 
-// schedule
-// 設定一個名為scheduleData的function
-async function scheduleData() {
-    const schedule = document.querySelector('#schedule')
+// work-tasks
+async function workTaskData() {
+    const workTask = document.querySelector("#work-tasks");
 
-    schedule.innerHTML = `
-    `
+    workTask.innerHTML = ``;
 
-    // 用 fetch 問 http://localhost:8080/todolist 拎 data，拎完，將 data 放入 variable "res"內。記得要await，因為拎data要時間，要等。
-    // fetch食兩個 parameter, fetch(a,b) -> a 是網址，b 是設定（以object格式表達）, 若果用 'GET'的方法取資料，可以唔寫設定都得： fetch('http://localhost:8080/todolist')
-    const res = await fetch('http://localhost:8080/todolist?checkDelete=false', {
-        method: 'GET'
-    })
+    const res = await fetch("http://localhost:8080/todolist?type=Job&checkDelete=false", {
+        method: "GET",
+    });
 
-    // sever 處理要求後，會將相關資料以 json 格式 send返俾你(這個例子，回覆的內容放在 res 內)，你要將資料用 .json() 拆解 json，記得要加 await 
-    const dataArr = await res.json()
+    const dataArr = await res.json();
 
-    // // replace new line with 😀
-    // let inputText = ""
-    // const replaceEnter = (inputText) => {
-    //     let output = inputText.replace(/\r\n/g, "哈");
-    //     return output;
-    // }
-    
-    // const recoverEnter = (inputText) => {
-    //     let output = inputText.replace(/\哈/g, /\r\n/ );
-    // }
-
-    // 拆解 json 後，data本身是array，所以用for loop將它分開，再砌成html格式，直接用.innerHTML，放入displayDataArea 內
     for (let i = 0; i < dataArr.length; i++) {
-        schedule.innerHTML += `
+        workTask.innerHTML += `
         <div id='task'>
         <div class='due-date'>${dataArr[i].duedate}</div>
         <div class='task'>${dataArr[i].task}</div>
@@ -202,7 +185,7 @@ async function scheduleData() {
         <button class="button delete" id="${dataArr[i].id}">DELETE</button>
         <input class='status' type='checkbox'>
         </div>
-        `
+        `;
     }
 
     //update
@@ -219,12 +202,11 @@ async function scheduleData() {
         }
 
         let updatedItem = {}
-        document.querySelector('#schedule').innerHTML = `
+        document.querySelector('#work-tasks').innerHTML = `
         <form id='update-form'>
         <input type='text' name='task' placeholder='task' value="${selectedItem.task}">
         <input type='text' name='assignedto' placeholder='assignedto' value="${selectedItem.assignedto}">
         <input type='date' name='duedate' placeholder='duedate' value="${selectedItem.duedate}">
-        <input type='text' name='type' placeholder='type' value="${selectedItem.type}">
         <button class='button'>EDIT</button>
         </form>
         `
@@ -260,7 +242,7 @@ async function scheduleData() {
             body: JSON.stringify(dataObj)
         })
         if (res.ok) {
-            scheduleData()
+            workTaskData()
         }
     }
 
@@ -273,9 +255,8 @@ async function scheduleData() {
         const res = await fetch(url, setting)
             // if(res.status === 200) is the same as if(res.ok)
         if (res.ok) {
-            scheduleData()
+            workTaskData()
         }
-        console.log(deleteItem);
     }
 
     //update and delete button
@@ -292,31 +273,6 @@ async function scheduleData() {
             event.preventDefault();
             deleteItem(deleteButton.id)
         })
-    }
-}
-scheduleData();
-
-// work-tasks
-async function workTaskData() {
-    const deletedTask = document.querySelector("#work-tasks");
-
-    deletedTask.innerHTML = ``;
-
-    const res = await fetch("http://localhost:8080/todolist?type=Job", {
-        method: "GET",
-    });
-
-    const dataArr = await res.json();
-
-    for (let i = 0; i < dataArr.length; i++) {
-        deletedTask.innerHTML += `
-        <div id='task'>
-        <div class='due-date'>${dataArr[i].duedate}</div>
-        <div class='task'>${dataArr[i].task}</div>
-        <div class='assigned-to'>Assigned to: ${dataArr[i].assignedto}</div>
-        <div class='type'>${dataArr[i].type}</div>
-        </div>
-        `;
     }
 }
 workTaskData();
@@ -341,7 +297,6 @@ document.querySelector('#task-form').addEventListener('submit', async(event) => 
         isDelete: "false",
         status: "false"
     }
-    localStorage.removeItem("taskType")
 
     // 用fetch的 POST 來送資料去server。
     const res = await fetch('http://localhost:8080/todolist', {
@@ -357,6 +312,6 @@ document.querySelector('#task-form').addEventListener('submit', async(event) => 
     // 如果資料成功送了去server，res.ok就會等如true
     if (res.ok) {
         console.log(await res.json())
-        scheduleData()
+        workTaskData()
     }
 })

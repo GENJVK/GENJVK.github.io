@@ -164,25 +164,154 @@ window.onload = function() {
 
 // life-tasks
 async function lifeTaskData() {
-    const deletedTask = document.querySelector("#life-tasks");
+    const lifeTask = document.querySelector("#life-tasks");
 
-    deletedTask.innerHTML = ``;
+    lifeTask.innerHTML = ``;
 
-    const res = await fetch("http://localhost:8080/todolist?type=Life", {
+    const res = await fetch("http://localhost:8080/todolist?type=Life&checkDelete=false", {
         method: "GET",
     });
 
     const dataArr = await res.json();
 
     for (let i = 0; i < dataArr.length; i++) {
-        deletedTask.innerHTML += `
+        lifeTask.innerHTML += `
         <div id='task'>
         <div class='due-date'>${dataArr[i].duedate}</div>
         <div class='task'>${dataArr[i].task}</div>
         <div class='assigned-to'>Assigned to: ${dataArr[i].assignedto}</div>
         <div class='type'>${dataArr[i].type}</div>
+        <button class="button update" id="${dataArr[i].id}">EDIT</button>
+        <button class="button delete" id="${dataArr[i].id}">DELETE</button>
+        <input class='status' type='checkbox'>
         </div>
         `;
     }
+
+    //update
+    const updateItem = async(id) => {
+
+        // 先獲取資料，資料本身以array of object方式儲存，然後將指定要更新的資料放入 selectedItem ，以object方式儲存
+        let selectedItem = {}
+        let res = await fetch('http://localhost:8080/todolist')
+        let resArr = await res.json()
+        for (let resItem of resArr) {
+            if (resItem.id === id) {
+                selectedItem = {...resItem } // {...resItem } = new resItem 不會改變本身resItem
+            }
+        }
+
+        let updatedItem = {}
+        document.querySelector('#life-tasks').innerHTML = `
+        <form id='update-form'>
+        <input type='text' name='task' placeholder='task' value="${selectedItem.task}">
+        <input type='text' name='assignedto' placeholder='assignedto' value="${selectedItem.assignedto}">
+        <input type='date' name='duedate' placeholder='duedate' value="${selectedItem.duedate}">
+        <button class='button'>EDIT</button>
+        </form>
+        `
+
+        document.querySelector('#update-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            updatedItem.id = id
+            updatedItem.task = event.target.task.value
+            updatedItem.assignedto = event.target.assignedto.value
+            updatedItem.duedate = event.target.duedate.value
+            updatedItem.type = event.target.type.value
+            updatedItem.isDelete = "false",
+            updatedItem.status = "false"
+            performUpdate(updatedItem)
+        })
+    }
+
+    const performUpdate = async(data) => {
+        let dataObj = {
+            id: data.id,
+            task: data.task,
+            assignedto: data.assignedto,
+            duedate: data.duedate,
+            type: data.type,
+            isDelete: "false",
+            status: "false"
+        }
+
+        const url = 'http://localhost:8080/todolist/' + data.id
+        let res = await fetch(url, {
+            method: "PUT",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dataObj)
+        })
+        if (res.ok) {
+            lifeTaskData()
+        }
+    }
+
+    // delete
+    const deleteItem = async(id) => {
+        const url = 'http://localhost:8080/todolist/' + id
+        const setting = {
+            method: 'DELETE'
+        }
+        const res = await fetch(url, setting)
+            // if(res.status === 200) is the same as if(res.ok)
+        if (res.ok) {
+            lifeTaskData()
+        }
+    }
+
+    //update and delete button
+    const updateButtons = document.querySelectorAll('.button.update')
+    for (let updateButton of updateButtons) {
+        updateButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            updateItem(updateButton.id)
+        })
+    }
+    const deleteButtons = document.querySelectorAll('.button.delete')
+    for (let deleteButton of deleteButtons) {
+        deleteButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            deleteItem(deleteButton.id)
+        })
+    }
 }
 lifeTaskData();
+
+// add data
+// 在加data的form裏面，加eventListener，改用javascript fetch做 add data.
+document.querySelector('#task-form').addEventListener('submit', async(event) => {
+
+    // 停止原先form submission的動作
+    event.preventDefault();
+
+    // 用form 這個variable 裝住個form
+    const form = event.target
+
+    // 砌一個 object 用來放 data ，配合server要的data
+    const dataObj = {
+        // id: form.id.value,
+        task: form.task.value,
+        assignedto: form.assignedto.value,
+        duedate: form.duedate.value,
+        type: localStorage.getItem("taskType"),
+        isDelete: "false",
+        status: "false"
+    }
+
+    // 用fetch的 POST 來送資料去server。
+    const res = await fetch('http://localhost:8080/todolist', {
+        method: 'POST',
+        // POST，要加headers。如以json格式送出，Content-Type設定要配合返
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        // 送出的資料放在body內。但要以JSON.stringify()來將object轉為json格式
+        body: JSON.stringify(dataObj)
+    })
+
+    // 如果資料成功送了去server，res.ok就會等如true
+    if (res.ok) {
+        console.log(await res.json())
+        lifeTaskData()
+    }
+})
