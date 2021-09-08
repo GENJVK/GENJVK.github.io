@@ -1,6 +1,6 @@
 id,task,assignedto,duedate,type,isDelete,status
 1,first,,,,true,false
-2,aaa,aaa,aaa,aaa,false,false
-3,aaa,aaa,1212-12-12,School,false,false
-4,aaa,aaa,1212-12-12,Life,false,false
-5,aaa,aaa,1212-12-12,Job,false,false
+2,aaa,aaa,aaa,aaa,true,false
+3,aaa,aaa,1212-12-12,School,true,false
+4,aaa,aaa,1212-12-12,Life,true,false
+5,aaa,aaa,1212-12-12,Job,true,false
