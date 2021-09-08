@@ -1,5 +1,6 @@
 // side-menu
 let isOpen = true;
+// let localStorage = window.Storage
 
 function menuToggle() {
     if (isOpen === false) {
@@ -118,6 +119,7 @@ window.onload = function() {
             school_ronOff = false; //並且開關設為假
             life_ronOff = true; //並且開關設為真
             job_ronOff = true; //並且開關設為真
+            localStorage.setItem('taskType', 'School')
         } else { //如果是假
             school_r.src = './images/文字框_學校_Logo.png'; //圖片路徑切換為圖片1
             chAngeInput.style['background-color'] = '#e6e6e6';
@@ -133,6 +135,7 @@ window.onload = function() {
             life_ronOff = false; //並且開關設為假
             school_ronOff = true; //並且開關設為假
             job_ronOff = true; //並且開關設為真
+            localStorage.setItem("taskType", "Life")
         } else { //如果是假
             life_r.src = './images/文字框_生活_Logo.png'; //圖片路徑切換為圖片1
             chAngeInput.style['background-color'] = '#e6e6e6';
@@ -148,6 +151,7 @@ window.onload = function() {
             job_ronOff = false; //並且開關設為假
             life_ronOff = true; //並且開關設為假
             school_ronOff = true; //並且開關設為假
+            localStorage.setItem("taskType", "Job")
         } else { //如果是假
             job_r.src = './images/文字框_工作_Logo.png'; //圖片路徑切換為圖片1
             chAngeInput.style['background-color'] = '#e6e6e6';
@@ -173,6 +177,17 @@ async function scheduleData() {
 
     // sever 處理要求後，會將相關資料以 json 格式 send返俾你(這個例子，回覆的內容放在 res 內)，你要將資料用 .json() 拆解 json，記得要加 await 
     const dataArr = await res.json()
+
+    // // replace new line with 😀
+    // let inputText = ""
+    // const replaceEnter = (inputText) => {
+    //     let output = inputText.replace(/\r\n/g, "哈");
+    //     return output;
+    // }
+    
+    // const recoverEnter = (inputText) => {
+    //     let output = inputText.replace(/\哈/g, /\r\n/ );
+    // }
 
     // 拆解 json 後，data本身是array，所以用for loop將它分開，再砌成html格式，直接用.innerHTML，放入displayDataArea 內
     for (let i = 0; i < dataArr.length; i++) {
@@ -296,10 +311,11 @@ document.querySelector('#task-form').addEventListener('submit', async(event) => 
         task: form.task.value,
         assignedto: form.assignedto.value,
         duedate: form.duedate.value,
-        type: form.type.value,
+        type: localStorage.getItem("taskType"),
         isDelete: "false",
         status: "false"
     }
+    localStorage.removeItem("taskType")
 
     // 用fetch的 POST 來送資料去server。
     const res = await fetch('http://localhost:8080/todolist', {
