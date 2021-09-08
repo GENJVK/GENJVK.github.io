@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "upload咗",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -24,5 +24,13 @@
     "csv-parser": "^3.0.0",
     "jsonfile": "^6.1.0",
     "ts-node-dev": "^1.1.6"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GENJVK/GENJVK.github.io.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GENJVK/GENJVK.github.io/issues"
+  },
+  "homepage": "https://github.com/GENJVK/GENJVK.github.io#readme"
 }
