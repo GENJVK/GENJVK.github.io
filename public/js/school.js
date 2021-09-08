@@ -164,9 +164,9 @@ window.onload = function() {
 
 // school-tasks
 async function schoolTaskData() {
-    const deletedTask = document.querySelector("#school-tasks");
+    const schoolTask = document.querySelector("#school-tasks");
 
-    deletedTask.innerHTML = ``;
+    schoolTask.innerHTML = ``;
 
     const res = await fetch("http://localhost:8080/todolist?type=School&checkDelete=false", {
         method: "GET",
@@ -175,7 +175,7 @@ async function schoolTaskData() {
     const dataArr = await res.json();
 
     for (let i = 0; i < dataArr.length; i++) {
-        deletedTask.innerHTML += `
+        schoolTask.innerHTML += `
         <div id='task'>
         <div class='due-date'>${dataArr[i].duedate}</div>
         <div class='task'>${dataArr[i].task}</div>

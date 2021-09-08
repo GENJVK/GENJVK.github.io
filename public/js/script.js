@@ -112,62 +112,54 @@ window.onload = function() {
     let chAngeInput = document.getElementById('task-input');
 
     school_r.onclick = function() {
-        if (school_ronOff) { //如果是真
-            school_r.src = './images/學校_Logo.png'; //圖片路徑切換為圖片2
-            life_r.src = './images/文字框_生活_Logo.png'; //圖片路徑切換為圖片1
-            job_r.src = './images/文字框_工作_Logo.png'; //圖片路徑切換為圖片1
-            school_ronOff = false; //並且開關設為假
-            life_ronOff = true; //並且開關設為真
-            job_ronOff = true; //並且開關設為真
+        if (school_ronOff) {
+            school_r.src = './images/學校_Logo.png';
+            life_r.src = './images/文字框_生活_Logo.png';
+            job_r.src = './images/文字框_工作_Logo.png';
+            school_ronOff = false;
+            life_ronOff = true;
+            job_ronOff = true;
             localStorage.setItem('taskType', 'School')
-        } else { //如果是假
-            school_r.src = './images/文字框_學校_Logo.png'; //圖片路徑切換為圖片1
-            chAngeInput.style['background-color'] = '#e6e6e6';
-            chAnge.style['background-color'] = '#e6e6e6';
-            school_ronOff = true; //並且開關設為真
+        } else {
+            school_r.src = './images/文字框_學校_Logo.png';
+            school_ronOff = true;
         }
     }
     life_r.onclick = function() {
-        if (life_ronOff) { //如果是真
-            life_r.src = './images/生活_Logo.png'; //圖片路徑切換為圖片2
-            school_r.src = './images/文字框_學校_Logo.png'; //圖片路徑切換為圖片2
-            job_r.src = './images/文字框_工作_Logo.png'; //圖片路徑切換為圖片1
-            life_ronOff = false; //並且開關設為假
-            school_ronOff = true; //並且開關設為假
-            job_ronOff = true; //並且開關設為真
+        if (life_ronOff) {
+            life_r.src = './images/生活_Logo.png';
+            school_r.src = './images/文字框_學校_Logo.png';
+            job_r.src = './images/文字框_工作_Logo.png';
+            life_ronOff = false;
+            school_ronOff = true;
+            job_ronOff = true;
             localStorage.setItem("taskType", "Life")
-        } else { //如果是假
-            life_r.src = './images/文字框_生活_Logo.png'; //圖片路徑切換為圖片1
-            chAngeInput.style['background-color'] = '#e6e6e6';
-            chAnge.style['background-color'] = '#e6e6e6';
-            life_ronOff = true; //並且開關設為真
+        } else {
+            life_r.src = './images/文字框_生活_Logo.png';
+            life_ronOff = true;
         }
     }
     job_r.onclick = function() {
-        if (job_ronOff) { //如果是真
-            job_r.src = './images/工作_Logo.png'; //圖片路徑切換為圖片2
-            life_r.src = './images/文字框_生活_Logo.png'; //圖片路徑切換為圖片2
-            school_r.src = './images/文字框_學校_Logo.png'; //圖片路徑切換為圖片2
-            job_ronOff = false; //並且開關設為假
-            life_ronOff = true; //並且開關設為假
-            school_ronOff = true; //並且開關設為假
+        if (job_ronOff) {
+            job_r.src = './images/工作_Logo.png';
+            life_r.src = './images/文字框_生活_Logo.png'; 
+            school_r.src = './images/文字框_學校_Logo.png';
+            job_ronOff = false;
+            life_ronOff = true; 
+            school_ronOff = true;
             localStorage.setItem("taskType", "Job")
-        } else { //如果是假
-            job_r.src = './images/文字框_工作_Logo.png'; //圖片路徑切換為圖片1
-            chAngeInput.style['background-color'] = '#e6e6e6';
-            chAnge.style['background-color'] = '#e6e6e6';
-            job_ronOff = true; //並且開關設為真
+        } else {
+            job_r.src = './images/文字框_工作_Logo.png';
+            job_ronOff = true;
         }
     }
 }
 
 // schedule
-// 設定一個名為scheduleData的function
 async function scheduleData() {
     const schedule = document.querySelector('#schedule')
 
-    schedule.innerHTML = `
-    `
+    schedule.innerHTML = ``
 
     // 用 fetch 問 http://localhost:8080/todolist 拎 data，拎完，將 data 放入 variable "res"內。記得要await，因為拎data要時間，要等。
     // fetch食兩個 parameter, fetch(a,b) -> a 是網址，b 是設定（以object格式表達）, 若果用 'GET'的方法取資料，可以唔寫設定都得： fetch('http://localhost:8080/todolist')
@@ -202,6 +194,10 @@ async function scheduleData() {
         <input class='status' type='checkbox'>
         </div>
         `
+
+        if (schedule.innerHTML.type === "School") {
+            document.querySelector('#task').style['background-color'] = '#ff9999';
+        }
     }
 
     //update
@@ -218,7 +214,7 @@ async function scheduleData() {
         }
 
         let updatedItem = {}
-        document.querySelector('#schedule').innerHTML = `
+        selectedItem.innerHTML = `
         <form id='update-form'>
         <input type='text' name='task' placeholder='task' value="${selectedItem.task}">
         <input type='text' name='assignedto' placeholder='assignedto' value="${selectedItem.assignedto}">

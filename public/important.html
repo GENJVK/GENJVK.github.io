@@ -63,7 +63,7 @@
                 <div id="currentdate"></div>
             </div>
             <form id="task-form" action="http://localhost:8080/" method="POST">
-                <textarea id="task-input" class="task" name="task" placeholder="Write your task here" rows="5" required></textarea>
+                <input id="task-input" class="task" name="task" placeholder="Write your task here" rows="5" maxlength="255" required/>
                 <div class="task-form-elements">
                     <div class="left">
                         <input class="assigned-to" type="text" name="assignedto" placeholder="Assigned to" />

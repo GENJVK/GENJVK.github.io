@@ -231,7 +231,8 @@ header {
     padding-top: 10px;
 }
 
-#task-form input {
+#task-form .assigned-to, 
+#task-form .due-date {
     border: none;
     padding-left: 0.5rem;
     border-radius: 5px;
@@ -280,7 +281,6 @@ input[type=date]::-webkit-calendar-picker-indicator {
     padding: 20px;
     border-radius: 10px;
     color: #FFF;
-    background-color: #ff9999;
 }
 
 #task .id {
@@ -293,6 +293,11 @@ input[type=date]::-webkit-calendar-picker-indicator {
     border: 1px solid #c7c7c7;
     border-radius: 10px;
     background-color: #e6e6e6;
+}
+
+/* deleted task */
+#deleted-tasks #task {
+    background-color: #c7c7c7;
 }
 
 /* responsive */
