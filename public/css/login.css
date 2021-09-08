@@ -1,3 +1,18 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: #333;
+    overflow: hidden;
+}
+
+
+/* door */
+
 .door {
     margin: 0 auto;
     width: 100%;
@@ -14,8 +29,9 @@
     text-align: end;
 }
 
-.door_start h1 {
+.door_right h1 {
     text-align: start;
+    margin-bottom: 45px;
 }
 
 .door_wrapper input[type=checkbox] {
@@ -44,9 +60,8 @@
 
 .door_panel {
     display: flex;
-    align-items: center;
-    background: #c7c7c7;
-    color: #fff;
+    background: rgb(242, 242, 242);
+    color: rgb(0, 0, 0);
     float: left;
     position: relative;
     width: 50%;
@@ -56,16 +71,23 @@
 }
 
 .door_left {
-    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+    justify-content: center;
     transform: translateX(-100%);
 }
 
 .door_right {
-    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
     transform: translateX(100%);
 }
 
-.door_content {
+
+/* login page */
+
+.login_page {
     align-items: center;
     background: #333;
     color: #fff;
@@ -80,6 +102,32 @@
     width: 100%;
 }
 
-.door_content img {
+.login_page img {
     width: 20%;
+}
+
+
+/* img rotation*/
+
+.spin {
+    width: 50px;
+}
+
+.spin {
+    transform: translateX(-50%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .spin {
+        animation: App-logo-spin infinite 5S linear;
+    }
+}
+
+@keyframes App-logo-spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
 }
