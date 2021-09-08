@@ -10,17 +10,14 @@ html {
     overflow: hidden;
 }
 
+
+/* door */
+
 .door {
     margin: 0 auto;
     width: 100%;
     height: 100vh;
     overflow: hidden;
-}
-
-.spin {
-    /* position: absolute; */
-    width: 50px;
-    transform: translateX(50%);
 }
 
 .door_wrapper {
@@ -30,11 +27,11 @@ html {
 
 .door_left h1 {
     text-align: end;
-    margin-bottom: 45px;
 }
 
-.door_start h1 {
+.door_right h1 {
     text-align: start;
+    margin-bottom: 45px;
 }
 
 .door_wrapper input[type=checkbox] {
@@ -81,12 +78,16 @@ html {
 }
 
 .door_right {
-    align-items: center;
-    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
     transform: translateX(100%);
 }
 
-.door_content {
+
+/* login page */
+
+.login_page {
     align-items: center;
     background: #333;
     color: #fff;
@@ -101,6 +102,32 @@ html {
     width: 100%;
 }
 
-.door_content img {
+.login_page img {
     width: 20%;
+}
+
+
+/* img rotation*/
+
+.spin {
+    width: 50px;
+}
+
+.spin {
+    transform: translateX(-50%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .spin {
+        animation: App-logo-spin infinite 5S linear;
+    }
+}
+
+@keyframes App-logo-spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
 }
