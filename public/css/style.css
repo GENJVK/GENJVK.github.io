@@ -231,7 +231,8 @@ header {
     padding-top: 10px;
 }
 
-#task-form input {
+#task-form .assigned-to, 
+#task-form .due-date {
     border: none;
     padding-left: 0.5rem;
     border-radius: 5px;
@@ -280,7 +281,6 @@ input[type=date]::-webkit-calendar-picker-indicator {
     padding: 20px;
     border-radius: 10px;
     color: #FFF;
-    background-color: #ff9999;
 }
 
 #task .id {
@@ -289,22 +289,21 @@ input[type=date]::-webkit-calendar-picker-indicator {
 
 /* update form */
 #update-form {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    padding: 20px;
+    padding: 10px;
     border: 1px solid #c7c7c7;
     border-radius: 10px;
-    background-color: #E6E6E6;
+    background-color: #e6e6e6;
 }
 
-#update-form input {
-    border: none;
-    padding-left: 0.5rem;
-    border-radius: 5px;
-    height: 20px;
-    width: 110px;
+/* completed task */
+#completed-tasks #task {
+    color: #000;
+    background-color: #e8b954;
+}
+/* deleted task */
+#deleted-tasks #task {
+    background-color: #c7c7c7;
+
 }
 
 /* responsive */
