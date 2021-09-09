@@ -111,7 +111,8 @@ async function completedData() {
         method: "GET",
     });
 
-    const dataArr = await res.json();
+    const dataArr_full = await res.json();
+    dataArr = dataArr_full.filter( elem => elem.status === 'true');
 
     for (let i = 0; i < dataArr.length; i++) {
         completedTask.innerHTML += `
@@ -123,5 +124,9 @@ async function completedData() {
         </div>
         `;
     }
+
+    // uncomplete 
+    
 }
 completedData();
+

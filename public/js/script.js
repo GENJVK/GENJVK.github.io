@@ -1,10 +1,5 @@
 // side-menu
 let isOpen = true;
-// let localStorage = window.Storage
-
-if (localStorage.getItem("login") === null) {
-  window.location = "http://localhost:8080/login.html";
-}
 
 function menuToggle() {
   if (isOpen === false) {
@@ -205,11 +200,19 @@ async function scheduleData() {
   const schedule = document.querySelector("#schedule");
 
   schedule.innerHTML = ``;
-  // sever 處理要求後，會將相關資料以 json 格式 send返俾你(這個例子，回覆的內容放在 res 內)，你要將資料用 .json() 拆解 json，記得要加 await
-  const dataArr = await res.json();
+
+  // 用 fetch 問 http://localhost:8080/todolist 拎 data，拎完，將 data 放入 variable "res"內。記得要await，因為拎data要時間，要等。
+  // fetch食兩個 parameter, fetch(a,b) -> a 是網址，b 是設定（以object格式表達）, 若果用 'GET'的方法取資料，可以唔寫設定都得： fetch('http://localhost:8080/todolist')
+  const res = await fetch("http://localhost:8080/todolist?checkDelete=false", {
+    method: "GET",
+  });
 
   // sever 處理要求後，會將相關資料以 json 格式 send返俾你(這個例子，回覆的內容放在 res 內)，你要將資料用 .json() 拆解 json，記得要加 await
-  dataArr = await res.json();
+  const dataArr_full = await res.json();
+
+  // 抽走哂啲已經完成的task (status=false)
+  dataArr = dataArr_full.filter((elem) => elem.status === "false");
+
   const bgColor = (type) => {
     switch (type) {
       case "School":
@@ -313,30 +316,64 @@ async function scheduleData() {
       scheduleData();
     }
   };
-  console.log(deleteItem);
-}
 
-//update, delete and complete button
-const updateButtons = document.querySelectorAll(".button.update");
-for (let updateButton of updateButtons) {
-  updateButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    updateItem(updateButton.id);
-  });
-}
-const deleteButtons = document.querySelectorAll(".button.delete");
-for (let deleteButton of deleteButtons) {
-  deleteButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    deleteItem(deleteButton.id);
-  });
-}
-const completeButtons = document.querySelectorAll(".button.complete");
-for (let completeButton of completeButtons) {
-  completeButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    completeItem(completeButton.id);
-  });
+  // complete
+  const completeItem = async (id) => {
+    // 拎all data
+    let res = await fetch("http://localhost:8080/todolist");
+    let selectedItem;
+    let resArr = await res.json();
+    for (let resItem of resArr) {
+      if (resItem.id === id) {
+        selectedItem = { ...resItem }; // {...resItem } = new resItem 不會改變本身resItem
+      }
+    }
+
+    // 做 update
+    const url = "http://localhost:8080/todolist/" + id;
+    const dataObj = {
+      id: selectedItem.id,
+      task: selectedItem.task,
+      assignedto: selectedItem.assignedto,
+      duedate: selectedItem.duedate,
+      type: selectedItem.type,
+      isDelete: selectedItem.isDelete,
+      status: "true",
+    };
+    const setting = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataObj),
+    };
+    res = await fetch("http://localhost:8080/todolist/" + id, setting);
+    if (res.ok) {
+      scheduleData();
+    }
+    //update, delete and complete button
+    const updateButtons = document.querySelectorAll(".button.update");
+    for (let updateButton of updateButtons) {
+      updateButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        updateItem(updateButton.id);
+      });
+    }
+    const deleteButtons = document.querySelectorAll(".button.delete");
+    for (let deleteButton of deleteButtons) {
+      deleteButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        deleteItem(deleteButton.id);
+      });
+    }
+    const completeButtons = document.querySelectorAll(".button.complete");
+    for (let completeButton of completeButtons) {
+      completeButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        completeItem(completeButton.id);
+      });
+    }
+  };
 }
 
 scheduleData();
