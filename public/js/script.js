@@ -121,7 +121,6 @@ window.onload = function () {
 		} else {
 			school_r.src = "./images/文字框_學校_Logo.png";
 			school_ronOff = true;
-			localStorage.setItem("taskType", "");
 		}
 	};
 	life_r.onclick = function () {
@@ -136,7 +135,6 @@ window.onload = function () {
 		} else {
 			life_r.src = "./images/文字框_生活_Logo.png";
 			life_ronOff = true;
-			localStorage.setItem("taskType", "");
 		}
 	};
 	job_r.onclick = function () {
@@ -151,7 +149,6 @@ window.onload = function () {
 		} else {
 			job_r.src = "./images/文字框_工作_Logo.png";
 			job_ronOff = true;
-			localStorage.setItem("taskType", "");
 		}
 	};
 };

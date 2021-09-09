@@ -226,6 +226,7 @@ async function lifeTaskData() {
         <input type='text' name='task' placeholder='task' value="${selectedItem.task}">
         <input type='text' name='assignedto' placeholder='assignedto' value="${selectedItem.assignedto}">
         <input type='date' name='duedate' placeholder='duedate' value="${selectedItem.duedate}">
+        <input type='text' name='type' placeholder='type' value="${selectedItem.type}" hidden>
         <button class='button'>EDIT</button>
         </form>
         `
