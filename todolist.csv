@@ -6,3 +6,5 @@ id,task,assignedto,duedate,type,isDelete,status
 5,type,,2021-09-10,Job,false,false
 6,type,,2021-09-10,Job,false,false
 7,default type,,2021-09-11,,false,true
+
+8,dsa,,2021-09-10,null,false,false

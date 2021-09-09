@@ -375,5 +375,9 @@ async function scheduleData() {
 }
 scheduleData();
 
-let htmlUser = document.querySelector("#header .user");
+let htmlUser = document.querySelector("#header .user_icon1");
 htmlUser.innerHTML += localStorage.getItem("login");
+
+htmlUser.addEventListener("click", () => {
+    window.location = "http://localhost:8080/login.html";
+  });
