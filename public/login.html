@@ -19,17 +19,22 @@
 
         <div class="login_page">
           <div class="login">
-            <img src="./images/bear_360.png" alt="bear_360" />
+            <img class="login_img" src="./images/bear_360.png" alt="bear_360" />
             <form id="login" method="get" action="login.php">
-              <h2>User Name</h2>
+              <label for="Uname">
+                <h2>User Name</h2>
+              </label>
               <input
                 type="text"
                 name="Uname"
                 id="Uname"
                 placeholder="Username"
+                maxlength="20"
               />
               <br /><br />
-              <h2>Password</h2>
+              <label for="Pass">
+                <h2>Password</h2>
+              </label>
               <input
                 type="Password"
                 name="Pass"
@@ -42,6 +47,9 @@
               <br />
               <input type="submit" name="log" id="log" value="Login" />
               <br /><br />
+              <div class="error_warning">
+                <h5>Please enter the correct username and password</h5>
+              </div>
             </form>
           </div>
         </div>

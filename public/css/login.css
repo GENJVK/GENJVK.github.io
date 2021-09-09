@@ -86,6 +86,29 @@ html {
 
 /* login page */
 
+@keyframes login {
+  /* 水平抖动，核心代码 */
+  10%,
+  90% {
+    transform: translate3d(-2px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(+4px, 0, 0);
+  }
+  30%,
+  70% {
+    transform: translate3d(-8px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(+8px, 0, 0);
+  }
+  50% {
+    transform: translate3d(-8px, 0, 0);
+  }
+}
+
 .login_page {
   align-items: center;
   background: #e6e6e6;
@@ -101,10 +124,19 @@ html {
 }
 
 .login_page img {
-  width: 15%;
+  width: 150px;
   position: absolute;
-  left: 43%;
-  top: 3%;
+  transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  font-size: 1px;
+  padding: 1px;
+  color: white;
+  transition: all 0.5s;
+  position: absolute;
+  margin: auto;
+  top: -70%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
 }
 
 .login {
@@ -159,6 +191,25 @@ span {
 
 a {
   color: #333;
+}
+
+.error_warning {
+  color: brown;
+  display: none;
+}
+
+/* login img */
+.login_img {
+  transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+}
+
+@keyframes shake {
+  0% {
+    transform: skewY(10deg);
+  }
+  100% {
+    transform: skewY(-10deg);
+  }
 }
 
 /* img rotation*/

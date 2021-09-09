@@ -209,7 +209,7 @@ async function scheduleData() {
   const dataArr = await res.json();
 
   // sever 處理要求後，會將相關資料以 json 格式 send返俾你(這個例子，回覆的內容放在 res 內)，你要將資料用 .json() 拆解 json，記得要加 await
-  const dataArr = await res.json();
+  dataArr = await res.json();
   const bgColor = (type) => {
     switch (type) {
       case "School":
@@ -340,3 +340,6 @@ for (let completeButton of completeButtons) {
 }
 
 scheduleData();
+
+let htmlUser = document.querySelector("#header .user");
+htmlUser.innerHTML += localStorage.getItem("login");
