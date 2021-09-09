@@ -224,6 +224,7 @@ async function schoolTaskData() {
         <input type='text' name='task' placeholder='task' value="${selectedItem.task}">
         <input type='text' name='assignedto' placeholder='assignedto' value="${selectedItem.assignedto}">
         <input type='date' name='duedate' placeholder='duedate' value="${selectedItem.duedate}">
+        <input type='text' name='type' placeholder='type' value="${selectedItem.type}" hidden>
         <button class='button'>EDIT</button>
         </form>
         `
@@ -236,7 +237,7 @@ async function schoolTaskData() {
             updatedItem.duedate = event.target.duedate.value
             updatedItem.type = event.target.type.value
             updatedItem.isDelete = "false",
-            updatedItem.status = "true"
+            updatedItem.status = "false"
             performUpdate(updatedItem)
         })
     }
@@ -249,7 +250,7 @@ async function schoolTaskData() {
             duedate: data.duedate,
             type: data.type,
             isDelete: "false",
-            status: "true"
+            status: "false"
         }
 
         const url = 'http://localhost:8080/todolist/' + data.id

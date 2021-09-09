@@ -120,7 +120,6 @@ async function deletedData() {
         <div class='task'>${dataArr[i].task}</div>
         <div class='assigned-to'>Assigned to: ${dataArr[i].assignedto}</div>
         <div class='type'>${dataArr[i].type}</div>
-        <button class='button restore'>Restore</button>
         </div>
         `;
     }
