@@ -109,8 +109,6 @@ window.onload = function() {
     let school_ronOff = true; //創造一個開關,布爾值，true為1，false為0
     let life_ronOff = true; //創造一個開關,布爾值，true為1，false為0
     let job_ronOff = true; //創造一個開關,布爾值，true為1，false為0
-    let chAnge = document.getElementById('task-form');
-    let chAngeInput = document.getElementById('task-input');
 
     school_r.onclick = function() {
         if (school_ronOff) { //如果是真
@@ -122,9 +120,7 @@ window.onload = function() {
             job_ronOff = true; //並且開關設為真
             localStorage.setItem('taskType', 'School')
         } else { //如果是假
-            school_r.src = './images/文字框_學校_Logo.png'; //圖片路徑切換為圖片1
-            chAngeInput.style['background-color'] = '#e6e6e6';
-            chAnge.style['background-color'] = '#e6e6e6';
+            school_r.src = './images/文字框_學校_Logo.png';
             school_ronOff = true; //並且開關設為真
         }
     }
@@ -138,9 +134,7 @@ window.onload = function() {
             job_ronOff = true; //並且開關設為真
             localStorage.setItem("taskType", "Life")
         } else { //如果是假
-            life_r.src = './images/文字框_生活_Logo.png'; //圖片路徑切換為圖片1
-            chAngeInput.style['background-color'] = '#e6e6e6';
-            chAnge.style['background-color'] = '#e6e6e6';
+            life_r.src = './images/文字框_生活_Logo.png';
             life_ronOff = true; //並且開關設為真
         }
     }
@@ -154,9 +148,7 @@ window.onload = function() {
             school_ronOff = true; //並且開關設為假
             localStorage.setItem("taskType", "Job")
         } else { //如果是假
-            job_r.src = './images/文字框_工作_Logo.png'; //圖片路徑切換為圖片1
-            chAngeInput.style['background-color'] = '#e6e6e6';
-            chAnge.style['background-color'] = '#e6e6e6';
+            job_r.src = './images/文字框_工作_Logo.png'; 
             job_ronOff = true; //並且開關設為真
         }
     }
@@ -171,19 +163,19 @@ async function schoolTaskData() {
     const res = await fetch("http://localhost:8080/todolist?type=School&checkDelete=false", {
         method: "GET",
     });
+    console.log(res);
 
     const dataArr = await res.json();
 
     for (let i = 0; i < dataArr.length; i++) {
         schoolTask.innerHTML += `
-        <div id='task'>
-        <div class='due-date'>${dataArr[i].duedate}</div>
+        <div id='task' style="background-color: #ee9999">
         <div class='task'>${dataArr[i].task}</div>
         <div class='assigned-to'>Assigned to: ${dataArr[i].assignedto}</div>
-        <div class='type'>${dataArr[i].type}</div>
-        <button class="button update" id="${dataArr[i].id}">EDIT</button>
-        <button class="button delete" id="${dataArr[i].id}">DELETE</button>
-        <input class='status' type='checkbox'>
+        <div class='due-date'>Due date: ${dataArr[i].duedate}</div>
+        <button class="button update" id="${dataArr[i].id}">Edit</button>
+        <button class="button delete" id="${dataArr[i].id}">Delete</button>
+        <button class='button complete' id="${dataArr[i].id}">Complete</button>
         </div>
         `;
     }
@@ -219,7 +211,7 @@ async function schoolTaskData() {
             updatedItem.duedate = event.target.duedate.value
             updatedItem.type = event.target.type.value
             updatedItem.isDelete = "false",
-            updatedItem.status = "false"
+            updatedItem.status = "true"
             performUpdate(updatedItem)
         })
     }
@@ -232,7 +224,7 @@ async function schoolTaskData() {
             duedate: data.duedate,
             type: data.type,
             isDelete: "false",
-            status: "false"
+            status: "true"
         }
 
         const url = 'http://localhost:8080/todolist/' + data.id

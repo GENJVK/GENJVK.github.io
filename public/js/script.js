@@ -100,6 +100,8 @@ function startTime() {
 }
 startTime()
 
+// task-form
+
 // task-form icon
 window.onload = function() {
     let school_r = document.getElementById('school_r');
@@ -108,8 +110,6 @@ window.onload = function() {
     let school_ronOff = true; //創造一個開關,布爾值，true為1，false為0
     let life_ronOff = true; //創造一個開關,布爾值，true為1，false為0
     let job_ronOff = true; //創造一個開關,布爾值，true為1，false為0
-    let chAnge = document.getElementById('task-form');
-    let chAngeInput = document.getElementById('task-input');
 
     school_r.onclick = function() {
         if (school_ronOff) {
@@ -155,7 +155,44 @@ window.onload = function() {
     }
 }
 
-// schedule
+// add data
+// 在加data的form裏面，加eventListener，改用javascript fetch做 add data.
+document.querySelector('#task-form').addEventListener('submit', async(event) => {
+    // 停止原先form submission的動作
+    event.preventDefault();
+
+    // 用form 這個variable 裝住個form
+    const form = event.target
+
+    // 砌一個 object 用來放 data ，配合server要的data
+    const dataObj = {
+        // id: form.id.value,
+        task: form.task.value,
+        assignedto: form.assignedto.value,
+        duedate: form.duedate.value,
+        type: localStorage.getItem("taskType"),
+        isDelete: "false",
+        status: "false"
+    }
+
+    // 用fetch的 POST 來送資料去server。
+    const res = await fetch('http://localhost:8080/todolist', {
+        method: 'POST',
+        // POST，要加headers。如以json格式送出，Content-Type設定要配合返
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        // 送出的資料放在body內。但要以JSON.stringify()來將object轉為json格式
+        body: JSON.stringify(dataObj)
+    })
+
+    // 如果資料成功送了去server，res.ok就會等如true
+    if (res.ok) {
+        console.log(await res.json())
+        scheduleData()
+    }
+})
+
 async function scheduleData() {
     const schedule = document.querySelector('#schedule')
 
@@ -169,35 +206,33 @@ async function scheduleData() {
 
     // sever 處理要求後，會將相關資料以 json 格式 send返俾你(這個例子，回覆的內容放在 res 內)，你要將資料用 .json() 拆解 json，記得要加 await 
     const dataArr = await res.json()
-
-    // // replace new line with 😀
-    // let inputText = ""
-    // const replaceEnter = (inputText) => {
-    //     let output = inputText.replace(/\r\n/g, "哈");
-    //     return output;
-    // }
-    
-    // const recoverEnter = (inputText) => {
-    //     let output = inputText.replace(/\哈/g, /\r\n/ );
-    // }
+    const bgColor = type => {
+        switch (type) {
+            case "School":
+                return "#EE9999";
+                break;
+            case "Life":
+                return "#57b278";
+                break;
+            case "Job":
+                return "#424ed4";
+                break;
+        }
+    }
 
     // 拆解 json 後，data本身是array，所以用for loop將它分開，再砌成html格式，直接用.innerHTML，放入displayDataArea 內
     for (let i = 0; i < dataArr.length; i++) {
         schedule.innerHTML += `
-        <div id='task'>
-        <div class='due-date'>${dataArr[i].duedate}</div>
+        <div id='task' style=${`"background-color: ${bgColor(dataArr[i].type)};"`}>
         <div class='task'>${dataArr[i].task}</div>
         <div class='assigned-to'>Assigned to: ${dataArr[i].assignedto}</div>
+        <div class='due-date'>Due date: ${dataArr[i].duedate}</div>
         <div class='type'>${dataArr[i].type}</div>
-        <button class="button update" id="${dataArr[i].id}">EDIT</button>
-        <button class="button delete" id="${dataArr[i].id}">DELETE</button>
-        <input class='status' type='checkbox'>
+        <button class="button update" id="${dataArr[i].id}">Edit</button>
+        <button class="button delete" id="${dataArr[i].id}">Delete</button>
+        <button class='button complete' id="${dataArr[i].id}">Complete</button>
         </div>
         `
-
-        if (schedule.innerHTML.type === "School") {
-            document.querySelector('#task').style['background-color'] = '#ff9999';
-        }
     }
 
     //update
@@ -214,13 +249,13 @@ async function scheduleData() {
         }
 
         let updatedItem = {}
-        selectedItem.innerHTML = `
+        schedule.innerHTML = `
         <form id='update-form'>
         <input type='text' name='task' placeholder='task' value="${selectedItem.task}">
         <input type='text' name='assignedto' placeholder='assignedto' value="${selectedItem.assignedto}">
         <input type='date' name='duedate' placeholder='duedate' value="${selectedItem.duedate}">
         <input type='text' name='type' placeholder='type' value="${selectedItem.type}" hidden>
-        <button class='button'>EDIT</button>
+        <button class='button'>Edit</button>
         </form>
         `
 
@@ -231,7 +266,7 @@ async function scheduleData() {
             updatedItem.assignedto = event.target.assignedto.value
             updatedItem.duedate = event.target.duedate.value
             updatedItem.type = event.target.type.value
-            updatedItem.isDelete = "false",
+            updatedItem.isDelete = "false"
             updatedItem.status = "false"
             performUpdate(updatedItem)
         })
@@ -272,59 +307,27 @@ async function scheduleData() {
         }
     }
 
-    //update and delete button
+    //update, delete and complete button
     const updateButtons = document.querySelectorAll('.button.update')
     for (let updateButton of updateButtons) {
         updateButton.addEventListener('click', (event) => {
             event.preventDefault();
-            updateItem(updateButton.id)
+            updateItem(updateButton.id);
         })
-    }
+    };
     const deleteButtons = document.querySelectorAll('.button.delete')
     for (let deleteButton of deleteButtons) {
         deleteButton.addEventListener('click', (event) => {
             event.preventDefault();
-            deleteItem(deleteButton.id)
+            deleteItem(deleteButton.id);
         })
-    }
+    };
+    const completeButtons = document.querySelectorAll('.button.complete')
+    for (let completeButton of completeButtons) {
+        completeButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            completeItem(completeButton.id);
+        })
+    };
 }
 scheduleData();
-
-// add data
-// 在加data的form裏面，加eventListener，改用javascript fetch做 add data.
-document.querySelector('#task-form').addEventListener('submit', async(event) => {
-
-    // 停止原先form submission的動作
-    event.preventDefault();
-
-    // 用form 這個variable 裝住個form
-    const form = event.target
-
-    // 砌一個 object 用來放 data ，配合server要的data
-    const dataObj = {
-        // id: form.id.value,
-        task: form.task.value,
-        assignedto: form.assignedto.value,
-        duedate: form.duedate.value,
-        type: localStorage.getItem("taskType"),
-        isDelete: "false",
-        status: "false"
-    }
-
-    // 用fetch的 POST 來送資料去server。
-    const res = await fetch('http://localhost:8080/todolist', {
-        method: 'POST',
-        // POST，要加headers。如以json格式送出，Content-Type設定要配合返
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        // 送出的資料放在body內。但要以JSON.stringify()來將object轉為json格式
-        body: JSON.stringify(dataObj)
-    })
-
-    // 如果資料成功送了去server，res.ok就會等如true
-    if (res.ok) {
-        console.log(await res.json())
-        scheduleData()
-    }
-})

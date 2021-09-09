@@ -1,8 +1,5 @@
 id,task,assignedto,duedate,type,isDelete,status
-1,check,,2021-09-08,School,true,false
-2,check,,2021-09-08,School,true,false
-3,check,,2021-09-08,Life,true,false
-
-4,school,,2021-09-08,School,false,false
-5,life,,2021-09-08,Life,false,false
-6,work,,2021-09-08,Job,false,false
+1,coding,,2021-09-09,School,true,false
+2,coding,,2021-09-09,Life,true,false
+3,coding,,2021-09-09,Job,true,false
+4,trash,,2021-09-09,School,true,false
