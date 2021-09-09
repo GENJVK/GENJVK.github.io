@@ -99,6 +99,7 @@ function startTime() {
     return i;
   }
 }
+
 startTime();
 
 // task-form
@@ -351,32 +352,39 @@ async function scheduleData() {
     if (res.ok) {
       scheduleData();
     }
-    //update, delete and complete button
-    const updateButtons = document.querySelectorAll(".button.update");
-    for (let updateButton of updateButtons) {
-      updateButton.addEventListener("click", (event) => {
-        event.preventDefault();
-        updateItem(updateButton.id);
-      });
-    }
-    const deleteButtons = document.querySelectorAll(".button.delete");
-    for (let deleteButton of deleteButtons) {
-      deleteButton.addEventListener("click", (event) => {
-        event.preventDefault();
-        deleteItem(deleteButton.id);
-      });
-    }
-    const completeButtons = document.querySelectorAll(".button.complete");
-    for (let completeButton of completeButtons) {
-      completeButton.addEventListener("click", (event) => {
-        event.preventDefault();
-        completeItem(completeButton.id);
-      });
-    }
   };
+  //update, delete and complete button
+  const updateButtons = document.querySelectorAll(".button.update");
+  for (let updateButton of updateButtons) {
+    updateButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      updateItem(updateButton.id);
+    });
+  }
+  const deleteButtons = document.querySelectorAll(".button.delete");
+  for (let deleteButton of deleteButtons) {
+    deleteButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      deleteItem(deleteButton.id);
+    });
+  }
+  const completeButtons = document.querySelectorAll(".button.complete");
+  for (let completeButton of completeButtons) {
+    completeButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      completeItem(completeButton.id);
+    });
+  }
 }
 
-scheduleData();
+// logout
 
-let htmlUser = document.querySelector("#header .user");
+let htmlUser = document.querySelector("#header .user_icon1");
 htmlUser.innerHTML += localStorage.getItem("login");
+
+htmlUser.addEventListener("click", () => {
+  const a = document.querySelector(".user_icon");
+  window.location = "http://localhost:8080/login.html";
+});
+
+scheduleData();

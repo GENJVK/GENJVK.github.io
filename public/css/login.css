@@ -26,12 +26,10 @@ html {
 
 .door_left h1 {
   text-align: end;
-  margin-top: 41%;
 }
 
 .door_right h1 {
   text-align: start;
-  margin-bottom: 45px;
 }
 
 .door_wrapper input[type="checkbox"] {
@@ -215,10 +213,13 @@ a {
 /* img rotation*/
 
 .spin {
-  position: relative;
-  left: -24%;
-  width: 40%;
-  margin: 50px;
+  position: absolute;
+  left: -100%;
+  right: 0%;
+  top: 0%;
+  bottom: 45%;
+  width: 30%;
+  margin: auto;
 }
 
 @media (prefers-reduced-motion: no-preference) {
