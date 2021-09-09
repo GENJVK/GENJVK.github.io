@@ -102,7 +102,6 @@ function startTime() {
 startTime();
 
 // task-form
-
 // task-form icon
 window.onload = function() {
     let school_r = document.getElementById('school_r');
@@ -156,6 +155,35 @@ window.onload = function() {
     }
 }
 
+// add data
+document.querySelector("#task-form").addEventListener("submit", async (event) => {
+	event.preventDefault();
+	const form = event.target;
+
+	const dataObj = {
+		// id: form.id.value,
+		task: form.task.value,
+		assignedto: form.assignedto.value,
+		duedate: form.duedate.value,
+		type: localStorage.getItem("taskType"),
+		isDelete: "false",
+		status: "false",
+	};
+
+	const res = await fetch("http://localhost:8080/todolist", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(dataObj),
+	});
+
+	if (res.ok) {
+		console.log(await res.json());
+		lifeTaskData();
+	};
+});
+
 //task data
 async function lifeTaskData() {
     const lifeTask = document.querySelector("#life-tasks");
@@ -165,8 +193,8 @@ async function lifeTaskData() {
     const res = await fetch("http://localhost:8080/todolist?type=Life&checkDelete=false", {
         method: "GET",
     });
-
-    const dataArr = await res.json();
+    const dataArr_full = await res.json();
+	dataArr = dataArr_full.filter((elem) => elem.status === "false");
 
     for (let i = 0; i < dataArr.length; i++) {
         lifeTask.innerHTML += `
@@ -183,14 +211,12 @@ async function lifeTaskData() {
 
     //update
     const updateItem = async(id) => {
-
-        // 先獲取資料，資料本身以array of object方式儲存，然後將指定要更新的資料放入 selectedItem ，以object方式儲存
         let selectedItem = {}
         let res = await fetch('http://localhost:8080/todolist')
         let resArr = await res.json()
         for (let resItem of resArr) {
             if (resItem.id === id) {
-                selectedItem = {...resItem } // {...resItem } = new resItem 不會改變本身resItem
+                selectedItem = {...resItem }
             }
         }
 
@@ -246,26 +272,70 @@ async function lifeTaskData() {
             method: 'DELETE'
         }
         const res = await fetch(url, setting)
-            // if(res.status === 200) is the same as if(res.ok)
         if (res.ok) {
             lifeTaskData()
         }
     }
 
-    //update and delete button
-    const updateButtons = document.querySelectorAll('.button.update')
-    for (let updateButton of updateButtons) {
-        updateButton.addEventListener('click', (event) => {
-            event.preventDefault();
-            updateItem(updateButton.id)
-        })
-    }
-    const deleteButtons = document.querySelectorAll('.button.delete')
-    for (let deleteButton of deleteButtons) {
-        deleteButton.addEventListener('click', (event) => {
-            event.preventDefault();
-            deleteItem(deleteButton.id)
-        })
-    }
+    // complete
+	const completeItem = async (id) => {
+		let res = await fetch("http://localhost:8080/todolist");
+		let selectedItem;
+		let resArr = await res.json();
+		for (let resItem of resArr) {
+			if (resItem.id === id) {
+				selectedItem = { ...resItem };
+			}
+		}
+
+		// 做 update
+		const url = "http://localhost:8080/todolist/" + id;
+		const dataObj = {
+			id: selectedItem.id,
+			task: selectedItem.task,
+			assignedto: selectedItem.assignedto,
+			duedate: selectedItem.duedate,
+			type: selectedItem.type,
+			isDelete: selectedItem.isDelete,
+			status: "true",
+		};
+		const setting = {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(dataObj),
+		};
+		res = await fetch("http://localhost:8080/todolist/" + id, setting);
+		if (res.ok) {
+			lifeTaskData();
+		}
+	};
+
+	//update, delete and complete button
+	const updateButtons = document.querySelectorAll(".button.update");
+	for (let updateButton of updateButtons) {
+		updateButton.addEventListener("click", (event) => {
+			event.preventDefault();
+			updateItem(updateButton.id);
+		});
+	}
+	const deleteButtons = document.querySelectorAll(".button.delete");
+	for (let deleteButton of deleteButtons) {
+		deleteButton.addEventListener("click", (event) => {
+			event.preventDefault();
+			deleteItem(deleteButton.id);
+		});
+	}
+	const completeButtons = document.querySelectorAll(".button.complete");
+	for (let completeButton of completeButtons) {
+		completeButton.addEventListener("click", (event) => {
+			event.preventDefault();
+			completeItem(completeButton.id);
+		});
+	}
 }
 lifeTaskData();
+
+let htmlUser = document.querySelector("#header .user");
+htmlUser.innerHTML += localStorage.getItem("login");

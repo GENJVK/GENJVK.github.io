@@ -1,6 +1,5 @@
 // side-menu
 let isOpen = true;
-
 function menuToggle() {
     if (isOpen === false) {
         document.getElementById('sideMenu').style.marginLeft = "0";
@@ -15,7 +14,6 @@ function menuToggle() {
 document.getElementById('menu-button').addEventListener('click', menuToggle);
 
 // 以下是calendar的coding！
-
 let nav = 0;
 let clicked = null;
 let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
@@ -155,3 +153,6 @@ initButtons();
 load();
 
 // 以上calendar的coding！！！
+
+let htmlUser = document.querySelector("#header .user");
+htmlUser.innerHTML += localStorage.getItem("login");

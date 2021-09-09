@@ -1,6 +1,5 @@
 // side-menu
 let isOpen = true;
-
 function menuToggle() {
     if (isOpen === false) {
         document.getElementById("sideMenu").style.marginLeft = "0";
@@ -15,7 +14,6 @@ function menuToggle() {
 document.getElementById("menu-button").addEventListener("click", menuToggle);
 
 // current time
-
 function startTime() {
     let today = new Date();
     let strDate = document.getElementById("currentdate");
@@ -124,9 +122,9 @@ async function completedData() {
         </div>
         `;
     }
-
-    // uncomplete 
-    
 }
 completedData();
+
+let htmlUser = document.querySelector("#header .user");
+htmlUser.innerHTML += localStorage.getItem("login");
 
