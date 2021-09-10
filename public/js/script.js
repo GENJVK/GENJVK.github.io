@@ -254,12 +254,16 @@ async function scheduleData() {
 
 		let updatedItem = {};
 		schedule.innerHTML = `
-		<form id='update-form'>
+		<form id='update-form' style=${`"background-color: ${bgColor(selectedItem.type
+		)};"`}>
+		<span>Task</span>
 		<input type='text' name='task' placeholder='task' value="${selectedItem.task}">
+		<span>Assigned to</span>
 		<input type='text' name='assignedto' placeholder='assignedto' value="${selectedItem.assignedto}">
+		<span>Due date</span>
 		<input type='date' name='duedate' placeholder='duedate' value="${selectedItem.duedate}">
 		<input type='text' name='type' placeholder='type' value="${selectedItem.type}" hidden>
-		<button class='button'>Edit</button>
+		<button class='button update'>Edit</button>
 		</form>
 		`;
 

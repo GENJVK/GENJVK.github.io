@@ -103,7 +103,7 @@ startTime();
 
 // task-form
 // task-form icon
-window.onload = function() {
+window.onload = function () {
     let school_r = document.getElementById('school_r');
     let life_r = document.getElementById('life_r');
     let job_r = document.getElementById('job_r');
@@ -111,7 +111,7 @@ window.onload = function() {
     let life_ronOff = true; //創造一個開關,布爾值，true為1，false為0
     let job_ronOff = true; //創造一個開關,布爾值，true為1，false為0
 
-    school_r.onclick = function() {
+    school_r.onclick = function () {
         if (school_ronOff) { //如果是真
             school_r.src = './images/學校_Logo.png'; //圖片路徑切換為圖片2
             life_r.src = './images/文字框_生活_Logo.png'; //圖片路徑切換為圖片1
@@ -125,7 +125,7 @@ window.onload = function() {
             school_ronOff = true; //並且開關設為真
         }
     }
-    life_r.onclick = function() {
+    life_r.onclick = function () {
         if (life_ronOff) { //如果是真
             life_r.src = './images/生活_Logo.png'; //圖片路徑切換為圖片2
             school_r.src = './images/文字框_學校_Logo.png'; //圖片路徑切換為圖片2
@@ -139,7 +139,7 @@ window.onload = function() {
             life_ronOff = true; //並且開關設為真
         }
     }
-    job_r.onclick = function() {
+    job_r.onclick = function () {
         if (job_ronOff) { //如果是真
             job_r.src = './images/工作_Logo.png'; //圖片路徑切換為圖片2
             life_r.src = './images/文字框_生活_Logo.png'; //圖片路徑切換為圖片2
@@ -157,31 +157,31 @@ window.onload = function() {
 
 // add data
 document.querySelector("#task-form").addEventListener("submit", async (event) => {
-	event.preventDefault();
-	const form = event.target;
+    event.preventDefault();
+    const form = event.target;
 
-	const dataObj = {
-		// id: form.id.value,
-		task: form.task.value,
-		assignedto: form.assignedto.value,
-		duedate: form.duedate.value,
-		type: localStorage.getItem("taskType"),
-		isDelete: "false",
-		status: "false",
-	};
+    const dataObj = {
+        // id: form.id.value,
+        task: form.task.value,
+        assignedto: form.assignedto.value,
+        duedate: form.duedate.value,
+        type: localStorage.getItem("taskType"),
+        isDelete: "false",
+        status: "false",
+    };
 
-	const res = await fetch("http://localhost:8080/todolist", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify(dataObj),
-	});
+    const res = await fetch("http://localhost:8080/todolist", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataObj),
+    });
 
-	if (res.ok) {
-		console.log(await res.json());
-		lifeTaskData();
-	};
+    if (res.ok) {
+        console.log(await res.json());
+        lifeTaskData();
+    };
 });
 
 //task data
@@ -194,7 +194,21 @@ async function lifeTaskData() {
         method: "GET",
     });
     const dataArr_full = await res.json();
-	dataArr = dataArr_full.filter((elem) => elem.status === "false");
+    dataArr = dataArr_full.filter((elem) => elem.status === "false");
+
+    const bgColor = (type) => {
+		switch (type) {
+			case "School":
+				return "#EE9999";
+				break;
+			case "Life":
+				return "#57b278";
+				break;
+			case "Job":
+				return "#424ed4";
+				break;
+		}
+	};
 
     for (let i = 0; i < dataArr.length; i++) {
         lifeTask.innerHTML += `
@@ -210,25 +224,29 @@ async function lifeTaskData() {
     }
 
     //update
-    const updateItem = async(id) => {
+    const updateItem = async (id) => {
         let selectedItem = {}
         let res = await fetch('http://localhost:8080/todolist')
         let resArr = await res.json()
         for (let resItem of resArr) {
             if (resItem.id === id) {
-                selectedItem = {...resItem }
+                selectedItem = { ...resItem }
             }
         }
 
         let updatedItem = {}
-        document.querySelector('#life-tasks').innerHTML = `
-        <form id='update-form'>
-        <input type='text' name='task' placeholder='task' value="${selectedItem.task}">
-        <input type='text' name='assignedto' placeholder='assignedto' value="${selectedItem.assignedto}">
-        <input type='date' name='duedate' placeholder='duedate' value="${selectedItem.duedate}">
-        <input type='text' name='type' placeholder='type' value="${selectedItem.type}" hidden>
-        <button class='button'>EDIT</button>
-        </form>
+        lifeTask.innerHTML = `
+        <form id='update-form' style=${`"background-color: ${bgColor(selectedItem.type
+        )};"`}>
+            <span>Task</span>
+            <input type='text' name='task' placeholder='task' value="${selectedItem.task}">
+            <span>Assigned to</span>
+            <input type='text' name='assignedto' placeholder='assignedto' value="${selectedItem.assignedto}">
+            <span>Due date</span>
+            <input type='date' name='duedate' placeholder='duedate' value="${selectedItem.duedate}">
+            <input type='text' name='type' placeholder='type' value="${selectedItem.type}" hidden>
+            <button class='button update'>Edit</button>
+            </form>
         `
 
         document.querySelector('#update-form').addEventListener('submit', (event) => {
@@ -239,12 +257,12 @@ async function lifeTaskData() {
             updatedItem.duedate = event.target.duedate.value
             updatedItem.type = event.target.type.value
             updatedItem.isDelete = "false",
-            updatedItem.status = "false"
+                updatedItem.status = "false"
             performUpdate(updatedItem)
         })
     }
 
-    const performUpdate = async(data) => {
+    const performUpdate = async (data) => {
         let dataObj = {
             id: data.id,
             task: data.task,
@@ -267,7 +285,7 @@ async function lifeTaskData() {
     }
 
     // delete
-    const deleteItem = async(id) => {
+    const deleteItem = async (id) => {
         const url = 'http://localhost:8080/todolist/' + id
         const setting = {
             method: 'DELETE'
@@ -279,62 +297,62 @@ async function lifeTaskData() {
     }
 
     // complete
-	const completeItem = async (id) => {
-		let res = await fetch("http://localhost:8080/todolist");
-		let selectedItem;
-		let resArr = await res.json();
-		for (let resItem of resArr) {
-			if (resItem.id === id) {
-				selectedItem = { ...resItem };
-			}
-		}
+    const completeItem = async (id) => {
+        let res = await fetch("http://localhost:8080/todolist");
+        let selectedItem;
+        let resArr = await res.json();
+        for (let resItem of resArr) {
+            if (resItem.id === id) {
+                selectedItem = { ...resItem };
+            }
+        }
 
-		// 做 update
-		const url = "http://localhost:8080/todolist/" + id;
-		const dataObj = {
-			id: selectedItem.id,
-			task: selectedItem.task,
-			assignedto: selectedItem.assignedto,
-			duedate: selectedItem.duedate,
-			type: selectedItem.type,
-			isDelete: selectedItem.isDelete,
-			status: "true",
-		};
-		const setting = {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(dataObj),
-		};
-		res = await fetch("http://localhost:8080/todolist/" + id, setting);
-		if (res.ok) {
-			lifeTaskData();
-		}
-	};
+        // 做 update
+        const url = "http://localhost:8080/todolist/" + id;
+        const dataObj = {
+            id: selectedItem.id,
+            task: selectedItem.task,
+            assignedto: selectedItem.assignedto,
+            duedate: selectedItem.duedate,
+            type: selectedItem.type,
+            isDelete: selectedItem.isDelete,
+            status: "true",
+        };
+        const setting = {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(dataObj),
+        };
+        res = await fetch("http://localhost:8080/todolist/" + id, setting);
+        if (res.ok) {
+            lifeTaskData();
+        }
+    };
 
-	//update, delete and complete button
-	const updateButtons = document.querySelectorAll(".button.update");
-	for (let updateButton of updateButtons) {
-		updateButton.addEventListener("click", (event) => {
-			event.preventDefault();
-			updateItem(updateButton.id);
-		});
-	}
-	const deleteButtons = document.querySelectorAll(".button.delete");
-	for (let deleteButton of deleteButtons) {
-		deleteButton.addEventListener("click", (event) => {
-			event.preventDefault();
-			deleteItem(deleteButton.id);
-		});
-	}
-	const completeButtons = document.querySelectorAll(".button.complete");
-	for (let completeButton of completeButtons) {
-		completeButton.addEventListener("click", (event) => {
-			event.preventDefault();
-			completeItem(completeButton.id);
-		});
-	}
+    //update, delete and complete button
+    const updateButtons = document.querySelectorAll(".button.update");
+    for (let updateButton of updateButtons) {
+        updateButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            updateItem(updateButton.id);
+        });
+    }
+    const deleteButtons = document.querySelectorAll(".button.delete");
+    for (let deleteButton of deleteButtons) {
+        deleteButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            deleteItem(deleteButton.id);
+        });
+    }
+    const completeButtons = document.querySelectorAll(".button.complete");
+    for (let completeButton of completeButtons) {
+        completeButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            completeItem(completeButton.id);
+        });
+    }
 }
 lifeTaskData();
 
@@ -343,4 +361,4 @@ htmlUser.innerHTML += localStorage.getItem("login");
 
 htmlUser.addEventListener("click", () => {
     window.location = "http://localhost:8080/login.html";
-  });
+});

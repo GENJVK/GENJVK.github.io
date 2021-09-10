@@ -304,16 +304,38 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background-color: #383838;
 }
 
-#task .id {
-  margin-right: 20px;
-}
-
 /* update form */
 #update-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 10px;
+  color: #FFF;
   border: 1px solid #c7c7c7;
   border-radius: 10px;
   background-color: #e6e6e6;
+}
+
+#update-form input {
+  box-shadow: 0px 0px 2px 0px #333;
+  border: 1px solid #c7c7c7;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+#update-form input[type=text] {
+  padding: 10px;
+  width: 80%;
+}
+
+#update-form input[type=date] {
+  padding-left: 0.5rem;
+  height: 20px;
+  width: 110px;
+}
+
+#update-form .button.update {
+  margin: 10px 0;
 }
 
 /* completed task */
