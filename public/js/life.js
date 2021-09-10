@@ -239,7 +239,7 @@ async function lifeTaskData() {
         <form id='update-form' style=${`"background-color: ${bgColor(selectedItem.type
         )};"`}>
             <span>Task</span>
-            <input type='text' name='task' placeholder='task' value="${selectedItem.task}">
+            <input type='text' name='task' placeholder='task' value="${selectedItem.task}" maxlength="255">
             <span>Assigned to</span>
             <input type='text' name='assignedto' placeholder='assignedto' value="${selectedItem.assignedto}">
             <span>Due date</span>
