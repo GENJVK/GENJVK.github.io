@@ -56,5 +56,4 @@ document.querySelector("#login").addEventListener("submit", async (a) => {
     const errorWarning = document.querySelector(".error_warning");
     errorWarning.style.display = "block";
   }
-  localStorage.removeItem("taskType");
 });

@@ -232,7 +232,7 @@ async function scheduleData() {
         <div class='task'>${dataArr[i].task}</div>
         <div class='assigned-to'>Assigned to: ${dataArr[i].assignedto}</div>
         <div class='due-date'>Due date: ${dataArr[i].duedate}</div>
-        <div class='type'>${dataArr[i].type}</div>
+        <div class='type' hidden>${dataArr[i].type}</div>
         <button class="button update" id="${dataArr[i].id}">Edit</button>
         <button class="button delete" id="${dataArr[i].id}">Delete</button>
         <button class='button complete' id="${dataArr[i].id}">Complete</button>
@@ -254,12 +254,16 @@ async function scheduleData() {
 
 		let updatedItem = {};
 		schedule.innerHTML = `
-		<form id='update-form'>
-		<input type='text' name='task' placeholder='task' value="${selectedItem.task}">
+		<form id='update-form' style=${`"background-color: ${bgColor(selectedItem.type
+		)};"`}>
+		<span>Task</span>
+		<input type='text' name='task' placeholder='task' value="${selectedItem.task}" maxlength="255"> 
+		<span>Assigned to</span>
 		<input type='text' name='assignedto' placeholder='assignedto' value="${selectedItem.assignedto}">
+		<span>Due date</span>
 		<input type='date' name='duedate' placeholder='duedate' value="${selectedItem.duedate}">
 		<input type='text' name='type' placeholder='type' value="${selectedItem.type}" hidden>
-		<button class='button'>Edit</button>
+		<button class='button update'>Edit</button>
 		</form>
 		`;
 
@@ -372,5 +376,9 @@ async function scheduleData() {
 }
 scheduleData();
 
-let htmlUser = document.querySelector("#header .user");
+let htmlUser = document.querySelector("#header .user_icon1");
 htmlUser.innerHTML += localStorage.getItem("login");
+
+htmlUser.addEventListener("click", () => {
+    window.location = "http://localhost:8080/login.html";
+  });
