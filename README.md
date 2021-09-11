@@ -1,4 +1,4 @@
-This is the group project I've done for the front-end web developer program.
+This is the group project We've done for a front-end web developer program.
 
 Login page: https://genjvk.github.io/public/login.html
 Main page: https://genjvk.github.io/public/index.html
