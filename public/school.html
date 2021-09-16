@@ -1,82 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JVK To-Do</title>
     <link rel="icon" href="images/bear_360.png" />
     <link rel="stylesheet" type="text/css" href="./css/style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
-</head>
+  </head>
 
-<body>
+  <body>
     <header id="header">
-        <div id="menu-button"><i class="fas fa-bars"></i></div>
-        <div id="sideMenu">
-            <a class="sidemenu-home" href="index.html"><img src="./images/Home_Logo.png" /></a>
-            <div class="sidemenu-top">
-                <a href="school.html"><img src="images/學校_Logo.png" /><span>School</span></a>
-                <a href="life.html"><img src="images/生活_Logo.png" /><span>Life</span></a>
-                <a href="work.html"><img src="images/工作_Logo.png" /><span>Work</span></a>
-                <a href="important.html"><img src="./images/star_icon.png" /><span>Important</span></a>
-            </div>
-            <div class="sidemenu-bottom">
-                <a href="calendar.html"><img src="images/日曆_Logo.png" /><span>Calendar</span></a>
-                <a href="completed.html"><img src="images/已完成_Logo.png" /><span>Completed</span></a>
-                <a href="trash.html"><img src="images/垃圾桶_Logo.png" /><span>Trash</span></a>
-            </div>
+      <div id="menu-button"><i class="fas fa-bars"></i></div>
+      <div id="sideMenu">
+        <a class="sidemenu-home" href="index.html"
+          ><img src="./images/Home_Logo.png"
+        /></a>
+        <div class="sidemenu-top">
+          <a href="school.html"
+            ><img src="images/學校_Logo.png" /><span>School</span></a
+          >
+          <a href="life.html"
+            ><img src="images/生活_Logo.png" /><span>Life</span></a
+          >
+          <a href="work.html"
+            ><img src="images/工作_Logo.png" /><span>Work</span></a
+          >
         </div>
+        <div class="sidemenu-bottom">
+          <a href="calendar.html"
+            ><img src="images/日曆_Logo.png" /><span>Calendar</span></a
+          >
+          <a href="completed.html"
+            ><img src="images/已完成_Logo.png" /><span>Completed</span></a
+          >
+          <a href="trash.html"
+            ><img src="images/垃圾桶_Logo.png" /><span>Trash</span></a
+          >
+        </div>
+      </div>
 
-        <div class="search-bar">
-            <input type="text" placeholder="Search" name="search" />
-            <button type="submit">
+      <div class="search-bar">
+        <input type="text" placeholder="Search" name="search" />
+        <button type="submit">
           <a href="JVK404.html">
             <i class="fa fa-search"></i>
           </a>
         </button>
-        </div>
-        <div id="logo">
-            <a href="index.html">
-                <img src="images/bear_360.png" />
-            </a>
-        </div>
-        <div class="user">
-            <a href="https://github.com/GENJVK/GENJVK.github.io">
-                <img class="user-icon" src="images/user_Victor_icon.png" />
-            </a>
-            <a href="https://github.com/GENJVK/GENJVK.github.io">
-                <img class="user-icon" src="images/user_Kenson_icon.png" />
-            </a>
-            <a href="https://github.com/GENJVK/GENJVK.github.io">
-                <img class="user-icon" src="images/user_Joseph_icon.png" />
-            </a>
-        </div>
+      </div>
+      <div id="logo">
+        <a href="index.html">
+          <img src="images/bear_360.png" />
+        </a>
+      </div>
+      <div class="user">
+        <a href="https://github.com/GENJVK/GENJVK.github.io">
+          <img class="user-icon" src="images/user_Victor_icon.png" />
+        </a>
+        <a href="https://github.com/GENJVK/GENJVK.github.io">
+          <img class="user-icon" src="images/user_Kenson_icon.png" />
+        </a>
+        <a href="https://github.com/GENJVK/GENJVK.github.io">
+          <img class="user-icon" src="images/user_Joseph_icon.png" />
+        </a>
+        <button class="user_icon1"></button>
+      </div>
     </header>
 
     <main>
-        <div id="container">
-            <div id="date">
-                <h1>Today</h1>
-                <div id="currentdate"></div>
+      <div id="container">
+        <div id="date">
+          <h1>Today</h1>
+          <div id="currentdate"></div>
+        </div>
+        <form id="task-form" action="http://localhost:8080/" method="POST" autocomplete="off">
+          <input
+            id="task-input"
+            class="task"
+            name="task"
+            placeholder="Write your task here"
+            rows="5"
+            maxlength="255"
+            required
+          />
+          <br />
+          <br />
+          <br />
+          <br />
+          <div class="task-form-elements">
+            <div class="left">
+              <input
+                class="assigned-to"
+                type="text"
+                name="assignedto"
+                placeholder="Assigned to"
+              />
+              <input
+                class="due-date"
+                type="date"
+                name="duedate"
+                placeholder="Due date"
+                required
+              />
             </div>
-            <form id="task-form" action="http://localhost:8080/" method="POST">
-                <textarea id="task-input" class="task" name="task" placeholder="Write your task here" rows="5" required></textarea>
-                <div class="task-form-elements">
-                    <div class="left">
-                        <input class="assigned-to" type="text" name="assignedto" placeholder="Assigned to" />
-                        <input class="due-date" type="date" name="duedate" placeholder="Due date" required/>
-                    </div>
-                    <div class="right">
-                        <img class="task-form-icon" id="school_r" src="./images/文字框_學校_Logo.png" alt="" />
-                        <img class="task-form-icon" id="life_r" src="./images/文字框_生活_Logo.png" alt="" />
-                        <img class="task-form-icon" id="job_r" src="./images/文字框_工作_Logo.png" alt="" />
-                        <button type="submit">Add Task</button>
-                    </div>
-                </div>
-            </form>
+            <div class="right">
+              <img
+                class="task-form-icon"
+                id="school_r"
+                src="./images/文字框_學校_Logo.png"
+                alt=""
+              />
+              <img
+                class="task-form-icon"
+                id="life_r"
+                src="./images/文字框_生活_Logo.png"
+                alt=""
+              />
+              <img
+                class="task-form-icon"
+                id="job_r"
+                src="./images/文字框_工作_Logo.png"
+                alt=""
+              />
+              <button type="submit">Add Task</button>
+            </div>
+          </div>
+        </form>
             <div id="school-tasks"></div>
         </div>
     </main>

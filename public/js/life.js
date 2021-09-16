@@ -101,18 +101,17 @@ function startTime() {
 }
 startTime();
 
+// task-form
 // task-form icon
-window.onload = function() {
+window.onload = function () {
     let school_r = document.getElementById('school_r');
     let life_r = document.getElementById('life_r');
     let job_r = document.getElementById('job_r');
     let school_ronOff = true; //創造一個開關,布爾值，true為1，false為0
     let life_ronOff = true; //創造一個開關,布爾值，true為1，false為0
     let job_ronOff = true; //創造一個開關,布爾值，true為1，false為0
-    let chAnge = document.getElementById('task-form');
-    let chAngeInput = document.getElementById('task-input');
 
-    school_r.onclick = function() {
+    school_r.onclick = function () {
         if (school_ronOff) { //如果是真
             school_r.src = './images/學校_Logo.png'; //圖片路徑切換為圖片2
             life_r.src = './images/文字框_生活_Logo.png'; //圖片路徑切換為圖片1
@@ -122,13 +121,11 @@ window.onload = function() {
             job_ronOff = true; //並且開關設為真
             localStorage.setItem('taskType', 'School')
         } else { //如果是假
-            school_r.src = './images/文字框_學校_Logo.png'; //圖片路徑切換為圖片1
-            chAngeInput.style['background-color'] = '#e6e6e6';
-            chAnge.style['background-color'] = '#e6e6e6';
+            school_r.src = './images/文字框_學校_Logo.png';
             school_ronOff = true; //並且開關設為真
         }
     }
-    life_r.onclick = function() {
+    life_r.onclick = function () {
         if (life_ronOff) { //如果是真
             life_r.src = './images/生活_Logo.png'; //圖片路徑切換為圖片2
             school_r.src = './images/文字框_學校_Logo.png'; //圖片路徑切換為圖片2
@@ -138,13 +135,11 @@ window.onload = function() {
             job_ronOff = true; //並且開關設為真
             localStorage.setItem("taskType", "Life")
         } else { //如果是假
-            life_r.src = './images/文字框_生活_Logo.png'; //圖片路徑切換為圖片1
-            chAngeInput.style['background-color'] = '#e6e6e6';
-            chAnge.style['background-color'] = '#e6e6e6';
+            life_r.src = './images/文字框_生活_Logo.png';
             life_ronOff = true; //並且開關設為真
         }
     }
-    job_r.onclick = function() {
+    job_r.onclick = function () {
         if (job_ronOff) { //如果是真
             job_r.src = './images/工作_Logo.png'; //圖片路徑切換為圖片2
             life_r.src = './images/文字框_生活_Logo.png'; //圖片路徑切換為圖片2
@@ -154,35 +149,216 @@ window.onload = function() {
             school_ronOff = true; //並且開關設為假
             localStorage.setItem("taskType", "Job")
         } else { //如果是假
-            job_r.src = './images/文字框_工作_Logo.png'; //圖片路徑切換為圖片1
-            chAngeInput.style['background-color'] = '#e6e6e6';
-            chAnge.style['background-color'] = '#e6e6e6';
+            job_r.src = './images/文字框_工作_Logo.png';
             job_ronOff = true; //並且開關設為真
         }
     }
 }
 
-// life-tasks
-async function lifeTaskData() {
-    const deletedTask = document.querySelector("#life-tasks");
+// add data
+document.querySelector("#task-form").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const form = event.target;
 
-    deletedTask.innerHTML = ``;
+    const dataObj = {
+        // id: form.id.value,
+        task: form.task.value,
+        assignedto: form.assignedto.value,
+        duedate: form.duedate.value,
+        type: localStorage.getItem("taskType"),
+        isDelete: "false",
+        status: "false",
+    };
 
-    const res = await fetch("http://localhost:8080/todolist?type=Life", {
-        method: "GET",
+    const res = await fetch("http://localhost:8080/todolist", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataObj),
     });
 
-    const dataArr = await res.json();
+    if (res.ok) {
+        console.log(await res.json());
+        lifeTaskData();
+    };
+});
+
+//task data
+async function lifeTaskData() {
+    const lifeTask = document.querySelector("#life-tasks");
+
+    lifeTask.innerHTML = ``;
+
+    const res = await fetch("http://localhost:8080/todolist?type=Life&checkDelete=false", {
+        method: "GET",
+    });
+    const dataArr_full = await res.json();
+    dataArr = dataArr_full.filter((elem) => elem.status === "false");
+
+    const bgColor = (type) => {
+		switch (type) {
+			case "School":
+				return "#EE9999";
+				break;
+			case "Life":
+				return "#57b278";
+				break;
+			case "Job":
+				return "#424ed4";
+				break;
+		}
+	};
 
     for (let i = 0; i < dataArr.length; i++) {
-        deletedTask.innerHTML += `
-        <div id='task'>
-        <div class='due-date'>${dataArr[i].duedate}</div>
+        lifeTask.innerHTML += `
+        <div id='task' style="background-color: #57b278">
         <div class='task'>${dataArr[i].task}</div>
         <div class='assigned-to'>Assigned to: ${dataArr[i].assignedto}</div>
-        <div class='type'>${dataArr[i].type}</div>
+        <div class='due-date'>Due date: ${dataArr[i].duedate}</div>
+        <button class="button update" id="${dataArr[i].id}">Edit</button>
+        <button class="button delete" id="${dataArr[i].id}">Delete</button>
+        <button class='button complete' id="${dataArr[i].id}">Complete</button>
         </div>
         `;
     }
+
+    //update
+    const updateItem = async (id) => {
+        let selectedItem = {}
+        let res = await fetch('http://localhost:8080/todolist')
+        let resArr = await res.json()
+        for (let resItem of resArr) {
+            if (resItem.id === id) {
+                selectedItem = { ...resItem }
+            }
+        }
+
+        let updatedItem = {}
+        lifeTask.innerHTML = `
+        <form id='update-form' style=${`"background-color: ${bgColor(selectedItem.type
+        )};"`}>
+            <span>Task</span>
+            <input type='text' name='task' placeholder='task' value="${selectedItem.task}" maxlength="255">
+            <span>Assigned to</span>
+            <input type='text' name='assignedto' placeholder='assignedto' value="${selectedItem.assignedto}">
+            <span>Due date</span>
+            <input type='date' name='duedate' placeholder='duedate' value="${selectedItem.duedate}">
+            <input type='text' name='type' placeholder='type' value="${selectedItem.type}" hidden>
+            <button class='button update'>Edit</button>
+            </form>
+        `
+
+        document.querySelector('#update-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            updatedItem.id = id
+            updatedItem.task = event.target.task.value
+            updatedItem.assignedto = event.target.assignedto.value
+            updatedItem.duedate = event.target.duedate.value
+            updatedItem.type = event.target.type.value
+            updatedItem.isDelete = "false",
+                updatedItem.status = "false"
+            performUpdate(updatedItem)
+        })
+    }
+
+    const performUpdate = async (data) => {
+        let dataObj = {
+            id: data.id,
+            task: data.task,
+            assignedto: data.assignedto,
+            duedate: data.duedate,
+            type: data.type,
+            isDelete: "false",
+            status: "false"
+        }
+
+        const url = 'http://localhost:8080/todolist/' + data.id
+        let res = await fetch(url, {
+            method: "PUT",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dataObj)
+        })
+        if (res.ok) {
+            lifeTaskData()
+        }
+    }
+
+    // delete
+    const deleteItem = async (id) => {
+        const url = 'http://localhost:8080/todolist/' + id
+        const setting = {
+            method: 'DELETE'
+        }
+        const res = await fetch(url, setting)
+        if (res.ok) {
+            lifeTaskData()
+        }
+    }
+
+    // complete
+    const completeItem = async (id) => {
+        let res = await fetch("http://localhost:8080/todolist");
+        let selectedItem;
+        let resArr = await res.json();
+        for (let resItem of resArr) {
+            if (resItem.id === id) {
+                selectedItem = { ...resItem };
+            }
+        }
+
+        // 做 update
+        const url = "http://localhost:8080/todolist/" + id;
+        const dataObj = {
+            id: selectedItem.id,
+            task: selectedItem.task,
+            assignedto: selectedItem.assignedto,
+            duedate: selectedItem.duedate,
+            type: selectedItem.type,
+            isDelete: selectedItem.isDelete,
+            status: "true",
+        };
+        const setting = {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(dataObj),
+        };
+        res = await fetch("http://localhost:8080/todolist/" + id, setting);
+        if (res.ok) {
+            lifeTaskData();
+        }
+    };
+
+    //update, delete and complete button
+    const updateButtons = document.querySelectorAll(".button.update");
+    for (let updateButton of updateButtons) {
+        updateButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            updateItem(updateButton.id);
+        });
+    }
+    const deleteButtons = document.querySelectorAll(".button.delete");
+    for (let deleteButton of deleteButtons) {
+        deleteButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            deleteItem(deleteButton.id);
+        });
+    }
+    const completeButtons = document.querySelectorAll(".button.complete");
+    for (let completeButton of completeButtons) {
+        completeButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            completeItem(completeButton.id);
+        });
+    }
 }
 lifeTaskData();
+
+let htmlUser = document.querySelector("#header .user_icon1");
+htmlUser.innerHTML += localStorage.getItem("login");
+
+htmlUser.addEventListener("click", () => {
+    window.location = "http://localhost:8080/login.html";
+});

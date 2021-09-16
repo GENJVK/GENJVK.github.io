@@ -26,7 +26,6 @@ html {
 }
 
 .door_left h1 {
-    margin-top: 47%;
     text-align: end;
 }
 
@@ -34,7 +33,7 @@ html {
     text-align: start;
 }
 
-.door_wrapper input[type=checkbox] {
+.door_wrapper input[type="checkbox"] {
     position: absolute;
     pointer-events: none;
     cursor: pointer;
@@ -46,21 +45,21 @@ html {
     left: 0;
 }
 
-.door_wrapper input[type=checkbox]:checked {
+.door_wrapper input[type="checkbox"]:checked {
     pointer-events: revert;
 }
 
-.door_wrapper input[type=checkbox]:checked~div.door_left {
+.door_wrapper input[type="checkbox"]:checked~div.door_left {
     transform: translateX(0);
 }
 
-.door_wrapper input[type=checkbox]:checked~div.door_right {
+.door_wrapper input[type="checkbox"]:checked~div.door_right {
     transform: translateX(0);
 }
 
 .door_panel {
     display: flex;
-    background: #FFF;
+    background: #fff;
     color: #333;
     float: left;
     position: relative;
@@ -74,21 +73,39 @@ html {
     align-items: flex-end;
     flex-direction: column;
     justify-content: center;
-    transform: translateX(-100%);
+    transform: translateX(-130%);
 }
 
 .door_right {
     align-items: flex-start;
     flex-direction: column;
     justify-content: center;
-    transform: translateX(100%);
+    transform: translateX(130%);
 }
 
 
 /* login page */
 
-canvas {
-    position: absolute;
+@keyframes login {
+    10%,
+    90% {
+        transform: translate3d(-2px, 0, 0);
+    }
+    20%,
+    80% {
+        transform: translate3d(+4px, 0, 0);
+    }
+    30%,
+    70% {
+        transform: translate3d(-8px, 0, 0);
+    }
+    40%,
+    60% {
+        transform: translate3d(+8px, 0, 0);
+    }
+    50% {
+        transform: translate3d(-8px, 0, 0);
+    }
 }
 
 .login_page {
@@ -106,7 +123,19 @@ canvas {
 }
 
 .login_page img {
-    width: 40%;
+    width: 150px;
+    position: absolute;
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    font-size: 1px;
+    padding: 1px;
+    color: white;
+    transition: all 0.5s;
+    position: absolute;
+    margin: auto;
+    top: -70%;
+    bottom: 0%;
+    left: 0%;
+    right: 0%;
 }
 
 .login {
@@ -124,11 +153,6 @@ h2 {
     text-align: center;
     color: #333;
     padding: 20px;
-}
-
-label {
-    color: #08ffd1;
-    font-size: 17px;
 }
 
 #Uname,
@@ -168,21 +192,43 @@ a {
     color: #333;
 }
 
+.error_warning {
+    color: brown;
+    display: none;
+}
+
+
+/* login img */
+
+.login_img {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+}
+
+@keyframes shake {
+    0% {
+        transform: skewY(10deg);
+    }
+    100% {
+        transform: skewY(-10deg);
+    }
+}
+
 
 /* img rotation*/
 
 .spin {
-    width: 40%;
-    margin: 50px;
-}
-
-.spin {
-    transform: translateX(-50%);
+    position: absolute;
+    left: -100%;
+    right: 0%;
+    top: 0%;
+    bottom: 45%;
+    width: 30%;
+    margin: auto;
 }
 
 @media (prefers-reduced-motion: no-preference) {
     .spin {
-        animation: App-logo-spin infinite 5S linear;
+        animation: App-logo-spin infinite 5s linear;
     }
 }
 

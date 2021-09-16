@@ -2,50 +2,55 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="./css/login.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JVK To-Do</title>
+    <link rel="icon" href="images/bear_360.png" />
+    <link rel="stylesheet" type="text/css" href="./css/login.css" />
 </head>
 
 <body>
     <div class="door">
         <div class="door_wrapper">
-            <input type="checkbox" checked>
+            <input type="checkbox" checked />
 
             <div class="door_panel door_left">
-                <h1>Welcome to join&nbsp;<br>Please click&nbsp;</h1>
+                <h1>Welcome to join&nbsp;<br />Please click&nbsp;</h1>
             </div>
 
             <div class="login_page">
                 <div class="login">
-                    <img src="./images/bear_360.png" alt="bear_360">
+                    <img class="login_img" src="./images/bear_360.png" alt="bear_360" />
                     <form id="login" method="get" action="login.php">
-                        <h2> User Name </h2>
-                        <input type="text" name="Uname" id="Uname" placeholder="Username">
-                        <br><br>
-                        <h2> Password </h2>
-                        <input type="Password" name="Pass" id="Pass" placeholder="Password">
-                        <br><br>
-                        <!-- <input type="checkbox" id="check" value="second_checkbox" checked="checked">
-                        <span>Remember me</span> -->
+                        <label for="Uname">
+							<h2>User Name</h2>
+						</label>
+                        <input type="text" name="Uname" id="Uname" placeholder="Username" maxlength="20" />
+                        <br /><br />
+                        <label for="Pass">
+							<h2>Password</h2>
+						</label>
+                        <input type="Password" name="Pass" id="Pass" placeholder="Password" />
+                        <br /><br />
                         <a href="#"> Forgot Password</a>
                         <div class="forget"></div>
-                        <br>
-                        <input type="button" name="log" id="log" value="Login">
-                        <br><br>
+                        <br />
+                        <input type="submit" name="log" id="log" value="Login" />
+                        <br /><br />
+                        <div class="error_warning">
+                            <h5>Please enter the correct username and password</h5>
+                        </div>
                     </form>
                 </div>
             </div>
 
             <div class="door_panel door_right">
-                <img class="spin" src="./images/bear_360.png">
-                <h1>BadBear Todolist<br>to login</h1>
+                <img class="spin" src="./images/bear_360.png" />
+                <h1>BadBear Todolist<br />to login</h1>
             </div>
         </div>
     </div>
-
-    <script type="text/javascript" src="js/script.js"></script>
+    <script src="js/login.js"></script>
 </body>
 
 
